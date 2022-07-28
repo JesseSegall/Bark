@@ -1,0 +1,17 @@
+{
+  "name": "db-proposal",
+  "version": "1.0.0",
+  "description": "Example database for Bark project",
+  "main": "app.js",
+  "scripts": {
+    "seed": "node ./tasks/seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Jesse Segall",
+  "license": "ISC",
+  "dependencies": {
+    "db": "^3.3.1",
+    "mongo": "^0.1.0"
+  }
+}
