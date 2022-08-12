@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Search for Sitter</title>
+    {{!--
+    <link rel="stylesheet" href="/public/css/stylesheet.css"> THIS WILL REFERENCE OUR STYLESHEET--}}
+
+</head>
+
+<body>
+    <header>
+        <a href="/" id="backToRegistration">Back to registration</a>
+        <h1>Find a Sitter</h1>
+    </header>
+
+    <main class="sitterSearchMain">
+
+        <form id="sitterSearchForm">
+            <label for="sitter">Search for a sitter:</label>
+            <input id="sitter" type="text" name="sitter" placeholder="Sitter Name" />
+            <button type="submit">Search</button>
+        </form>
+
+        <ul id="sitterList"></ul>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+        {{!--
+        <script src="/public/javascript/ajax.js"></script> THIS WILL REFERENCE A CLIENT SIDE JS FILE--}}
+
+</body>
