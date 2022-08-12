@@ -8,13 +8,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "author": "Jesse Segall",
+  "author": "Jesse Segall, Ryan Knapp, Eric Knapp, Bhavin Mistry, Terrence Peters",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "db": "^3.3.1",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
     "mongo": "^0.1.0"
   }
