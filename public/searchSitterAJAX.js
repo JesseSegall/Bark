@@ -1,7 +1,7 @@
 ( ($) => {
 	
 	//Ajax request for list of sitters 
-	// let req = { method: 'GET', sittersCollection }; TODO FIGURE OUT HOW TO REQ SITTER DATA
+	let req = { method: 'GET', sitterCollection };
 
 	$.ajax(req).then( (res) => {
 		$('#sitterList').empty();
@@ -30,12 +30,12 @@
 	$('#sitterSearchForm').submit( (event) => {
 		event.preventDefault();
 	
-		if ($('#sitter').val().trim() == ""){ alert("Error: The search you have made is invalid you must enter a search term");}
-		if (!$('#sitter').val()) { alert("Error: The search you have made is invalid");}
+		if ($('#search_term').val().trim() == ""){ alert("Error: The search you have made is invalid you must enter a search term");}
+		if (!$('#search_term').val()) { alert("Error: The search you have made is invalid");}
 
 		//if there are no errors with the search term, continue with the get request
 		else {
-			// let req = { method: 'GET', url: 'http://api.tvmaze.com/search/shows?q=' + $('#sitter').val() }; TODO FIGURING OUT HOW TO REQUEST SITTER DATA
+			let req = { method: 'GET', url: sitterCollection + $('#search_term').val() }; 
 
 			$.ajax(req).then( (res) => {
 				$('#sitterList').empty();
@@ -63,7 +63,7 @@
 	//When a sitter in the  list is clicked it will take us to another page showing information about the sitter.
 	let clickedOn = (newSitter) => {
 
-		// let req = { method: 'GET', newSitter}; TODO figuring out pulling the data list of sitters
+		let req = { method: 'GET', url: newSitter }; 
 
 		$.ajax(req).then( (res) => {
 		
@@ -92,7 +92,7 @@
                     <dd>${res.address}</dd>
                     <dt>Dogs Sat:</dt>
 					<ul>${res.idOfDogSat.map((dog) => `<li>${dog}</li>`)}</ul>
-					<dt>Price</dt>
+					<dt>Price:</dt>
 					<dd>${res.price}</dd>
                     <dt>Reviews:</dt>
 					<ul>${res.reviewsId.map((review) => `<li>${review}</li>`)}</ul>
