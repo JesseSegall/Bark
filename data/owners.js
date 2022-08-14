@@ -3,25 +3,16 @@ const owners = mongoCollections.owners;
 const { ObjectId } = require("mongodb");
 
 let exportedMethods = {
-  async addOwner(
-    firstName,
-    lastName,
-    address,
-    email,
-    userName,
-    password,
-    picture
-  ) {
+  async addOwner(firstName, lastName, email, userName, password) {
     let newOwner = {
       firstName: firstName,
       lastName: lastName,
-      address: address,
       email: email,
       userName: userName,
       password: password,
-      dogsOwned: [],
-      picture: picture,
-      reviewsId: [],
+      picture: null,
+      dogs: [],
+      reviews: [],
     };
     const ownersCollection = await owners();
     const insertOwner = await ownersCollection.insertOne(newOwner);

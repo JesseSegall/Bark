@@ -5,10 +5,12 @@ const first_name = document.getElementById("first_name");
 const last_name = document.getElementById("last_name");
 const password = document.getElementById("password");
 const password_confm = document.getElementById("password_confm");
-
+let flag = false;
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
   validateInputs();
+  if (flag === true) {
+    e.preventDefault();
+  }
 });
 
 const setErrors = (element, message) => {
@@ -52,28 +54,37 @@ const validateInputs = () => {
 
   if (user_nameVal === "") {
     setErrors(user_name, "A username is required.");
+    flag = true;
   } else {
     setSuccess(user_name);
+    flag = false;
   }
 
   if (emailVal === "") {
     setErrors(email, "Please enter a valid email address.");
+    flag = true;
   } else if (!isValidEmail(emailVal)) {
     setErrors(email, "A valid email address is required.");
+    flag = true;
   } else {
     setSuccess(email);
+    flag = false;
   }
 
   if (first_nameVal === "") {
     setErrors(first_nameVal, "Please enter your first name.");
+    flag = true;
   } else {
     setSuccess(first_name);
+    flag = false;
   }
 
   if (last_nameVal === "") {
     setErrors(last_name, "Please enter your last name.");
+    flag = true;
   } else {
     setSuccess(last_name);
+    flag = false;
   }
 
   if (passwordVal === "") {
@@ -82,20 +93,26 @@ const validateInputs = () => {
       password,
       "Password must be atleast 8 characters long and contain 1 uppercase letter, 1 lowercase letter , 1 number , and one special character (!,@,#,$,%,^,&,*)"
     );
+    flag = true;
   } else {
     setSuccess(password);
+    flag = false;
   }
 
   if (password_confmVal === "") {
     setErrors(password_confm, "");
+    flag = true;
   } else if (passwordVal !== password_confmVal) {
     setErrors(password_confm, "Passwords do not match.");
+    flag = true;
   } else if (!isValidPassword(password_confmVal)) {
     setErrors(
       password,
       "Password must be atleast 8 characters long and contain 1 uppercase letter, 1 lowercase letter , 1 number , and one special character (!,@,#,$,%,^,&,*)"
     );
+    flag = true;
   } else {
     setSuccess(password_confm);
+    flag = false;
   }
 };

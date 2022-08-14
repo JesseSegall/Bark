@@ -16,87 +16,40 @@ router.get("/registerOwner", async (req, res) => {
 });
 
 router.post("/registerOwner", async (req, res) => {
-  const { user_name, first_name, last_name, email, password, password_confm } =
-    req.body;
+  const firstName = req.body.first_name;
+  const lastName = req.body.last_name;
+  const email = req.body.email;
+  const userName = req.body.user_name;
+  const password = req.body.password;
 
-  try {
-    if (!user_name) {
-      throw `Please enter a Username.`;
-    }
-    if (!first_name) {
-      throw `Please enter your First Name.`;
-    }
-    if (!last_name) {
-      throw `Please enter your Last Name.`;
-    }
-    if (!email) {
-      throw `Please enter your email address.`;
-    }
-    if (!password) {
-      throw `Please enter a password.`;
-    }
-    if (!password_confm) {
-      throw `Please confirm your password.`;
-    }
+  const hash = await bcrypt.hash(password, salt);
+  const newOwner = await ownerData.addOwner(
+    firstName,
+    lastName,
+    email,
+    userName,
+    hash
+  );
 
-    if (password !== password_confm) {
-      throw `Passwords do not match, please try again.`;
-    }
-    const hash = await bcrypt.hash(password, salt);
-    const newOwner = await ownerData.addOwner(
-      first_name,
-      last_name,
-      email,
-      user_name,
-      hash
-    );
-    req.session.userId = newOwner._id.toHexString();
-    return res.resdirect("/dashboard"); // Should redirect to either home page or straight to their dashboard after registration
-  } catch (e) {
-    return res.status(404).render(); // TODO: Need to add our homepage to render if error
-  }
+  req.session.user = newOwner;
+  console.log(req.session.userId);
+  return res.redirect("/"); // Should redirect to either home page or straight to their dashboard after registration
 });
 
 router.post("/registerSitter", async (req, res) => {
   const { user_name, first_name, last_name, email, password, password_confm } =
     req.body;
 
-  try {
-    if (!user_name) {
-      throw `Please enter a Username.`;
-    }
-    if (!first_name) {
-      throw `Please enter your First Name.`;
-    }
-    if (!last_name) {
-      throw `Please enter your Last Name.`;
-    }
-    if (!email) {
-      throw `Please enter your email address.`;
-    }
-    if (!password) {
-      throw `Please enter a password.`;
-    }
-    if (!password_confm) {
-      throw `Please confirm your password.`;
-    }
-
-    if (password !== password_confm) {
-      throw `Passwords do not match, please try again.`;
-    }
-    const hash = await bcrypt.hash(password, salt);
-    const newSitter = await sitterData.addSitter(
-      first_name,
-      last_name,
-      email,
-      user_name,
-      hash
-    );
-    req.session.userId = newSitter._id.toHexString();
-    return res.resdirect("/dashboard"); // Should redirect to either home page or straight to their dashboard after registration
-  } catch (e) {
-    return res.status(404).render(); // TODO: Need to add our homepage to render if error
-  }
+  const hash = await bcrypt.hash(password, salt);
+  const newSitter = await sitterData.addSitter(
+    first_name,
+    last_name,
+    email,
+    user_name,
+    hash
+  );
+  req.session.userId = newSitter._id.toHexString();
+  return res.resdirect("/dashboard"); // Should redirect to either home page or straight to their dashboard after registration
 });
 
 module.exports = router;
