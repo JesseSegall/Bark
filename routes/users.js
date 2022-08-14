@@ -99,4 +99,9 @@ router.post("/registerSitter", async (req, res) => {
   }
 });
 
+
+router.get('/searchSitter', (req, res) => { 
+  res.render("partials/searchSitter", {});
+}); 
+
 module.exports = router;
