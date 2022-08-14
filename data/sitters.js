@@ -10,7 +10,6 @@ let exportedMethods = {
     email,
     userName,
     password,
-
     picture,
     price
   ) {
@@ -18,7 +17,7 @@ let exportedMethods = {
       firstName: firstName,
       lastName: lastName,
       address: address,
-      email: email,
+      email: email.toLowerCase(),
       userName: userName,
       password: password,
       idOfDogSat: [], //array
