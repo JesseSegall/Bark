@@ -10,7 +10,6 @@ let exportedMethods = {
     email,
     userName,
     password,
-
     picture,
     price
   ) {
