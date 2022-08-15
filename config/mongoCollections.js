@@ -18,9 +18,8 @@ const getCollectionFn = (collection) => {
 
 module.exports = {
   // put collection modules in here from data folder
-  sitters: getCollectionFn("sitters"),
-  owners: getCollectionFn("owners"),
   dogs: getCollectionFn("dogs"),
   reviews: getCollectionFn("reviews"),
   requests: getCollectionFn("requests"),
+  users: getCollectionFn("users"),
 };
