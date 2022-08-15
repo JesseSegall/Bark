@@ -1,9 +1,10 @@
 <body>
+
   <div class="OuterContainer">
     <div class="innerContainer">
-      <h1>Please Register Below</h1>
+
       <br />
-      <p> Select if you are a pet owner or a pet sitter</p>
+
       <br />
       <br />
     </div>
@@ -11,7 +12,8 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <form
-            action="/users/registerSitter"
+            id="form"
+            action="/registerSitter"
             method="POST"
             role="form"
             enctype="application/x-www-form-urlencoded"
@@ -27,6 +29,7 @@
                 placeholder="First Name"
                 required
               />
+              <div class="error"></div>
             </div>
             <br />
             <div class="form-group">
@@ -39,6 +42,7 @@
                 placeholder="Last Name"
                 required
               />
+              <div class="error"></div>
             </div>
             <br />
             <div class="form-group">
@@ -51,6 +55,7 @@
                 placeholder=" Username"
                 required
               />
+              <div class="error"></div>
             </div>
             <br />
             <div class="form-group">
@@ -63,6 +68,7 @@
                 placeholder=" Email Address"
                 required
               />
+              <div class="error"></div>
             </div>
             <br />
             <div class="form-group">
@@ -75,6 +81,7 @@
                 placeholder="Password"
                 required
               />
+              <div class="error"></div>
             </div>
             <br />
             <div class="form-group">
@@ -87,6 +94,7 @@
                 placeholder="Re enter your password"
                 required
               />
+              <div class="error"></div>
               <br />
               <button type="submit" class="Buttons">Register</button>
             </div>
