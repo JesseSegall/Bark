@@ -38,6 +38,13 @@ let exportedMethods = {
     const sitter = await sittersCollection.findOne({ _id: ObjectId(id) });
     return sitter;
   },
-};
+
+  async getAll() {
+    const sittersData = await sitters();
+    const sittersList = await sittersData.find({}).toArray();
+    return sittersList;
+}
+
+}
 
 module.exports = exportedMethods;

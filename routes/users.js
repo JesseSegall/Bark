@@ -52,8 +52,12 @@ router.post("/registerSitter", async (req, res) => {
   return res.resdirect("/dashboard"); // Should redirect to either home page or straight to their dashboard after registration
 });
 
-
+//teseting this one
 router.get('/searchSitter', (req, res) => { 
+  const listOfSitters = sitterData.getAll(); 
+  let names = req.body.firstName + " " + req.body.lastName;
+  var sitterList = names; 
+  return sitterList;
   res.render("partials/searchSitter", {});
 }); 
 
