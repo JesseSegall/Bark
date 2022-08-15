@@ -58,3 +58,39 @@ body {
   font-size: 9px;
   height: 13px;
 }
+
+#sitterSearchForm { 
+  color: white;
+  max-width: 50%;
+  margin: auto;
+}
+
+#searchSitterHeader{ 
+  color: white;
+  font-size: 36;
+  max-width: 30%;
+  margin: auto;
+}
+
+#backToRegistration{ 
+  color: purple;
+  font-weight: bolder;
+}
+
+h1{
+  color:whitesmoke;
+}
+
+.pp1{
+  color:whitesmoke;
+}
+
+.pp2{
+  color:whitesmoke;
+  font-style: italic;
+}
+
+.OwnerOrSitter{
+  text-align: center;
+}
+

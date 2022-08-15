@@ -3,8 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const data = require("../data");
 const salt = 8;
-const ownerData = data.owners;
-const sitterData = data.sitters;
+
 const users = data.users;
 
 router.get("/", async (req, res) => {
