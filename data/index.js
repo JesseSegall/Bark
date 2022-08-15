@@ -3,6 +3,7 @@ const reviewData = require("./reviews");
 const dogsData = require("./dogs");
 const ownersData = require("./owners");
 const requestsData = require("./requests");
+const usersData = require("./users");
 
 module.exports = {
   sitters: sittersData,
@@ -10,4 +11,5 @@ module.exports = {
   dogs: dogsData,
   owners: ownersData,
   requests: requestsData,
+  users: usersData,
 };

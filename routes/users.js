@@ -5,6 +5,7 @@ const data = require("../data");
 const salt = 8;
 const ownerData = data.owners;
 const sitterData = data.sitters;
+const users = data.users;
 
 router.get("/", async (req, res) => {
   // Just for testing purposes
@@ -23,7 +24,7 @@ router.post("/registerOwner", async (req, res) => {
   const password = req.body.password;
 
   const hash = await bcrypt.hash(password, salt);
-  const newOwner = await ownerData.addOwner(
+  const newOwner = await users.addOwner(
     firstName,
     lastName,
     email,
@@ -36,25 +37,27 @@ router.post("/registerOwner", async (req, res) => {
   return res.redirect("/"); // Should redirect to either home page or straight to their dashboard after registration
 });
 
+router.get("/registerSitter", async (req, res) => {
+  res.render("partials/sitterReg", {});
+});
+
 router.post("/registerSitter", async (req, res) => {
-  const { user_name, first_name, last_name, email, password, password_confm } =
-    req.body;
+  const { user_name, first_name, last_name, email, password } = req.body;
 
   const hash = await bcrypt.hash(password, salt);
-  const newSitter = await sitterData.addSitter(
+  const newSitter = await users.addSitter(
     first_name,
     last_name,
     email,
     user_name,
     hash
   );
-  req.session.userId = newSitter._id.toHexString();
-  return res.resdirect("/dashboard"); // Should redirect to either home page or straight to their dashboard after registration
+  req.session.user = newSitter;
+  return res.redirect("/"); // Should redirect to either home page or straight to their dashboard after registration
 });
 
-
-router.get('/searchSitter', (req, res) => { 
+router.get("/searchSitter", (req, res) => {
   res.render("partials/searchSitter", {});
-}); 
+});
 
 module.exports = router;
