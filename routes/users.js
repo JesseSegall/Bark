@@ -11,11 +11,45 @@ router.get("/", async (req, res) => {
   res.render("partials/userChoice", {});
 });
 
+router.get("/signin", async (req, res) => {
+  res.render("partials/signin", {});
+});
+
+router.post("/signin", async (req, res) => {
+  const username = req.body.user_name.trim();
+  const password = req.body.password;
+  let currentUser;
+  const allUsers = await users.getAllUsers();
+  console.log(allUsers);
+
+  for (i = 0; i < allUsers.length; i++) {
+    if (allUsers[i].userName == username) {
+      currentUser = allUsers[i];
+    }
+    // Need to throw an error here to inform them there is no user name that matches
+    if (!currentUser) {
+      console.log("No match");
+      return res.redirect("/");
+    }
+  }
+
+  let passwordCheck = await bcrypt.compare(password, currentUser.password);
+  console.log(passwordCheck);
+  // Passwords match set the current user to session and send them to their dashboard
+  if (passwordCheck) {
+    req.session.user = currentUser;
+    console.log(req.session.user);
+    console.log("session");
+    return res.redirect("/success");
+  }
+});
+
 router.get("/registerOwner", async (req, res) => {
   res.render("partials/ownerReg", {});
 });
 
 router.post("/registerOwner", async (req, res) => {
+  // Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
   const firstName = req.body.first_name;
   const lastName = req.body.last_name;
   const email = req.body.email;
