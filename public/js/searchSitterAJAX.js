@@ -2,7 +2,7 @@
 
   let req = {
     method: 'GET',
-    url: '/routes/users/searchSitter',
+    url: '/searchSitter',
     contentType: 'application/json',
     data: JSON.stringify({
       firstName: firstName,
@@ -39,7 +39,6 @@
     if ($('#search_term').val().trim() == "") { alert("Error: The search you have made is invalid you must enter a search term"); }
     if (!$('#search_term').val()) { alert("Error: The search you have made is invalid"); }
 
-    //if there are no errors with the search term, continue with the get request
     else {
       let req = {
         method: 'GET',
