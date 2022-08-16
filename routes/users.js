@@ -90,9 +90,8 @@ router.post("/registerSitter", async (req, res) => {
 });
 
 router.get("/searchSitter", async (req, res) => {
-  const userData = await users.getAllUsers();
-  req.body = userData; 
-  res.render("partials/searchSitter", {});
+  const {sitterList} = await users.getAllUsers(req.params);
+  res.render("partials/searchSitter", {data: sitterList})
 });
 
 module.exports = router;
