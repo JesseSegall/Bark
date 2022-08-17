@@ -50,6 +50,7 @@ router.get("/registerOwner", async (req, res) => {
 
 router.post("/registerOwner", async (req, res) => {
   // Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
+
   const firstName = req.body.first_name;
   const lastName = req.body.last_name;
   const email = req.body.email;
@@ -76,22 +77,26 @@ router.get("/registerSitter", async (req, res) => {
 
 router.post("/registerSitter", async (req, res) => {
   const { user_name, first_name, last_name, email, password } = req.body;
+  try {
+    const hash = await bcrypt.hash(password, salt);
+    const newSitter = await users.addSitter(
+      first_name,
+      last_name,
+      email,
+      user_name,
+      hash
+    );
+    req.session.user = newSitter;
+  } catch (error) {
+    return res.status(401).json(error);
+  }
 
-  const hash = await bcrypt.hash(password, salt);
-  const newSitter = await users.addSitter(
-    first_name,
-    last_name,
-    email,
-    user_name,
-    hash
-  );
-  req.session.user = newSitter;
   return res.redirect("/"); // Should redirect to either home page or straight to their dashboard after registration
 });
 
 router.get("/searchSitter", async (req, res) => {
-  const {sitterList} = await users.getAllUsers(req.params);
-  res.render("partials/searchSitter", {data: sitterList})
+  const { sitterList } = await users.getAllUsers(req.params);
+  res.render("partials/searchSitter", { data: sitterList });
 });
 
 module.exports = router;
