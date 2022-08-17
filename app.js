@@ -4,20 +4,20 @@ const static = express.static(__dirname + "/public");
 const configRoutes = require("./routes");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
-const Handlebars = require('handlebars');
+const Handlebars = require("handlebars");
 
 const handlebarsInstance = exphbs.create({
-  defaultLayout: 'main',
+  defaultLayout: "main",
   // Specify helpers which are only registered on this instance.
   helpers: {
     asJSON: (obj, spacing) => {
-      if (typeof spacing === 'number')
+      if (typeof spacing === "number")
         return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
 
       return new Handlebars.SafeString(JSON.stringify(obj));
-    }
+    },
   },
-  partialsDir: ['views/partials/']
+  partialsDir: ["views/partials/"],
 });
 const rewriteUnsupportedBrowserMethods = (req, res, next) => {
   // If the user posts to the server with a property called _method, rewrite the request's method
@@ -43,12 +43,11 @@ app.use(
     secret: "some secret string!",
     resave: false,
     saveUninitialized: true,
-  }), 
-
+  })
 );
 
-app.engine('handlebars', handlebarsInstance.engine);
-app.set('view engine', 'handlebars');
+app.engine("handlebars", handlebarsInstance.engine);
+app.set("view engine", "handlebars");
 
 configRoutes(app);
 
