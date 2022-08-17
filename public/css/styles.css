@@ -93,10 +93,12 @@ body {
 	color: whitesmoke;
 	font-style: italic;
 	padding: 0%;
+	display: inline;
 }
 
 .OwnerOrSitter {
 	text-align: center;
+	padding-top: 90pt;
 }
 
 .h1_reg_petOwner {
@@ -142,4 +144,5 @@ h4{
 
 h1{
   color:whitesmoke;
+display: inline;
 }
