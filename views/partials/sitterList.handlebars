@@ -3,7 +3,7 @@
 <body>
     <form id="sitterSearchForm">
         <label for="search_term">Search for a sitter:</label>
-        <input id="search_term" type="text" name="search_term" placeholder="Sitter Name" />
+        <input id="search_term" type="text" name="search_term" placeholder="Enter a Sitter Name" />
         <button type="submit">Search</button>
     </form>
 
@@ -12,7 +12,7 @@
         <div id="sitterListID">
             {{#each sitters}}
             <article>
-                <h2 id="sitterList"><a ref="/searchSitter/{{_id}}">{{firstName}} {{lastName}}</a></h2>
+                <h2 id="sitterList"><a href="/searchSitter/{{_id}}">{{firstName}} {{lastName}}</a></h2>
             </article>
             {{/each}}
         </div>

@@ -89,7 +89,18 @@ body {
 	padding-top: 0.5cm;
 	margin: auto;
 	max-width: 30%;
-	color: purple;
+	color: white;
+}
+
+#sitterProfileHeader{
+	font-size: 60px; 
+	max-width: 30%;
+	color: white;
+}
+
+#sitterInfo { 
+	max-width: 30%;
+	margin: auto;
 }
 
 .h1_Landing {
