@@ -1,13 +1,12 @@
 (($) => {
-
   let req = {
-    method: 'GET',
-    url: '/searchSitter',
-    contentType: 'application/json',
+    method: "GET",
+    url: "/searchSitter",
+    contentType: "application/json",
     data: JSON.stringify({
       firstName: firstName,
-      lastName: lastName
-    })
+      lastName: lastName,
+    }),
   };
 
   $.ajax(req).then((res) => {
@@ -66,7 +65,6 @@
   //   }
   // });
 
-
   // //When a sitter in the  list is clicked it will take us to another page showing information about the sitter.
   // let clickedOn = (clickedSitter) => {
   //   let req = {
@@ -87,22 +85,22 @@
   //     $('#sitter').append(`<h1>${res.firstName}<h1>
   //     <img src="${res.image && res.image.medium ? res.image.medium : "/public/image/no_image.jpeg"}"/>
 
-	// 			<dl>
-	// 				<dt>First Name:</dt>
-	// 				<dd>${res.firstName}</dd>
-	// 				<dt>Last Name:</dt>
+  // 			<dl>
+  // 				<dt>First Name:</dt>
+  // 				<dd>${res.firstName}</dd>
+  // 				<dt>Last Name:</dt>
   //         <dd>${res.lastName}</dd>
   //         <dt>Address:</dt>
   //         <dd>${res.address}</dd>
   //         <dt>Dogs Sat:</dt>
-	// 				<ul>${res.idOfDogSat.map((dog) => `<li>${dog}</li>`)}</ul>
-	// 				<dt>Price</dt>
-	// 				<dd>${res.price}</dd>
+  // 				<ul>${res.idOfDogSat.map((dog) => `<li>${dog}</li>`)}</ul>
+  // 				<dt>Price</dt>
+  // 				<dd>${res.price}</dd>
   //         <dt>Reviews:</dt>
-	// 				<ul>${res.reviewsId.map((review) => `<li>${review}</li>`)}</ul>
+  // 				<ul>${res.reviewsId.map((review) => `<li>${review}</li>`)}</ul>
   //       <dt>Requests:</dt>
-	// 				<ul>${res.requests.map((request) => `<li>${request}</li>`)}</ul>
-	// 			</dl>`);
+  // 				<ul>${res.requests.map((request) => `<li>${request}</li>`)}</ul>
+  // 			</dl>`);
   //   });
   // };
 })(window.jQuery);

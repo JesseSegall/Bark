@@ -1,7 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
 const users = mongoCollections.users;
 const { ObjectId } = require("mongodb");
-const valdidate = require("./validation");
+const valdidate = require("../validate");
 
 let exportedMethods = {
   async addOwner(firstName, lastName, email, userName, password) {
