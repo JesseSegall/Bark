@@ -1,3 +1,4 @@
+{{!--
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,8 +25,13 @@
             <button type="submit">Search</button>
         </form>
         <ul id="sitterList"></ul>
-        <div id="sitter"></div>
-          <p>{{data.sitterList}}</p>
+        <li id="sitter"></li>
+        {{!-- <ul id="firstName"> {{sitterList.email}}</ul>
+        {{!-- <div id="firstName"></div> --}}
+        {{!-- <p id="firstName"></p> --}}
+        <div id="lastName">{{lastName}}</div> --}}
+        {{!-- <p>{{sitterList}}</p>
+
 
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -35,4 +41,46 @@
 
         <script src="/public/js/searchSitterAJAX.js"></script>
 
+</body> --}}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+
+        <script src="/public/js/searchSitterAJAX.js"></script>
+
+</head>
+
+<body>
+    <div class = "ui-widget">
+        <label for = "sitter"> Sitter: </label><br>
+        <input id = "sitter">
+    </div>
+    <script>
+        $(document).ready(function() { 
+            $("#sitter").autocomplete({
+                source: async function(request, response){ 
+                    let data = await fetch('http//locahost:3000/searchSitter/search?term'=$(request.term))
+                    .then(results => results.json())
+                    .then(results => results.map(result => { 
+                        return {label: result.firstName, value: result.firstName, id: result._id};
+                    }));
+                    response(data); 
+                }, 
+                minLength: 2, 
+                select: function(event,ui){ 
+                    console.log(ui.item); 
+                }
+            })
+        })
+    </script>
 </body>
+
+<html>
