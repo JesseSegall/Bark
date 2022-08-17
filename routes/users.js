@@ -11,6 +11,10 @@ router.get("/", async (req, res) => {
   res.render("partials/userChoice", {});
 });
 
+router.get("/About", async (req, res) => {
+  res.render("partials/about", {});
+});
+
 router.get("/signin", async (req, res) => {
   res.render("partials/signin", {});
 });
