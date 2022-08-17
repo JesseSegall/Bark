@@ -80,6 +80,18 @@ body {
 	font-weight: bolder;
 }
 
+#findSitter{ 
+	margin: auto;
+	max-width: 30%;
+}
+
+#sitterList{ 
+	padding-top: 0.5cm;
+	margin: auto;
+	max-width: 30%;
+	color: purple;
+}
+
 .h1_Landing {
 	color: whitesmoke;
 	font-size: 35pt;

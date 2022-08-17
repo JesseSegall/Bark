@@ -1,4 +1,23 @@
-<<<<<<< HEAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // (($) => {
 
 //   let req = {
@@ -140,79 +159,80 @@
 // //   )
 // // })(window.jQuery);
 
-const input = document.getElementById("search-input");
-const searchBtn = document.getElementById("search-btn");
-
-const expand = () => {
-  searchBtn.classList.toggle("close");
-  input.classList.toggle("square");
-};
-
-searchBtn.addEventListener("click", expand);
 
 
-$(document).ready(function(){
+
+// const input = document.getElementById("search-input");
+// const searchBtn = document.getElementById("search-btn");
+
+// const expand = () => {
+//   searchBtn.classList.toggle("close");
+//   input.classList.toggle("square");
+// };
+
+// searchBtn.addEventListener("click", expand);
 
 
-    $.ajaxSetup({ cache: false });
+// $(document).ready(function(){
+
+
+//     $.ajaxSetup({ cache: false });
     
-     $('#search-input').keyup(function(){
-     $('#result').html('');
-     $('#state').val('');
-     var searchField = $('#search-input').val();
-     var expression = new RegExp(searchField, "g");
-     $.getJSON('/users/searchSitter',  function(data) {
-        $.each(data, function(key, value){
-         if (value.firstName.search(expression) == 1 || value.email.search(expression) == 1 )
-         {
-          $('#result').append('<li class="list-group-item link-class"><span class="text-muted">'+value.firstName+'| '+value.email+'</span></li>');
-         }
-        });   
-       });
-   });
+//      $('#search-input').keyup(function(){
+//      $('#result').html('');
+//      $('#state').val('');
+//      var searchField = $('#search-input').val();
+//      var expression = new RegExp(searchField, "g");
+//      $.getJSON('/users/searchSitter',  function(data) {
+//         $.each(data, function(key, value){
+//          if (value.firstName.search(expression) == 1 || value.email.search(expression) == 1 )
+//          {
+//           $('#result').append('<li class="list-group-item link-class"><span class="text-muted">'+value.firstName+'| '+value.email+'</span></li>');
+//          }
+//         });   
+//        });
+//    });
 
 
-   $('#result').on('click', 'li', function() {
-    var click_text = $(this).text().split('|');
-    $('#search-input').val($.trim(click_text[0]));
-    $("#result").html('');
-   });
-  });
+//    $('#result').on('click', 'li', function() {
+//     var click_text = $(this).text().split('|');
+//     $('#search-input').val($.trim(click_text[0]));
+//     $("#result").html('');
+//    });
+//   });
 
 
-=======
-(($) => {
-  let req = {
-    method: "GET",
-    url: "/searchSitter",
-    contentType: "application/json",
-    data: JSON.stringify({
-      firstName: firstName,
-      lastName: lastName,
-    }),
-  };
+// (($) => {
+//   let req = {
+//     method: "GET",
+//     url: "/searchSitter",
+//     contentType: "application/json",
+//     data: JSON.stringify({
+//       sitterList: sitterList
+//     })
+//   };
 
-  $.ajax(req).then((res) => {
-    $("#sitterList").empty();
-    $("#backToRegistration").hide();
-    $("#sitterList").hide();
-    $("#sitter").hide();
-    $.each(res, function () {
-      $("#sitterList").append(
-        `<li><a class="linkClicked" href='${this._links.self.href}'>${this.firstName}</a></li>`
-      );
-    });
-    $("#sitterList").show();
-    $("a.linkClicked").on("click", (event) => {
-      event.preventDefault();
-      $("#sitter").empty();
-      $("#sitterList").hide();
+//   $.ajax(req).then((res) => {
+//     $("#sitterList").empty();
+//     $("#backToRegistration").hide();
+//     $("#sitterList").hide();
+//     $("#sitter").hide();
+//     $.each(res, function () {
+//       $("#sitterList").append(
+//         `<li><a class="linkClicked" href='${this._links.self.href}'>${this.sitterList}</a></li>`
+//       );
+//     });
+//     $("#sitterList").show();
+//     $("a.linkClicked").on("click", (event) => {
+//       event.preventDefault();
+//       $("#sitter").empty();
+//       $("#sitterList").hide();
 
-      clickedOn(event.target.href);
-      $("#backToRegistration").show();
-      $("#sitter").show();
-    });
-  });
+//       clickedOn(event.target.href);
+//       $("#backToRegistration").show();
+//       $("#sitter").show();
+//     });
+//   });
 
   // //The search functionality
   // $("#sitterSearchForm").submit((event) => {
@@ -286,5 +306,4 @@ $(document).ready(function(){
   // 			</dl>`);
   //   });
   // };
-})(window.jQuery);
->>>>>>> 46f2a0f2f152859eb12ba9101a14ac17292232f1
+// })(window.jQuery);

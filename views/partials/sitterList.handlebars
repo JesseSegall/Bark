@@ -1,0 +1,18 @@
+<h1 id = "findSitter">Find a Sitter</h1>
+
+<form id="sitterSearchForm">
+    <label for="search_term">Search for a sitter:</label>
+    <input id="search_term" type="text" name="search_term" placeholder="Sitter Name" />
+    <button type="submit">Search</button>
+</form>
+
+<Section>
+
+    <div id="sitterListID">
+        {{#each sitters}}
+        <article>
+            <h2 id = "sitterList"><a ref="/sitterList/{{_id}}">{{firstName}} {{lastName}}</a></h2>
+        </article>
+        {{/each}}
+    </div>
+</Section>

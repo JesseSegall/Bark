@@ -89,7 +89,7 @@ let exportedMethods = {
     }
 
     return allUsers;
-  },
-};
+  }
+}
 
 module.exports = exportedMethods;
