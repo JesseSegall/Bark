@@ -56,18 +56,22 @@ router.post("/registerOwner", async (req, res) => {
   const email = req.body.email;
   const userName = req.body.user_name;
   const password = req.body.password;
+  try {
+    const hash = await bcrypt.hash(password, salt);
+    const newOwner = await users.addOwner(
+      firstName,
+      lastName,
+      email,
+      userName,
+      hash
+    );
 
-  const hash = await bcrypt.hash(password, salt);
-  const newOwner = await users.addOwner(
-    firstName,
-    lastName,
-    email,
-    userName,
-    hash
-  );
+    req.session.user = newOwner;
+    console.log(req.session.userId);
+  } catch (error) {
+    return res.status(401).json(error);
+  }
 
-  req.session.user = newOwner;
-  console.log(req.session.userId);
   return res.redirect("/"); // Should redirect to either home page or straight to their dashboard after registration
 });
 
@@ -88,6 +92,7 @@ router.post("/registerSitter", async (req, res) => {
     );
     req.session.user = newSitter;
   } catch (error) {
+    //TODO: Need to clean up error handling and add errors with handlebars or some shit
     return res.status(401).json(error);
   }
 
