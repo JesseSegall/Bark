@@ -105,7 +105,7 @@ router.post("/registerSitter", async (req, res) => {
 	return res.redirect("/"); // Should redirect to either home page or straight to their dashboard after registration
 });
 
-router.getSitter("/searchSitter/:id", async (req, res) => {
+router.get("/searchSitter/:id", async (req, res) => {
     const sitterData = await users.getSitter(req.params.id)
   res.render("partials/sitterProfile", {sitter: sitterData}); 
 });
