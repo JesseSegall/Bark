@@ -77,8 +77,9 @@ body {
   font-weight: bolder;
 }
 
-h1{
+.h1_Landing{
   color:whitesmoke;
+  font-size: 35pt;
 }
 
 .pp1{
@@ -88,9 +89,38 @@ h1{
 .pp2{
   color:whitesmoke;
   font-style: italic;
+  padding:0%;
 }
 
 .OwnerOrSitter{
   text-align: center;
 }
 
+.h1_reg_petOwner{
+  color:whitesmoke;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* .topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+} */
