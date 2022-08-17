@@ -1,8 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
-// const sitters = mongoCollections.sitters;
-// const owners = mongoCollections.owners;
 const users = mongoCollections.users;
 const { ObjectId } = require("mongodb");
+const valdidate = require("../validate");
 
 let exportedMethods = {
   async addOwner(firstName, lastName, email, userName, password) {
@@ -32,6 +31,11 @@ let exportedMethods = {
   },
 
   async addSitter(firstName, lastName, email, userName, password) {
+    // if (!valdidate.validString(firstName)) throw "Must be a valid String.";
+    // if (!valdidate.validString(lastName)) throw "Must be a valid String.";
+    // if (!valdidate.validString(userName)) throw "Must be a valid String.";
+    const usersCollection = await users();
+    const attemptedUsername = userName.trim();
     let newSitter = {
       firstName: firstName,
       lastName: lastName,
@@ -47,7 +51,10 @@ let exportedMethods = {
       owner: false,
       sitter: true,
     };
-    const usersCollection = await users();
+    const usernameTaken = await usersCollection.findOne({
+      userName: attemptedUsername,
+    });
+    if (usernameTaken) throw "Username is already taken.";
     const insertSitter = await usersCollection.insertOne(newSitter);
     if (insertSitter.insertedCount === 0)
       throw "Something wrong here in sitters.";
