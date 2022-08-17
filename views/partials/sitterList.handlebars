@@ -1,18 +1,29 @@
-<h1 id = "findSitter">Find a Sitter</h1>
+<h1 id="findSitter">Find a Sitter</h1>
 
-<form id="sitterSearchForm">
-    <label for="search_term">Search for a sitter:</label>
-    <input id="search_term" type="text" name="search_term" placeholder="Sitter Name" />
-    <button type="submit">Search</button>
-</form>
+<body>
+    <form id="sitterSearchForm">
+        <label for="search_term">Search for a sitter:</label>
+        <input id="search_term" type="text" name="search_term" placeholder="Sitter Name" />
+        <button type="submit">Search</button>
+    </form>
 
-<Section>
+    <Section>
 
-    <div id="sitterListID">
-        {{#each sitters}}
-        <article>
-            <h2 id = "sitterList"><a ref="/sitterList/{{_id}}">{{firstName}} {{lastName}}</a></h2>
-        </article>
-        {{/each}}
-    </div>
-</Section>
+        <div id="sitterListID">
+            {{#each sitters}}
+            <article>
+                <h2 id="sitterList"><a ref="/sitterList/{{_id}}">{{firstName}} {{lastName}}</a></h2>
+            </article>
+            {{/each}}
+        </div>
+
+    </Section>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+    <script src="/public/js/searchSitterAJAX.js"></script>
+
+</body>

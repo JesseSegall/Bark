@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const data = require("../data");
 const e = require("express");
-const { MongoClient } = require("mongodb");
+const { MongoClient, MongoUnexpectedServerResponseError } = require("mongodb");
 const salt = 8;
 
 const users = data.users;
@@ -105,37 +105,15 @@ router.post("/registerSitter", async (req, res) => {
 	return res.redirect("/"); // Should redirect to either home page or straight to their dashboard after registration
 });
 
-
-// router.get("/searchSitter", async (request, response) => {
-//     userList = await users.getAllUsers(); 
-
-//     let result = await users.aggregate([
-//       {
-//       "$search": {
-//         "autocomplete": {
-//           "query": '${request.query.term}',
-//           "path": "firstName",
-//           "fuzzy": {
-//             "maxEdits": 2
-//           }
-//         }
-//       }
-//     }
-//     ]).toArray();
-//     response.send(result); 
-
-//   });
+router.getSitter("/searchSitter/:id", async (req, res) => {
+    const sitterData = await users.getSitter(req.params.id)
+  res.render("partials/sitterProfile", {sitter: sitterData}); 
+});
 
 router.get("/searchSitter", async (req, res) => {
 	const sitterList = await users.getAllUsers();
 	// res.json(sitterList); 
   res.render("partials/sitterList", {sitters: sitterList}); 
 });
-
-// router.get("/searchSitter", async (req, res) => {
-// 	const { sitterList } = await users.getAllUsers(req.params);
-// 	res.render("partials/searchSitter", { data: sitterList });
-// });
-
 
 module.exports = router;
