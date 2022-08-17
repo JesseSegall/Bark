@@ -1,6 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
 const users = mongoCollections.users;
 const { ObjectId } = require("mongodb");
+const valdidate = require("../validate");
 
 let exportedMethods = {
 	async addOwner(firstName, lastName, email, userName, password) {
@@ -85,17 +86,6 @@ let exportedMethods = {
 		}
 
 		return allUsers;
-	},
-
-	async getAllSitters() {
-		const usersCollection = await users();
-		const sittersArray = await usersCollection
-			.find(
-				{},
-				{ projection: { firstName: 1, lastName: 1, price: 1, sitter: "true" } }
-			)
-			.toArray();
-		return sittersArray;
 	},
 };
 

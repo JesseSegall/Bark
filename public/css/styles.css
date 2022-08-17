@@ -80,6 +80,29 @@ body {
 	font-weight: bolder;
 }
 
+#findSitter{ 
+	margin: auto;
+	max-width: 30%;
+}
+
+#sitterList{ 
+	padding-top: 0.5cm;
+	margin: auto;
+	max-width: 30%;
+	color: white;
+}
+
+#sitterProfileHeader{
+	font-size: 60px; 
+	max-width: 100%;
+	color: white;
+}
+
+#sitterInfo { 
+	max-width: 30%;
+	margin: auto;
+}
+
 .h1_Landing {
 	color: whitesmoke;
 	font-size: 35pt;
@@ -93,10 +116,12 @@ body {
 	color: whitesmoke;
 	font-style: italic;
 	padding: 0%;
+	display: inline;
 }
 
 .OwnerOrSitter {
 	text-align: center;
+	padding-top: 90pt;
 }
 
 .h1_reg_petOwner {
@@ -142,4 +167,5 @@ h4{
 
 h1{
   color:whitesmoke;
+display: inline;
 }

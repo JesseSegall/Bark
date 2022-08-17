@@ -6,7 +6,7 @@
   "scripts": {
     "seed": "node ./tasks/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "author": "Jesse Segall, Ryan Knapp, Eric Knapp, Bhavin Mistry, Terrence Peters",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
     "mongo": "^0.1.0",
-    "mongodb": "^4.8.1"
+    "mongodb": "^4.8.1",
+    "nodemon": "^2.0.19"
   }
 }
