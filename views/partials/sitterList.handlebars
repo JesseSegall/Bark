@@ -15,15 +15,14 @@
 
     <Section>
 
-        <div id="sitterListID">
             <ul id="sitterList">
                 {{#each sitters}}
                 <article>
-                    <li id="sitter"><a href="/searchSitter/{{_id}}">{{firstName}} {{lastName}}</a></li>
+                    <div id="sitter"><a href="/searchSitter/{{_id}}">{{firstName}} {{lastName}}</a></div>
                 </article>
                 {{/each}}
+               
             </ul>
-        </div>
 
 
     </Section>

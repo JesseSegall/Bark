@@ -98,6 +98,8 @@ let exportedMethods = {
 			.toArray();
 		return sittersArray;
 	},
+
+
 };
 
 module.exports = exportedMethods;

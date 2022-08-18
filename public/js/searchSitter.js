@@ -1,3 +1,4 @@
+g
 (($) => {
 
 	let req = {
@@ -7,11 +8,12 @@
 	};
 
 	$.ajax(req).then( (res) => {
-		$('#sitterList').show();
-		$('#sitterList').show(); 
+		$('#sitterList').empty();
+		$('#sitterList').hide(); 
 		$('#sitter').hide(); 
 		$.each(res, function () {
-			$('#sitterList').append(`<li><a class="linkClicked" href='${this._links.self.href}'>${this.name}</a></li>`);
+			// $('#sitterList').append(`<li><a class="linkClicked" href='${this._links.self.href}'>${this.name}</a></li>`);
+			$('#sitterList').append(`<li><a class="linkClicked" href='${this.sitters.self.href}'>${this.name}</a></li>`);
 		});
 		$('#sitterList').show();
 
@@ -31,7 +33,7 @@
 		else {
 			let req = {
 				method: 'GET',
-				url: '/searchSitter?search_term=' + $('#search_term').val(),
+				url: 'http://localhost:3000/searchSitter?search_term=' + $('#search_term').val(),
 				contentType: "application/json"
 			};
 
@@ -39,7 +41,7 @@
 				$('#sitterList').empty();
 				$('#sitterList').hide();
 				$('#sitter').hide();
-				$.each(res, function () { $('#sitterList').append(`<li><a class="linkClicked" href='${this.sitter._links.self.href}'>${this.sitter.name}</a></li>`); });
+				$.each(res, function () { $('#sitterList').append(`<li><a class="linkClicked" href='${this._links.self.href}'>${this.name}</a></li>`); });
 				$('#sitterList').show();
 
 				$('a.linkClicked').on('click', (event) => {
@@ -52,9 +54,6 @@
 			});
 		}
 	});
-
-
-
 })(window.jQuery);
 
 

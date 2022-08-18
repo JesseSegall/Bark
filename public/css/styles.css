@@ -99,10 +99,20 @@ body {
 	max-width: 100%;
 	color: white;
 }
+a{ 
+	color: white
+}
 
 #sitterInfo { 
 	max-width: 30%;
 	margin: auto;
+}
+
+#sitter{ 
+	color: white;
+}
+ul{ 
+	color: white
 }
 
 .h1_Landing {
@@ -173,3 +183,4 @@ h1{
 color:whitesmoke;
 display: inline;
 }
+
