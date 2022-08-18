@@ -89,7 +89,7 @@ body {
 #sitterList{ 
 	padding-top: 0.5cm;
 	margin: auto;
-	max-width: 30%;
+	max-width: 20%;
 	color: white;
 	font-size: 20px;
 }
@@ -169,7 +169,7 @@ h4{
   color: whitesmoke;
 }
 
-/* h1{
+h1{
 color:whitesmoke;
 display: inline;
-} */
+}
