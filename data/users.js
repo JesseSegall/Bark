@@ -15,7 +15,7 @@ let exportedMethods = {
 			email: email,
 			userName: userName,
 			password: password,
-			picture: null,
+			picture: "public/image/no_image.jpeg",
 			dogs: [],
 			reviews: [],
 			owner: true,
@@ -51,7 +51,7 @@ let exportedMethods = {
 			userName: userName,
 			password: password,
 			idOfDogSat: [], //array
-			picture: null, //  TODO: Possibly add a default picture here
+			picture: "public/image/no_image.jpeg", //  TODO: Possibly add a default picture here
 			price: null,
 			reviewsId: [],
 			requests: [],
@@ -86,6 +86,17 @@ let exportedMethods = {
 		}
 
 		return allUsers;
+	},
+
+	async getAllSitters() {
+		const usersCollection = await users();
+		const sittersArray = await usersCollection
+			.find(
+				{},
+				{ projection: { firstName: 1, lastName: 1, price: 1, sitter: "true" } }
+			)
+			.toArray();
+		return sittersArray;
 	},
 };
 
