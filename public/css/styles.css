@@ -64,8 +64,9 @@ body {
 }
 #sitterSearchForm {
 	color: white;
-	max-width: 50%;
+	max-width: 30%;
 	margin: auto;
+	padding-top: 1cm;
 }
 
 #searchSitterHeader {
@@ -90,6 +91,7 @@ body {
 	margin: auto;
 	max-width: 30%;
 	color: white;
+	font-size: 20px;
 }
 
 #sitterProfileHeader{
@@ -132,6 +134,8 @@ body {
 .topnav {
 	background-color: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 	overflow: hidden;
+	max-width: 30%;
+	margin: auto;
 }
 
 .topnav a {
@@ -165,7 +169,7 @@ h4{
   color: whitesmoke;
 }
 
-h1{
-  color:whitesmoke;
+/* h1{
+color:whitesmoke;
 display: inline;
-}
+} */
