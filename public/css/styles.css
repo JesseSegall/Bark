@@ -81,12 +81,12 @@ body {
 	font-weight: bolder;
 }
 
-#findSitter{ 
+#findSitter {
 	margin: auto;
 	max-width: 30%;
 }
 
-#sitterList{ 
+#sitterList {
 	padding-top: 0.5cm;
 	margin: auto;
 	max-width: 20%;
@@ -94,13 +94,13 @@ body {
 	font-size: 20px;
 }
 
-#sitterProfileHeader{
-	font-size: 60px; 
+#sitterProfileHeader {
+	font-size: 60px;
 	max-width: 100%;
 	color: white;
 }
 
-#sitterInfo { 
+#sitterInfo {
 	max-width: 30%;
 	margin: auto;
 }
@@ -157,19 +157,26 @@ body {
   color: white;
 } */
 
-.boys{
-  color:whitesmoke;
+.boys {
+	color: whitesmoke;
 }
 
-p{
-  color:whitesmoke;
+p {
+	color: whitesmoke;
 }
 
-h4{
-  color: whitesmoke;
+h4 {
+	color: whitesmoke;
 }
 
-h1{
-color:whitesmoke;
-display: inline;
+h1 {
+	color: whitesmoke;
+	display: inline;
+}
+
+.card {
+	border: 1px solid rgb(0, 0, 0);
+	background-color: #2f815f;
+	padding: 20px;
+	margin-bottom: 10px;
 }
