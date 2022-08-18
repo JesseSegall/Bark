@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const data = require("../data");
-const e = require("express");
+
+//What is this for?
 const { MongoClient, MongoUnexpectedServerResponseError } = require("mongodb");
 const salt = 8;
 
@@ -64,13 +65,7 @@ router.post("/registerOwner", async (req, res) => {
 	const password = req.body.password;
 	try {
 		const hash = await bcrypt.hash(password, salt);
-		const newOwner = await users.addOwner(
-			firstName,
-			lastName,
-			email,
-			userName,
-			hash
-		);
+		const newOwner = await users.addOwner(firstName, lastName, email, userName, hash);
 
 		req.session.user = newOwner;
 		console.log(req.session.userId);
@@ -89,13 +84,7 @@ router.post("/registerSitter", async (req, res) => {
 	const { user_name, first_name, last_name, email, password } = req.body;
 	try {
 		const hash = await bcrypt.hash(password, salt);
-		const newSitter = await users.addSitter(
-			first_name,
-			last_name,
-			email,
-			user_name,
-			hash
-		);
+		const newSitter = await users.addSitter(first_name, last_name, email, user_name, hash);
 		req.session.user = newSitter;
 	} catch (error) {
 		//TODO: Need to clean up error handling and add errors with handlebars or some shit
@@ -116,5 +105,8 @@ router.get("/searchSitter", async (req, res) => {
 	res.render("partials/sitterList", { sitters: sitterList });
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bf423f974dbb86f1b40fd9fc56f1c90034a0395d
 module.exports = router;
