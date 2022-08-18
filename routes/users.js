@@ -10,15 +10,15 @@ const users = data.users;
 
 router.get("/", async (req, res) => {
 	// Just for testing purposes
-	res.render("partials/userChoice", {});
+	return res.render("partials/userChoice", {});
 });
 
 router.get("/About", async (req, res) => {
-  res.render("partials/about", {});
+	return res.render("partials/about", {});
 });
 
 router.get("/signin", async (req, res) => {
-	res.render("partials/signin", {});
+	return res.render("partials/signin", {});
 });
 
 router.post("/signin", async (req, res) => {
@@ -51,7 +51,7 @@ router.post("/signin", async (req, res) => {
 });
 
 router.get("/registerOwner", async (req, res) => {
-	res.render("partials/ownerReg", {});
+	return res.render("partials/ownerReg", {});
 });
 
 router.post("/registerOwner", async (req, res) => {
@@ -106,14 +106,14 @@ router.post("/registerSitter", async (req, res) => {
 });
 
 router.get("/searchSitter/:id", async (req, res) => {
-    const sitterData = await users.getSitter(req.params.id)
-  res.render("partials/sitterProfile", {sitter: sitterData}); 
+	const sitterData = await users.getSitter(req.params.id);
+	res.render("partials/sitterProfile", { sitter: sitterData });
 });
 
 router.get("/searchSitter", async (req, res) => {
 	const sitterList = await users.getAllUsers();
-	// res.json(sitterList); 
-  res.render("partials/sitterList", {sitters: sitterList}); 
+	// res.json(sitterList);
+	res.render("partials/sitterList", { sitters: sitterList });
 });
 
 
