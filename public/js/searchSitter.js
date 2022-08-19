@@ -8,8 +8,8 @@
 	};
 
 	$.ajax(req).then( (res) => {
-		$('#sitterList').empty();
-		$('#sitterList').hide(); 
+		$('#sitterList').show();
+		$('#sitterList').show(); 
 		$('#sitter').hide(); 
 		$.each(res, function () {
 			// $('#sitterList').append(`<li><a class="linkClicked" href='${this._links.self.href}'>${this.name}</a></li>`);
