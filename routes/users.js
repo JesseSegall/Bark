@@ -105,8 +105,10 @@ router.get("/searchSitter", async (req, res) => {
 	res.render("partials/sitterList", { sitters: sitterList });
 });
 
-<<<<<<< HEAD
+router.get("/searchOwner/:id", async (req, res) => {
+	const ownerData = await users.getOwner(req.params.id);
+	res.render("partials/ownerProfile", { owner: ownerData });
+});
 
-=======
->>>>>>> bf423f974dbb86f1b40fd9fc56f1c90034a0395d
+
 module.exports = router;

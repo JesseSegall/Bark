@@ -1,10 +1,10 @@
-g
+
 (($) => {
 
 	let req = {
 		method: 'GET',
 		url: '/searchSitter',
-		contentType: "application/json",
+		// contentType: "application/json",
 	};
 
 	$.ajax(req).then( (res) => {
@@ -13,7 +13,7 @@ g
 		$('#sitter').hide(); 
 		$.each(res, function () {
 			// $('#sitterList').append(`<li><a class="linkClicked" href='${this._links.self.href}'>${this.name}</a></li>`);
-			$('#sitterList').append(`<li><a class="linkClicked" href='${this.sitters.self.href}'>${this.name}</a></li>`);
+			$('#sitterList').append(`<li><a class="linkClicked" href='${this.sitters.self.href}'>${this.firstName}</a></li>`);
 		});
 		$('#sitterList').show();
 

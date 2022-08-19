@@ -1,0 +1,17 @@
+<div class="topnav">
+    <a class="active" href="/">Home</a>
+    <a href="/registerOwner">Owner</a>
+    <a href="/registerSitter">Sitter</a>
+    <a href="/About">About</a>
+</div>
+
+<section id="ownderInfo">
+    <h1 id="ownerProfilePage">{{owner.firstName}} {{owner.lastName}}</h1>
+            {{owner.picture}}
+    <p>Address: {{owner.address}}</p>
+    <p>Email: {{owner.email}}</p>
+    <p>Price: {{owner.price}}</p>
+    <p>Dogs Sat: {{owner.idOfDogSat}}</p>
+    <p>Reviews: {{owner.ReviewsId}}</p>
+    <p>Requests: {{owner.requests}}</p>
+</section>
