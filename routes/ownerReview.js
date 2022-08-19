@@ -22,4 +22,18 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.get("/", async (req, res) => {
+
+    const ownerId = req.body.id;
+    
+    try {
+
+        const ownerReviewData = reviewsData.getReview(ownerId);
+        console.log(ownerReviewData);
+
+    } catch(e) {
+        return res.status(500).json({error: e});
+    }
+});
+
 module.exports = router;
