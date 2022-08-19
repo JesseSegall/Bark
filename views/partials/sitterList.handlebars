@@ -1,9 +1,9 @@
-<div class="topnav">
+{{!-- <div class="topnav">
     <a class="active" href="/">Home</a>
     <a href="/registerOwner">Owner</a>
     <a href="/registerSitter">Sitter</a>
     <a href="/About">About</a>
-</div>
+</div> --}}
 
 
 <body>
@@ -15,15 +15,17 @@
 
     <Section>
 
-        <div id="sitterListID">
-            <ul id="sitterList">
-                {{#each sitters}}
-                <article>
-                    <li id="sitter"><a href="/searchSitter/{{_id}}">{{firstName}} {{lastName}}</a></li>
-                </article>
-                {{/each}}
-            </ul>
-        </div>
+        {{!-- <ul id="sitterList"> --}}
+            {{!-- {{#each sitters}}
+            <article>
+                <div id="sitter"><a href="/searchSitter/{{_id}}">{{firstName}} {{lastName}}</a></div>
+            </article>
+            {{/each}} --}}
+            {{!--
+        </ul> --}}
+
+        <ul id="sitterList"></ul>
+        <div id="sitter"></div>
 
 
     </Section>

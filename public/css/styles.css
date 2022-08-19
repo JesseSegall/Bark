@@ -99,10 +99,20 @@ body {
 	max-width: 100%;
 	color: white;
 }
+a{ 
+	color: white
+}
 
 #sitterInfo {
 	max-width: 30%;
 	margin: auto;
+}
+
+#sitter{ 
+	color: white;
+}
+ul{ 
+	color: white
 }
 
 .h1_Landing {
@@ -134,7 +144,7 @@ body {
 .topnav {
 	background-color: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 	overflow: hidden;
-	max-width: 30%;
+	max-width: 75%;
 	margin: auto;
 }
 
@@ -169,6 +179,11 @@ h4 {
 	color: whitesmoke;
 }
 
+h1{
+color:whitesmoke;
+display: inline;
+}
+
 h1 {
 	color: whitesmoke;
 	display: inline;
@@ -179,4 +194,10 @@ h1 {
 	background-color: #2f815f;
 	padding: 20px;
 	margin-bottom: 10px;
+}
+
+.form-control{
+	size:10pt;
+	length: 10pt;
+	width: auto;
 }
