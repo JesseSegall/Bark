@@ -1,17 +1,27 @@
-{{!-- <div class="topnav">
-    <a class="active" href="/">Home</a>
-    <a href="/registerOwner">Owner</a>
-    <a href="/registerSitter">Sitter</a>
-    <a href="/About">About</a>
-</div> --}}
 
-<section id="sitterInfo">
+{{!-- <section id="sitterInfo">
     <h1 id="sitterProfileHeader">{{sitter.firstName}} {{sitter.lastName}}</h1>
-            {{sitter.picture}}
+    {{sitter.picture}}
     <p>Address: {{sitter.address}}</p>
     <p>Email: {{sitter.email}}</p>
     <p>Price: {{sitter.price}}</p>
     <p>Dogs Sat: {{sitter.idOfDogSat}}</p>
     <p>Reviews: {{sitter.ReviewsId}}</p>
     <p>Requests: {{sitter.requests}}</p>
-</section>
+</section> --}}
+
+
+<div class="col-auto mb-3">
+    <div id = "sitterCard" class="card" style="width: 600px; height: 600px" >
+        <img src="public/image/no_image.jpeg" class="card-img-top" alt="..." />
+        <div class="card-body text-center">
+            <h5 class="card-title">{{sitter.firstName}} {{sitter.lastName}}</h5>
+            <p>Address: {{sitter.address}}</p>
+            <p>Email: {{sitter.email}}</p>
+            <p>Price: {{sitter.price}}</p>
+            <p>Dogs Sat: {{sitter.idOfDogSat}}</p>
+            <p>Reviews: {{sitter.ReviewsId}}</p>
+            <p>Requests: {{sitter.requests}}</p>
+        </div>
+    </div>
+</div>

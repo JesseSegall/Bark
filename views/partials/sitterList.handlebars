@@ -1,11 +1,3 @@
-{{!-- <div class="topnav">
-    <a class="active" href="/">Home</a>
-    <a href="/registerOwner">Owner</a>
-    <a href="/registerSitter">Sitter</a>
-    <a href="/About">About</a>
-</div> --}}
-
-
 <body>
     <form id="sitterSearchForm" method="post" action="/searchSitter">
         <label for="search_term">Search for a sitter:</label>
@@ -14,19 +6,17 @@
     </form>
 
     <Section>
-      
-        <ul id="sitterList"> 
-          
+
+         <ul id="sitterList"> 
+             {{#each data}}
             <article>
                 <div id="sitter"><a href="/searchSitter/{{data._id}}">{{data.firstName}} {{data.lastName}}</a></div>
             </article>
-         
+            {{/each}} 
             
-        </ul>
-
+        </ul> 
         <ul id="sitterList"></ul>
         <div id="sitter"></div>
-
 
     </Section>
 

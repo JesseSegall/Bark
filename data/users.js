@@ -105,7 +105,6 @@ let exportedMethods = {
 		return owner;
 	},
 
-
 };
 
 module.exports = exportedMethods;
