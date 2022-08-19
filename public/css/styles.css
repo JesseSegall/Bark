@@ -195,3 +195,9 @@ h1 {
 	padding: 20px;
 	margin-bottom: 10px;
 }
+
+.form-control{
+	size:10pt;
+	length: 10pt;
+	width: auto;
+}
