@@ -100,7 +100,6 @@ router.get('/searchSitter/:id', async (req, res) => {
 });
 
 router.get('/searchSitter/', async (req, res) => {
-	//const sitterData = await users.getSitter(req.params.id);
 	res.render('partials/sitterList', {});
 });
 router.post('/searchSitter', async (req, res) => {
