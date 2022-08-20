@@ -4,15 +4,15 @@
         <input id="search_term" type="text" name="search_term" placeholder="Enter a Sitter Name" />
         <button type="submit">Search</button>
     </form>
-
+    <p>{{errors}}</p>
     <Section>
 
          <ul id="sitterList"> 
-             {{#each data}}
-            <article>
+             
+            
                 <div id="sitter"><a href="/searchSitter/{{data._id}}">{{data.firstName}} {{data.lastName}}</a></div>
-            </article>
-            {{/each}} 
+            
+            
             
         </ul> 
         <ul id="sitterList"></ul>
