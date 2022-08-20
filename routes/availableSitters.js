@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
 		return res.render("partials/sitters", { sitter: sitters });
 	} catch (error) {
-		res.status(500).json({ error: error });
+		return res.status(500).json({ error: error });
 	}
 
 	// res.render("partials/sitters", {});
