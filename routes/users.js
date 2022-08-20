@@ -87,7 +87,6 @@ router.post('/registerSitter', async (req, res) => {
 		const newSitter = await users.addSitter(first_name, last_name, email, user_name, hash);
 		req.session.user = newSitter;
 	} catch (error) {
-		//TODO: Need to clean up error handling and add errors with handlebars or some shit
 		return res.status(401).render('partials/sitterReg', { errors: error });
 	}
 
