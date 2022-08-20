@@ -4,11 +4,12 @@
 			{{#each sitter}}
 				<div class="col-auto mb-3">
 					<div class="card" style="width: 300px;">
-						<img src="public/image/no_image.jpeg" class="card-img-top" alt="..." />
+						<img src="public/image/no_image.jpeg" class="card-img-top" alt="Profile Picture" />
 						<div class="card-body text-center">
-							<h5 class="card-title">Alice Liddel</h5>
+							<h5 class="card-title">{{firstName}}</h5>
 							<p class="card-text">Sitter price will go here.</p>
-							<a href="#" class="btn btn-primary">View Profile</a>
+							<p class="rating">Rating will go here. Star rating system.</p>
+							<a href="sitterProfile/{{sitter._id}}" class="btn btn-primary">View Profile</a>
 						</div>
 					</div>
 				</div>

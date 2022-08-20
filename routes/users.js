@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const data = require("../data");
 
 //What is this for?
-const { MongoClient, MongoUnexpectedServerResponseError } = require("mongodb");
+
 const salt = 8;
 
 const users = data.users;
