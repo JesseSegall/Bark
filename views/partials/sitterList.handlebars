@@ -1,13 +1,5 @@
-<div class="topnav">
-    <a class="active" href="/">Home</a>
-    <a href="/registerOwner">Owner</a>
-    <a href="/registerSitter">Sitter</a>
-    <a href="/About">About</a>
-</div>
-
-
 <body>
-    <form id="sitterSearchForm">
+    <form id="sitterSearchForm" method="post" action="/searchSitter">
         <label for="search_term">Search for a sitter:</label>
         <input id="search_term" type="text" name="search_term" placeholder="Enter a Sitter Name" />
         <button type="submit">Search</button>
@@ -15,16 +7,16 @@
 
     <Section>
 
-        <div id="sitterListID">
-            <ul id="sitterList">
-                {{#each sitters}}
-                <article>
-                    <li id="sitter"><a href="/searchSitter/{{_id}}">{{firstName}} {{lastName}}</a></li>
-                </article>
-                {{/each}}
-            </ul>
-        </div>
-
+         <ul id="sitterList"> 
+             {{#each data}}
+            <article>
+                <div id="sitter"><a href="/searchSitter/{{data._id}}">{{data.firstName}} {{data.lastName}}</a></div>
+            </article>
+            {{/each}} 
+            
+        </ul> 
+        <ul id="sitterList"></ul>
+        <div id="sitter"></div>
 
     </Section>
 
@@ -33,6 +25,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
         integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
-    <script src="/public/js/searchSitter.js"></script>
+    {{!-- <script src="/public/js/searchSitter.js"></script> --}}
 
 </body>

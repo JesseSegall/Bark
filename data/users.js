@@ -98,6 +98,13 @@ let exportedMethods = {
 			.toArray();
 		return sittersArray;
 	},
+
+	async getOwner(id) {
+		const usersCollection = await users();
+		const owner = await usersCollection.findOne({ _id: ObjectId(id) });
+		return owner;
+	},
+
 };
 
 module.exports = exportedMethods;

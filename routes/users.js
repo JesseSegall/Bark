@@ -1,28 +1,26 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const data = require("../data");
-
-//What is this for?
+const bcrypt = require('bcryptjs');
+const data = require('../data');
 
 const salt = 8;
 
 const users = data.users;
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
 	// Just for testing purposes
-	return res.render("partials/userChoice", {});
+	return res.render('partials/userChoice', {});
 });
 
-router.get("/About", async (req, res) => {
-	return res.render("partials/about", {});
+router.get('/About', async (req, res) => {
+	return res.render('partials/about', {});
 });
 
-router.get("/signin", async (req, res) => {
-	return res.render("partials/signin", {});
+router.get('/signin', async (req, res) => {
+	return res.render('partials/signin', {});
 });
 
-router.post("/signin", async (req, res) => {
+router.post('/signin', async (req, res) => {
 	const username = req.body.user_name.trim();
 	const password = req.body.password;
 	let currentUser;
@@ -35,8 +33,8 @@ router.post("/signin", async (req, res) => {
 		}
 		// Need to throw an error here to inform them there is no user name that matches
 		if (!currentUser) {
-			console.log("No match");
-			return res.redirect("/");
+			console.log('No match');
+			return res.redirect('/');
 		}
 	}
 
@@ -46,16 +44,16 @@ router.post("/signin", async (req, res) => {
 	if (passwordCheck) {
 		req.session.user = currentUser;
 		console.log(req.session.user);
-		console.log("session");
-		return res.redirect("/success");
+		console.log('session');
+		return res.redirect('/success');
 	}
 });
 
-router.get("/registerOwner", async (req, res) => {
-	return res.render("partials/ownerReg", {});
+router.get('/registerOwner', async (req, res) => {
+	return res.render('partials/ownerReg', {});
 });
 
-router.post("/registerOwner", async (req, res) => {
+router.post('/registerOwner', async (req, res) => {
 	// Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
 
 	const firstName = req.body.first_name;
@@ -70,39 +68,53 @@ router.post("/registerOwner", async (req, res) => {
 		req.session.user = newOwner;
 		console.log(req.session.userId);
 	} catch (error) {
-		return res.status(401).render("partials/sitterReg", { errors: error });
+		return res.status(401).render('partials/sitterReg', { errors: error });
 	}
 
-	return res.redirect("/"); // Should redirect to either home page or straight to their dashboard after registration
+	return res.redirect('/'); // Should redirect to either home page or straight to their dashboard after registration
 });
 
-router.get("/registerSitter", async (req, res) => {
-	res.render("partials/sitterReg", {});
+router.get('/registerSitter', async (req, res) => {
+	res.render('partials/sitterReg', {});
 });
 
-router.post("/registerSitter", async (req, res) => {
+router.post('/registerSitter', async (req, res) => {
 	const { user_name, first_name, last_name, email, password } = req.body;
 	try {
 		const hash = await bcrypt.hash(password, salt);
 		const newSitter = await users.addSitter(first_name, last_name, email, user_name, hash);
 		req.session.user = newSitter;
 	} catch (error) {
-		//TODO: Need to clean up error handling and add errors with handlebars or some shit
-		return res.status(401).render("partials/sitterReg", { errors: error });
+		return res.status(401).render('partials/sitterReg', { errors: error });
 	}
 
-	return res.redirect("/"); // Should redirect to either home page or straight to their dashboard after registration
+	return res.redirect('/'); // Should redirect to either home page or straight to their dashboard after registration
 });
 
-router.get("/searchSitter/:id", async (req, res) => {
+router.get('/searchSitter/:id', async (req, res) => {
 	const sitterData = await users.getSitter(req.params.id);
-	res.render("partials/sitterProfile", { sitter: sitterData });
+	res.render('partials/sitterProfile', { sitter: sitterData });
 });
 
-router.get("/searchSitter", async (req, res) => {
+router.get('/searchSitter/', async (req, res) => {
+	res.render('partials/sitterList', {});
+});
+router.post('/searchSitter', async (req, res) => {
+	const searchTerm = req.body.search_term;
 	const sitterList = await users.getAllUsers();
-	// res.json(sitterList);
-	res.render("partials/sitterList", { sitters: sitterList });
+	let currentUser;
+	for (i = 0; i < sitterList.length; i++) {
+		if (sitterList[i].firstName == searchTerm) {
+			currentUser = sitterList[i];
+		}
+		console.log(currentUser);
+		return res.render('partials/sitterList', { data: currentUser });
+	}
+});
+
+router.get('/searchOwner/:id', async (req, res) => {
+	const ownerData = await users.getOwner(req.params.id);
+	res.render('partials/ownerProfile', { owner: ownerData });
 });
 
 module.exports = router;
