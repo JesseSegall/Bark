@@ -1,21 +1,29 @@
-const mongoCollections = require("../config/mongoCollections");
+const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
-const { ObjectId } = require("mongodb");
-const valdidate = require("../validate");
+const { ObjectId } = require('mongodb');
+const valdidate = require('../validate');
 
 let exportedMethods = {
 	async addOwner(firstName, lastName, email, userName, password) {
 		const usersCollection = await users();
 		const attemptedUsername = userName.trim();
 		const attemptedEmail = email.toLowerCase();
-
+		if (!firstName || firstName == '')
+			throw `First name must not be empty or contain just an empty string.`;
+		if (!lastName || lastName === '')
+			throw `Last name must not be empty or contain just an empty string.`;
+		if (!email || email === '') throw `Email must not be empty or contain just an empty string.`;
+		if (!userName || userName === '')
+			throw `Username must not be empty or contain just an empty string.`;
+		if (!password || password === '')
+			throw `Password must not be empty or contain just an empty string.`;
 		let newOwner = {
 			firstName: firstName,
 			lastName: lastName,
 			email: email,
 			userName: userName,
 			password: password,
-			picture: "public/image/no_image.jpeg",
+			picture: 'public/image/no_image.jpeg',
 			dogs: [],
 			reviews: [],
 			owner: true,
@@ -25,10 +33,10 @@ let exportedMethods = {
 			userName: attemptedUsername,
 		});
 		const emailTaken = await usersCollection.findOne({ email: attemptedEmail });
-		if (usernameTaken) throw "This username has already been taken.";
-		if (emailTaken) throw "This email address has already been used.";
+		if (usernameTaken) throw 'This username has already been taken.';
+		if (emailTaken) throw 'This email address has already been used.';
 		const insertOwner = await usersCollection.insertOne(newOwner);
-		if (insertOwner.insertedCount === 0) throw "Could not insert Owner";
+		if (insertOwner.insertedCount === 0) throw 'Could not insert Owner';
 		return await this.getOwner(insertOwner.insertedId.toString());
 		//return "done"
 	},
@@ -43,6 +51,15 @@ let exportedMethods = {
 		const usersCollection = await users();
 		const attemptedUsername = userName.trim();
 		const attemptedEmail = email.toLowerCase();
+		if (!firstName || firstName == '')
+			throw `First name must not be empty or contain just an empty string.`;
+		if (!lastName || lastName === '')
+			throw `Last name must not be empty or contain just an empty string.`;
+		if (!email || email === '') throw `Email must not be empty or contain just an empty string.`;
+		if (!userName || userName === '')
+			throw `Username must not be empty or contain just an empty string.`;
+		if (!password || password === '')
+			throw `Password must not be empty or contain just an empty string.`;
 		let newSitter = {
 			firstName: firstName,
 			lastName: lastName,
@@ -51,7 +68,7 @@ let exportedMethods = {
 			userName: userName,
 			password: password,
 			idOfDogSat: [], //array
-			picture: "public/image/no_image.jpeg", //  TODO: Possibly add a default picture here
+			picture: 'public/image/no_image.jpeg', //  TODO: Possibly add a default picture here
 			price: null,
 			reviewsId: [],
 			requests: [],
@@ -62,11 +79,10 @@ let exportedMethods = {
 			userName: attemptedUsername,
 		});
 		const emailTaken = await usersCollection.findOne({ email: attemptedEmail });
-		if (usernameTaken) throw "This username has already been taken.";
-		if (emailTaken) throw "This email address has already been used.";
+		if (usernameTaken) throw 'This username has already been taken.';
+		if (emailTaken) throw 'This email address has already been used.';
 		const insertSitter = await usersCollection.insertOne(newSitter);
-		if (insertSitter.insertedCount === 0)
-			throw "Something wrong here in sitters.";
+		if (insertSitter.insertedCount === 0) throw 'Something wrong here in sitters.';
 		return await this.getSitter(insertSitter.insertedId.toString());
 	},
 
@@ -91,10 +107,7 @@ let exportedMethods = {
 	async getAllSitters() {
 		const usersCollection = await users();
 		const sittersArray = await usersCollection
-			.find(
-				{},
-				{ projection: { firstName: 1, lastName: 1, price: 1, sitter: "true" } }
-			)
+			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, sitter: 'true' } })
 			.toArray();
 		return sittersArray;
 	},
@@ -104,7 +117,6 @@ let exportedMethods = {
 		const owner = await usersCollection.findOne({ _id: ObjectId(id) });
 		return owner;
 	},
-
 };
 
 module.exports = exportedMethods;
