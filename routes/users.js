@@ -122,6 +122,18 @@ router.post('/searchSitter', async (req, res) => {
 				currentUser = sitterList[i];
 			}
 		}
+      //Added some logic to search partials in search bar
+    for (i = 0; i < sitterList.length; i++) {
+      if (
+				sitterList[i].firstName.toLowerCase().includes(searchTerm) || sitterList[i].lastName.toLowerCase().includes(searchTerm)
+				
+        ) {
+          currentUser = sitterList[i];
+        }
+        if (sitterList[i].firstName.toLowerCase().includes(searchTerm) && sitterList[i].lastName.toLowerCase().includes(searchTerm))
+        currentUser = sitterList[i];
+    }
+
 		if (!currentUser) {
 			return res.render('partials/sitterList', { errors: 'No sitter matched that name.' });
 		}
