@@ -97,18 +97,38 @@ router.get('/searchSitter/:id', async (req, res) => {
 });
 
 router.get('/searchSitter/', async (req, res) => {
-	res.render('partials/sitterList', {});
+	return res.render('partials/sitterList', {});
 });
 router.post('/searchSitter', async (req, res) => {
-	const searchTerm = req.body.search_term;
-	const sitterList = await users.getAllUsers();
-	let currentUser;
-	for (i = 0; i < sitterList.length; i++) {
-		if (sitterList[i].firstName == searchTerm) {
-			currentUser = sitterList[i];
+	try {
+		// REGEX to get rid of whitespace between first and last name in search
+		const searchTermFull = req.body.search_term.toLowerCase().replace(/\s/g, '');
+
+		const searchTerm = req.body.search_term.toLowerCase();
+
+		console.log(searchTerm);
+		const sitterList = await users.getAllSitters();
+		let currentUser;
+		for (i = 0; i < sitterList.length; i++) {
+			if (sitterList[i].firstName.toLowerCase() === searchTerm) {
+				currentUser = sitterList[i];
+			}
+		}
+		for (i = 0; i < sitterList.length; i++) {
+			if (
+				sitterList[i].firstName.toLowerCase() + sitterList[i].lastName.toLowerCase() ===
+				searchTermFull
+			) {
+				currentUser = sitterList[i];
+			}
+		}
+		if (!currentUser) {
+			return res.render('partials/sitterList', { errors: 'No sitter matched that name.' });
 		}
 		console.log(currentUser);
 		return res.render('partials/sitterList', { data: currentUser });
+	} catch (error) {
+		return res.render('/partials/sitterList', { errors: error });
 	}
 });
 
