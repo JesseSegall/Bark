@@ -17,7 +17,7 @@ router.get('/About', async (req, res) => {
 });
 
 router.get('/signin', async (req, res) => {
-	return res.render('partials/signin', {});
+	return res.render('partials/signin', { title: 'Signin' });
 });
 
 router.post('/signin', async (req, res) => {
@@ -50,7 +50,7 @@ router.post('/signin', async (req, res) => {
 });
 
 router.get('/registerOwner', async (req, res) => {
-	return res.render('partials/ownerReg', {});
+	return res.render('partials/ownerReg', { title: 'Owner Registration' });
 });
 
 router.post('/registerOwner', async (req, res) => {
@@ -68,14 +68,16 @@ router.post('/registerOwner', async (req, res) => {
 		req.session.user = newOwner;
 		console.log(req.session.userId);
 	} catch (error) {
-		return res.status(401).render('partials/sitterReg', { errors: error });
+		return res
+			.status(401)
+			.render('partials/sitterReg', { errors: error, title: 'Owner Registration' });
 	}
 
 	return res.redirect('/'); // Should redirect to either home page or straight to their dashboard after registration
 });
 
 router.get('/registerSitter', async (req, res) => {
-	res.render('partials/sitterReg', {});
+	res.render('partials/sitterReg', { title: 'Sitter Registration' });
 });
 
 router.post('/registerSitter', async (req, res) => {
@@ -85,7 +87,9 @@ router.post('/registerSitter', async (req, res) => {
 		const newSitter = await users.addSitter(first_name, last_name, email, user_name, hash);
 		req.session.user = newSitter;
 	} catch (error) {
-		return res.status(401).render('partials/sitterReg', { errors: error });
+		return res
+			.status(401)
+			.render('partials/sitterReg', { errors: error, title: 'Sitter Registration' });
 	}
 
 	return res.redirect('/'); // Should redirect to either home page or straight to their dashboard after registration
@@ -93,11 +97,11 @@ router.post('/registerSitter', async (req, res) => {
 
 router.get('/searchSitter/:id', async (req, res) => {
 	const sitterData = await users.getSitter(req.params.id);
-	res.render('partials/sitterProfile', { sitter: sitterData });
+	res.render('partials/sitterProfile', { sitter: sitterData, title: 'Sitter Profile' });
 });
 
 router.get('/searchSitter/', async (req, res) => {
-	return res.render('partials/sitterList', {});
+	return res.render('partials/sitterList', { title: 'Search for a sitter' });
 });
 router.post('/searchSitter', async (req, res) => {
 	try {
@@ -122,31 +126,34 @@ router.post('/searchSitter', async (req, res) => {
 				currentUser = sitterList[i];
 			}
 		}
-      //Added some logic to search partials in search bar
-    for (i = 0; i < sitterList.length; i++) {
-      if (
-				sitterList[i].firstName.toLowerCase().includes(searchTerm) || sitterList[i].lastName.toLowerCase().includes(searchTerm)
-				
-        ) {
-          currentUser = sitterList[i];
-        }
-        if (sitterList[i].firstName.toLowerCase().includes(searchTerm) && sitterList[i].lastName.toLowerCase().includes(searchTerm))
-        currentUser = sitterList[i];
-    }
+		//Added some logic to search partials in search bar
+		for (i = 0; i < sitterList.length; i++) {
+			if (
+				sitterList[i].firstName.toLowerCase().includes(searchTerm) ||
+				sitterList[i].lastName.toLowerCase().includes(searchTerm)
+			) {
+				currentUser = sitterList[i];
+			}
+			if (
+				sitterList[i].firstName.toLowerCase().includes(searchTerm) &&
+				sitterList[i].lastName.toLowerCase().includes(searchTerm)
+			)
+				currentUser = sitterList[i];
+		}
 
 		if (!currentUser) {
 			return res.render('partials/sitterList', { errors: 'No sitter matched that name.' });
 		}
 		console.log(currentUser);
-		return res.render('partials/sitterList', { data: currentUser });
+		return res.render('partials/sitterList', { data: currentUser, title: 'Search for a Sitter' });
 	} catch (error) {
-		return res.render('/partials/sitterList', { errors: error });
+		return res.render('/partials/sitterList', { errors: error, title: 'Search for a Sitter' });
 	}
 });
 
 router.get('/searchOwner/:id', async (req, res) => {
 	const ownerData = await users.getOwner(req.params.id);
-	res.render('partials/ownerProfile', { owner: ownerData });
+	res.render('partials/ownerProfile', { owner: ownerData, title: 'Owner Profile' });
 });
 
 module.exports = router;
