@@ -4,7 +4,8 @@ const data = require('../data');
 const users = data.users;
 
 router.get('/', (req, res) => {
-	return res.render('partials/sitterDashboard', {});
+	const sitterData = req.session.user;
+	return res.render('partials/sitterDashboard', { title: 'Dashboard' });
 });
 
 module.exports = router;
