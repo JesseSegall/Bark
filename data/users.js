@@ -117,6 +117,11 @@ let exportedMethods = {
 		const owner = await usersCollection.findOne({ _id: ObjectId(id) });
 		return owner;
 	},
+	async findUser(username) {
+		const usersCollection = await users();
+		const foundUser = await usersCollection.findOne({ userName: username });
+		return foundUser;
+	},
 };
 
 module.exports = exportedMethods;
