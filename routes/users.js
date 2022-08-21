@@ -23,29 +23,24 @@ router.get('/signin', async (req, res) => {
 router.post('/signin', async (req, res) => {
 	const username = req.body.user_name.trim();
 	const password = req.body.password;
-	let currentUser;
-	const allUsers = await users.getAllUsers();
-	console.log(allUsers);
+	try {
+		const user = await users.findUser(username);
+		console.log(user);
 
-	for (i = 0; i < allUsers.length; i++) {
-		if (allUsers[i].userName == username) {
-			currentUser = allUsers[i];
+		let passwordCheck = await bcrypt.compare(password, user.password);
+		console.log(passwordCheck);
+		// Passwords match set the current user to session and send them to their dashboard
+		if (!passwordCheck) {
+			return res.render(
+				'partials/signin',
+				{ errors: 'Incorrect username or password' },
+				{ title: 'Sign in' }
+			);
 		}
-		// Need to throw an error here to inform them there is no user name that matches
-		if (!currentUser) {
-			console.log('No match');
-			return res.redirect('/');
-		}
-	}
-
-	let passwordCheck = await bcrypt.compare(password, currentUser.password);
-	console.log(passwordCheck);
-	// Passwords match set the current user to session and send them to their dashboard
-	if (passwordCheck) {
-		req.session.user = currentUser;
+		req.session.user = user;
 		console.log(req.session.user);
-		console.log('session');
-		return res.redirect('/success');
+	} catch (error) {
+		return res.render('partials/signin', { title: 'Sign in', errors: error });
 	}
 });
 
