@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{{!-- Navigation Bar --}}
-<div class="topnav">
-  <a class="active" href="/">Home</a>
-  <a href="/registerOwner">Owner Registration</a>
-  <a href="/registerSitter">Sitter Registration</a>
-  <a href="/sitters">Sitters</a>
-  <a href="/searchSitter">Search for Sitter</a>
-  <a href="/About">About</a>
-  <a href="/signin">Login</a>
-</div>
+
+
 
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		{{! bootstrap }}
 		<script
 			src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -45,9 +36,22 @@
 			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
 			rel="stylesheet"
 		/>
-		<title>{{title}}</title>
+			<title>{{title}}</title>
 	</head>
+	
+		
+	
+	
 	<body>
+		<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="/registerOwner">Owner Registration</a>
+  <a href="/registerSitter">Sitter Registration</a>
+  <a href="/sitters">Sitters</a>
+  <a href="/searchSitter">Search for Sitter</a>
+  <a href="/About">About</a>
+  <a href="/signin">Login</a>
+</div>
 		{{{body}}}
 
 	</body>
