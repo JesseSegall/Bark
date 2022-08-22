@@ -29,8 +29,8 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
 
     //console.log(req.body);
-    const ownerId = req.body.id;
-    //console.log(ownerId);
+    const ownerId = req.session.user._id;
+    console.log(ownerId);
     
     try {
 
@@ -38,10 +38,10 @@ router.get("/", async (req, res) => {
         //console.log("ownerReviewData: " + ownerReviewData);
 
         for(i in ownerReviewData) {
-            console.log(ownerReviewData[i]);
+            //console.log(ownerReviewData[i]);
         }
 
-        res.json(ownerReviewData);
+        return res.json(ownerReviewData);
 
     } catch(e) {
         return res.status(500).json({error: e});

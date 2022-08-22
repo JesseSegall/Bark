@@ -1,28 +1,36 @@
 
-(($) => {
+(function ($) {
 
-	var ownerReviewSection = $('ownerReviews');
+	var ownerReviewSection = $('#ownerReviews');
 
 	let req = {
 		method: 'GET',
-		url: '/ownerReview',
-		// contentType: "application/json",
+		url: 'http://localhost:3000/ownerReview',
+		//contentType: "application/json",
 	};
 
 	$.ajax(req).then( (res) => {
 
         //append owner reviews to section
 
-		let reviewsText = res[0].text;
-		let reviewsRating = res[0].rating;
-		let reviewsPoster = res[0].posterId;
+		//console.log("res: " + res);
 
-		ownerReviewSection.append("<p>"+ reviewsText +"</p>")
-		ownerReviewSection.append("<p>"+ reviewsRating +"</p>")
-		ownerReviewSection.append("<p>"+ reviewsPoster +"</p>")
+		let reviewsText;
+		//console.log("text: " + reviewsText);
+		let reviewsRating;
+		let reviewsPoster;
+		
+		for(i = 0; i < res.length; i++) {
 
+			reviewsText = res[i].text;
+			//console.log("text: " + reviewsText);
+			reviewsRating = res[i].rating;
+			reviewsPoster = res[i].posterId;
 
-
+			ownerReviewSection.append("<p>"+ reviewsText +"</p>")
+			ownerReviewSection.append("<p>"+ reviewsRating +"</p>")
+			ownerReviewSection.append("<p>"+ reviewsPoster +"</p>")
+		}
 	});
 
 	
