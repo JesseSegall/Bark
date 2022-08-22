@@ -10,7 +10,11 @@
             <p>Reviews: {{sitter.ReviewsId}}</p>
             <p>Requests: {{sitter.requests}}</p>
 
-            <button type="button">Request this sitter</button>
+            <div class = "container">
+                <form action="/data/requests.js"></form>
+                <p>Please enter a request below:</p>
+                <textarea name="requestText" id="requestText" cols="40" rows="8"></textarea>
+            </div>
         </div>
     </div>
 </div>
