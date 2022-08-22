@@ -110,7 +110,6 @@ router.post('/searchSitter', async (req, res) => {
 		// REGEX to get rid of whitespace between first and last name in search
 		const searchTermFull = req.body.search_term.toLowerCase().replace(/\s/g, '');
 
-		const searchTerm = req.body.search_term.toLowerCase();
 		let nameArray = [];
 		let sitterArray = [];
 
