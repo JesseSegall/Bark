@@ -7,15 +7,19 @@ router.post("/", async (req, res) => {
     const ownerReviewData = req.body;
 
     try {
-        console.log(req.body);
+        //console.log(req.body);
+        console.log(req.session.user);
 
         const reviewText = ownerReviewData.text;
         const rating = ownerReviewData.rating;
-        const posterId = ownerReviewData.posterId;
+        //const posterId = ownerReviewData.posterId;
+        const posterId = req.session.user._id;
         const beingReviewedId = ownerReviewData.beingReviewedId;
 
-        const ownerReviewInsert = await reviewsData.addReview(reviewText, rating, posterId,beingReviewedId);
-        console.log(ownerReviewInsert);
+        //console.log(posterId);
+
+        const ownerReviewInsert = await reviewsData.addReview(reviewText, rating, posterId, beingReviewedId);
+        //console.log(ownerReviewInsert);
 
     } catch(e) {
         return res.status(500).json({error: e});
@@ -29,7 +33,7 @@ router.get("/", async (req, res) => {
     try {
 
         const ownerReviewData = reviewsData.getReview(ownerId);
-        console.log(ownerReviewData);
+        //console.log(ownerReviewData);
 
     } catch(e) {
         return res.status(500).json({error: e});
