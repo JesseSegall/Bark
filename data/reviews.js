@@ -1,8 +1,8 @@
 const mongoCollections = require("../config/mongoCollections");
 const reviews = mongoCollections.reviews;
 const users = mongoCollections.users;
-const sitters = mongoCollections.sitters;
-const owners = mongoCollections.owners;
+//const sitters = mongoCollections.sitters;
+//const owners = mongoCollections.owners;
 const { ObjectId } = require("mongodb");
 
 let exportedMethods = {
@@ -27,11 +27,19 @@ let exportedMethods = {
 
     const insertReview = await reviewCollection.insertOne(newReview);
 
-    const reviewId = insertReview.insertedId.toString;
-    console.log(reviewId);
+    const reviewId = insertReview.insertedId.toString();
+    console.log("review Id: " + reviewId);
 
-    const beingReviewedUser = await userCollection.findOne({_id: ObjectId(beingReviewedId)});
-    console.log("Being Reviewed: " + beingReviewedUser);
+    //const beingReviewedUser = await userCollection.findOne({_id: ObjectId(beingReviewedId)});
+    //console.log("Being Reviewed: " + beingReviewedUser.firstName + beingReviewedUser.lastName);
+
+    
+    const reviewPushed = await userCollection.findOneAndUpdate(
+      {_id: ObjectId(beingReviewedId)}, 
+      {$push: {
+        reviewsId: reviewId
+      }
+    });
     
 /*     const reviewId = newReview._id;
     console.log(reviewId); */
