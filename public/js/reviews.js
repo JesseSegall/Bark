@@ -2,6 +2,7 @@
 (function ($) {
 
 	var ownerReviewSection = $('#ownerReviews');
+	var postReviewForm = $('#postReview');
 
 	let req = {
 		method: 'GET',
@@ -33,6 +34,40 @@
 		}
 	});
 
+	postReviewForm.submit(function (event) {
+		event.preventDefault();
+		console.log("submited");
+
+		//let reviewTextInput = $('#reviewTextInput');
+		//let reviewRatingInput = $('#reviewRatingInput');
+
+		//need to see actual dashboard
+		//let beingReviewedId = $('#profileID');
+
+		let req = {
+			method: 'POST',
+			url: 'http://localhost:3000/ownerReview',
+			contentType: "application/json",
+			data: JSON.stringify({
+				text: "test asdffdas",
+				rating: 4,
+				beingReviewedId: "62fea5057ce30273374c2aa7"
+			})
+
+		};
+	
+		$.ajax(req).then(function (res) {
+	
+			//append owner reviews to section
+	
+			console.log("res: " + res);
+	
+
+
+
+		});
+
+	});
 	
 })(window.jQuery);
 
