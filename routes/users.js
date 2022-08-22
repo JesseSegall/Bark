@@ -99,6 +99,7 @@ router.get('/searchSitter/', async (req, res) => {
 	return res.render('partials/sitterList', { title: 'Search for a sitter' });
 });
 
+// Helper function for search to see if it contains sections of letters
 function filter(array, string) {
 	return array.filter(RegExp.prototype.test, new RegExp([...string].join('.*'), 'i'));
 }
@@ -111,30 +112,28 @@ router.post('/searchSitter', async (req, res) => {
 		let nameArray = [];
 		let sitterArray = [];
 
-		//console.log(searchTerm);
 		const sitterList = await users.getAllSitters();
 		let currentUser;
 		let sitterObject;
-
+		// Push each first and last name into new array so it can work with the helper
 		for (i = 0; i < sitterList.length; i++) {
 			nameArray.push(sitterList[i].firstName + sitterList[i].lastName);
 		}
-		//console.log(nameArray);
+
+		// Store all names that matched
 		currentUser = filter(nameArray, searchTermFull);
-		console.log(currentUser);
-		//console.log(sitterList);
+
+		// Find each sitter that matched the search term and push into an array
 		for (i = 0; i < sitterList.length; i++) {
 			for (j = 0; j < currentUser.length; j++) {
 				if (
 					sitterList[i].firstName.toLowerCase() + sitterList[i].lastName.toLowerCase() ==
 					currentUser[j].toLowerCase()
 				) {
-					console.log(currentUser);
 					sitterArray.push((sitterObject = sitterList[i]));
 				}
 			}
 		}
-		console.log(sitterArray);
 
 		if (!currentUser) {
 			return res.render('partials/sitterList', { errors: 'No sitter matched that name.' });
