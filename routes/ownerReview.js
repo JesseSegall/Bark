@@ -1,3 +1,4 @@
+const { response } = require("express");
 const express = require("express");
 const router = express.Router();
 const data = require("../data/");
@@ -5,10 +6,13 @@ const reviewsData = data.reviews;
 
 router.post("/", async (req, res) => {
     const ownerReviewData = req.body;
+    //console.log("test: " + req.body);
+    /* console.log("reqBody: " + ownerReviewData);
+    console.log(ownerReviewData); */
 
     try {
         //console.log(req.body);
-        console.log(req.session.user);
+        console.log("sessionID: " + req.session.user._id);
 
         const reviewText = ownerReviewData.text;
         const rating = ownerReviewData.rating;
@@ -20,6 +24,9 @@ router.post("/", async (req, res) => {
 
         const ownerReviewInsert = await reviewsData.addReview(reviewText, rating, posterId, beingReviewedId);
         //console.log(ownerReviewInsert);
+
+        return;
+
 
     } catch(e) {
         return res.status(500).json({error: e});
