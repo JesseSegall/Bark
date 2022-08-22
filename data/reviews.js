@@ -46,8 +46,12 @@ let exportedMethods = {
 
   async getReview(id) {
     const reviewCollection = await reviews();
-    const review = await reviewCollection.findOne({ _id: ObjectId(id) });
-    return review;
+    const usersCollection = await users();
+    const owner = await usersCollection.findOne({ _id: ObjectId(id) });
+    console.log("ownerID: " + owner._id);
+    const reviewData = await reviewCollection.find({}, {projection: {_id: 1, text: 1, rating: 1, posterId: 1}}).toArray();
+    console.log(reviewData);
+    return reviewData;
   },
 };
 

@@ -28,12 +28,20 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
 
+    //console.log(req.body);
     const ownerId = req.body.id;
+    //console.log(ownerId);
     
     try {
 
-        const ownerReviewData = reviewsData.getReview(ownerId);
-        //console.log(ownerReviewData);
+        const ownerReviewData = await reviewsData.getReview(ownerId);
+        //console.log("ownerReviewData: " + ownerReviewData);
+
+        for(i in ownerReviewData) {
+            console.log(ownerReviewData[i]);
+        }
+
+        res.json(ownerReviewData);
 
     } catch(e) {
         return res.status(500).json({error: e});
