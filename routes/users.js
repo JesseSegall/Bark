@@ -98,49 +98,49 @@ router.get('/searchSitter/:id', async (req, res) => {
 router.get('/searchSitter/', async (req, res) => {
 	return res.render('partials/sitterList', { title: 'Search for a sitter' });
 });
+
+function filter(array, string) {
+	return array.filter(RegExp.prototype.test, new RegExp([...string].join('.*'), 'i'));
+}
 router.post('/searchSitter', async (req, res) => {
 	try {
 		// REGEX to get rid of whitespace between first and last name in search
 		const searchTermFull = req.body.search_term.toLowerCase().replace(/\s/g, '');
 
 		const searchTerm = req.body.search_term.toLowerCase();
+		let nameArray = [];
+		let sitterArray = [];
 
-		console.log(searchTerm);
+		//console.log(searchTerm);
 		const sitterList = await users.getAllSitters();
 		let currentUser;
+		let sitterObject;
+
 		for (i = 0; i < sitterList.length; i++) {
-			if (sitterList[i].firstName.toLowerCase() === searchTerm) {
-				currentUser = sitterList[i];
+			nameArray.push(sitterList[i].firstName + sitterList[i].lastName);
+		}
+		//console.log(nameArray);
+		currentUser = filter(nameArray, searchTermFull);
+		console.log(currentUser);
+		//console.log(sitterList);
+		for (i = 0; i < sitterList.length; i++) {
+			for (j = 0; j < currentUser.length; j++) {
+				if (
+					sitterList[i].firstName.toLowerCase() + sitterList[i].lastName.toLowerCase() ==
+					currentUser[j].toLowerCase()
+				) {
+					console.log(currentUser);
+					sitterArray.push((sitterObject = sitterList[i]));
+				}
 			}
 		}
-		for (i = 0; i < sitterList.length; i++) {
-			if (
-				sitterList[i].firstName.toLowerCase() + sitterList[i].lastName.toLowerCase() ===
-				searchTermFull
-			) {
-				currentUser = sitterList[i];
-			}
-		}
-		//Added some logic to search partials in search bar
-		for (i = 0; i < sitterList.length; i++) {
-			if (
-				sitterList[i].firstName.toLowerCase().includes(searchTerm) ||
-				sitterList[i].lastName.toLowerCase().includes(searchTerm)
-			) {
-				currentUser = sitterList[i];
-			}
-			if (
-				sitterList[i].firstName.toLowerCase().includes(searchTerm) &&
-				sitterList[i].lastName.toLowerCase().includes(searchTerm)
-			)
-				currentUser = sitterList[i];
-		}
+		console.log(sitterArray);
 
 		if (!currentUser) {
 			return res.render('partials/sitterList', { errors: 'No sitter matched that name.' });
 		}
-		console.log(currentUser);
-		return res.render('partials/sitterList', { data: currentUser, title: 'Search for a Sitter' });
+		//console.log(currentUser);
+		return res.render('partials/sitterList', { data: sitterArray, title: 'Search for a Sitter' });
 	} catch (error) {
 		return res.render('/partials/sitterList', { errors: error, title: 'Search for a Sitter' });
 	}

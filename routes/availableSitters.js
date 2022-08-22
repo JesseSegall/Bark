@@ -15,4 +15,7 @@ router.get('/', async (req, res) => {
 	// res.render("partials/sitters", {});
 });
 
+router.get('/test', async (req, res) => {
+	return res.render('partials/test');
+});
 module.exports = router;
