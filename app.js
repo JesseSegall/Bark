@@ -21,9 +21,11 @@ const handlebarsInstance = exphbs.create({
 });
 
 app.use('/public', static);
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.engine('handlebars', handlebarsInstance.engine);
+app.set('view engine', 'handlebars');
 app.use(
 	session({
 		name: 'AuthCookie',
@@ -32,9 +34,16 @@ app.use(
 		saveUninitialized: true,
 	})
 );
-
-app.engine('handlebars', handlebarsInstance.engine);
-app.set('view engine', 'handlebars');
+// Trying to access a dashboard without being logged in should throw an error
+app.use('/dashboard', async (req, res, next) => {
+	if (!req.session.user) {
+		return res.render('/signin', {
+			error: 'You must be signed in to access your dashboard',
+			title: 'Sign in',
+		});
+	}
+	next();
+});
 
 configRoutes(app);
 
