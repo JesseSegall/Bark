@@ -103,6 +103,8 @@ router.get('/searchSitter/', async (req, res) => {
 function filter(array, string) {
 	return array.filter(RegExp.prototype.test, new RegExp([...string].join('.*'), 'i'));
 }
+
+// TODO: Error handling
 router.post('/searchSitter', async (req, res) => {
 	try {
 		// REGEX to get rid of whitespace between first and last name in search
@@ -114,7 +116,7 @@ router.post('/searchSitter', async (req, res) => {
 
 		const sitterList = await users.getAllSitters();
 		let currentUser;
-		//let sitterObject;
+
 		// Push each first and last name into new array so it can work with the helper
 		for (i = 0; i < sitterList.length; i++) {
 			nameArray.push(sitterList[i].firstName + sitterList[i].lastName);
