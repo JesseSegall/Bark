@@ -103,18 +103,19 @@ router.get('/searchSitter/', async (req, res) => {
 function filter(array, string) {
 	return array.filter(RegExp.prototype.test, new RegExp([...string].join('.*'), 'i'));
 }
+
+// TODO: Error handling
 router.post('/searchSitter', async (req, res) => {
 	try {
 		// REGEX to get rid of whitespace between first and last name in search
 		const searchTermFull = req.body.search_term.toLowerCase().replace(/\s/g, '');
 
-		const searchTerm = req.body.search_term.toLowerCase();
 		let nameArray = [];
 		let sitterArray = [];
 
 		const sitterList = await users.getAllSitters();
 		let currentUser;
-		let sitterObject;
+
 		// Push each first and last name into new array so it can work with the helper
 		for (i = 0; i < sitterList.length; i++) {
 			nameArray.push(sitterList[i].firstName + sitterList[i].lastName);
@@ -130,7 +131,7 @@ router.post('/searchSitter', async (req, res) => {
 					sitterList[i].firstName.toLowerCase() + sitterList[i].lastName.toLowerCase() ==
 					currentUser[j].toLowerCase()
 				) {
-					sitterArray.push((sitterObject = sitterList[i]));
+					sitterArray.push(sitterList[i]);
 				}
 			}
 		}
@@ -138,7 +139,7 @@ router.post('/searchSitter', async (req, res) => {
 		if (!currentUser) {
 			return res.render('partials/sitterList', { errors: 'No sitter matched that name.' });
 		}
-		//console.log(currentUser);
+
 		return res.render('partials/sitterList', { data: sitterArray, title: 'Search for a Sitter' });
 	} catch (error) {
 		return res.render('/partials/sitterList', { errors: error, title: 'Search for a Sitter' });
