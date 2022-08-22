@@ -129,12 +129,23 @@ router.post('/searchSitter', async (req, res) => {
 			) {
 				currentUser = sitterList[i];
 			}
+    }
+
+    for (i = 0; i < sitterList.length; i++) {
 			if (
-				sitterList[i].firstName.toLowerCase().includes(searchTerm) &&
-				sitterList[i].lastName.toLowerCase().includes(searchTerm)
-			)
+				(sitterList[i].firstName.toLowerCase() + sitterList[i].lastName.toLowerCase()).includes(searchTermFull)	
+			) {
 				currentUser = sitterList[i];
+			}
 		}
+      
+    //   for (i = 0; i < sitterList.length; i++) {
+		// 	if (
+		// 		sitterList[i].firstName.toLowerCase().includes(searchTerm) &&
+		// 		sitterList[i].lastName.toLowerCase().includes(searchTerm)
+		// 	)
+		// 		currentUser = sitterList[i];
+		// }
 
 		if (!currentUser) {
 			return res.render('partials/sitterList', { errors: 'No sitter matched that name.' });
