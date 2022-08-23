@@ -76,10 +76,45 @@ router.get('/registerSitter', async (req, res) => {
 });
 
 router.post('/registerSitter', async (req, res) => {
-	const { user_name, first_name, last_name, email, password } = req.body;
+	const {
+		user_name,
+		first_name,
+		last_name,
+		email,
+		password,
+		small_dog,
+		medium_dog,
+		large_dog,
+		difficult_dog,
+	} = req.body;
+	let dogSize = [];
+	let diffDog;
+	if (small_dog) {
+		dogSize.push('Small');
+	}
+	if (medium_dog) {
+		dogSize.push('Medium');
+	}
+	if (large_dog) {
+		dogSize.push('Large');
+	}
+	if (difficult_dog) {
+		diffDog = true;
+	} else {
+		diffDog = false;
+	}
+
 	try {
 		const hash = await bcrypt.hash(password, salt);
-		const newSitter = await users.addSitter(first_name, last_name, email, user_name, hash);
+		const newSitter = await users.addSitter(
+			first_name,
+			last_name,
+			email,
+			user_name,
+			hash,
+			dogSize,
+			diffDog
+		);
 		req.session.user = newSitter;
 	} catch (error) {
 		return res
