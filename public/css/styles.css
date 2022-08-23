@@ -1,13 +1,18 @@
-body {
+/* body {
 	background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 	font-family: "Poppins", sans-serif;
+} */
+
+body {
+	background: #f4f4f4;
+	font-family: Helvetica;
 }
 
 #form {
 	width: 300px;
 	margin: 20vh auto 0 auto;
 	padding: 20px;
-	background-color: whitesmoke;
+	background-color: #f4f4f4;
 	border-radius: 4px;
 	font-size: 12px;
 }
@@ -63,14 +68,14 @@ body {
 	text-emphasis-color: #ff3860;
 }
 #sitterSearchForm {
-	color: white;
+	color: #0f0f0f;
 	max-width: 30%;
 	margin: auto;
 	padding-top: 1cm;
 }
 
 #searchSitterHeader {
-	color: white;
+	color: #0f0f0f;
 	font-size: 36;
 	max-width: 30%;
 	margin: auto;
@@ -90,17 +95,17 @@ body {
 	padding-top: 0.5cm;
 	margin: auto;
 	max-width: 20%;
-	color: white;
+	color: #0f0f0f;
 	font-size: 20px;
 }
 
 #sitterProfileHeader {
 	font-size: 60px;
 	max-width: 100%;
-	color: white;
+	color: #0f0f0f;
 }
 a{ 
-	color: white
+	color: #0f0f0f;
 }
 
 #sitterInfo {
@@ -109,23 +114,23 @@ a{
 }
 
 #sitter{ 
-	color: white;
+	color: #0f0f0f;
 }
 ul{ 
-	color: white
+	color: #0f0f0f;
 }
 
 .h1_Landing {
-	color: whitesmoke;
+	color: #0f0f0f;
 	font-size: 35pt;
 }
 
 .pp1 {
-	color: whitesmoke;
+	color: #0f0f0f;
 }
 
 .pp2 {
-	color: whitesmoke;
+	color: #0f0f0f;
 	font-style: italic;
 	padding: 0%;
 	display: inline;
@@ -137,7 +142,7 @@ ul{
 }
 
 .h1_reg_petOwner {
-	color: whitesmoke;
+	color: #0f0f0f;
 }
 
 /* Add a black background color to the top navigation */
@@ -150,7 +155,7 @@ ul{
 
 .topnav a {
 	float: left;
-	color: #f2f2f2;
+	color: #0f0f0f;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
@@ -159,7 +164,7 @@ ul{
 
 .topnav a:hover {
 	background-color: #ddd;
-	color: black;
+	color: #0f0f0f;
 }
 
 /* .topnav a.active {
@@ -168,30 +173,32 @@ ul{
 } */
 
 .boys {
-	color: whitesmoke;
+	color: #0f0f0f;
 }
 
 p {
-	color: whitesmoke;
+	color: #0f0f0f;
 }
 
 h4 {
-	color: whitesmoke;
+	color: #0f0f0f;
 }
 
 h1{
-color:whitesmoke;
+color: #0f0f0f;
 display: inline;
 }
 
 h1 {
-	color: whitesmoke;
+	color: #0f0f0f;
 	display: inline;
 }
 
 .card {
 	border: 1px solid rgb(0, 0, 0);
-	background-color: #2f815f;
+	/* background-color: #2f815f; */
+	/* background-color: #fdbf12; */
+	background-color: #9e7100;
 	padding: 20px;
 	margin-bottom: 10px;
 }
