@@ -1,25 +1,25 @@
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Filter By
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Price</button>
-    <button class="dropdown-item" type="button">Another action</button>
-    <button class="dropdown-item" type="button">Something else here</button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <button id="price" class="dropdown-item" >Price</button>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
   </div>
 </div>
 
-
-<div class="container-fluid">
+<div id="unordered-sitters" class="container-fluid">
 	<div class="row w-100 m-0 justify-content-center">
 		<div class="row row-cols-2 row-cols-md-4">
 			{{#each sitter}}
-				<div class="col-auto mb-3">
+				<div id="card-data" class="col-auto mb-3">
 					<div class="card" style="width: 300px;">
 						<img src="public/image/no_image.jpeg" class="card-img-top" alt="Profile Picture" />
 						<div class="card-body text-center">
 							<h5 class="card-title">{{firstName}}</h5>
 							<p class="card-text">Sitter price will go here.</p>
+							<p class="card-text">Rating Will Go Here</p>
 							<a href="/searchSitter/{{_id}}" class="btn btn-primary">View Profile</a>
 						</div>
 					</div>
@@ -29,5 +29,7 @@
 	</div>
 </div>
 
+
+<script src="/public/js/test.js"></script>
  {{!-- Try this for images
  class="rounded-circle img-fluid" style="width: 150px;"> --}}
