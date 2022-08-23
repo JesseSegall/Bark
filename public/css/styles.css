@@ -222,8 +222,8 @@ h1 {
 	padding-top: 2in;
 }
 
-.redNote {
-	color: red;
+.redNote{
+	color:red;
 }
 
 /* .barkLogo{
@@ -233,40 +233,54 @@ h1 {
 } */
 
 .grayBox {
-	background: lightgrey;
-	height: 600px;
-	width: 1200px;
-	margin-left: 50pt;
-}
+	background: #dcdcdc;
+	height: 668px;
+	width: 1300px;
+	margin-left:50pt;
+  }
 
-.landingH2 {
+  .landingH2{
 	padding-top: 10pt;
 	font-weight: bold;
 	padding-left: 500pt;
-}
+	position:relative;
+  }
 
-.p1_landing {
+  .p1_landing{
 	margin-top: 0pt;
 	margin-left: 500pt;
-}
+	position:relative;
+  }
 
-.loginLanding {
+  .loginLanding{
 	padding-left: 500pt;
-}
+	position:relative;
+  }
 
-.svg1 {
-	width: 300pt;
-	height: 300pt;
-	margin-left: 500pt;
-	margin-top: 20pt;
-}
+  /* .signInButton{
+	padding-left: 500pt;
+  } */
 
-.dogImage {
+  .svg1{
 	width: 400pt;
-	height: 300pt;
-	display: inline;
-}
+	height:400pt;
+	/* margin-left: 500pt; */
+	margin-top: 20pt; 
+	position:relative;
+  }
 
-.align {
+  .dogImage{
+	width: 800pt;
+	height:500pt;
 	display: inline;
-}
+	position: absolute;
+  }
+
+  .align{
+	display: inline;
+  }
+
+  .dogIMG{
+	position:absolute;
+	text-align: top;
+  }
