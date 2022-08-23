@@ -142,7 +142,7 @@ let exportedMethods = {
 		const usersCollection = await users();
 		const sittersHighLow = await usersCollection
 			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 'true' } })
-			.sort({ firstName: 1 })
+			.sort({ firstName: -1 })
 			.toArray();
 		return sittersHighLow;
 	},

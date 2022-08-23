@@ -7,7 +7,11 @@ body {
 	background: #f4f4f4;
 	font-family: Helvetica;
 }
-
+table,
+th,
+td {
+	border: 1px solid black;
+}
 #form {
 	width: 300px;
 	margin: 20vh auto 0 auto;
@@ -104,7 +108,7 @@ body {
 	max-width: 100%;
 	color: #0f0f0f;
 }
-a{ 
+a {
 	color: #0f0f0f;
 }
 
@@ -113,10 +117,10 @@ a{
 	margin: auto;
 }
 
-#sitter{ 
+#sitter {
 	color: #0f0f0f;
 }
-ul{ 
+ul {
 	color: #0f0f0f;
 }
 
@@ -184,9 +188,9 @@ h4 {
 	color: #0f0f0f;
 }
 
-h1{
-color: #0f0f0f;
-display: inline;
+h1 {
+	color: #0f0f0f;
+	display: inline;
 }
 
 h1 {
@@ -203,23 +207,23 @@ h1 {
 	margin-bottom: 10px;
 }
 
-.form-control{
-	size:10pt;
+.form-control {
+	size: 10pt;
 	width: auto;
 }
 
-#sitterCard{ 
-	margin: auto
+#sitterCard {
+	margin: auto;
 }
 
-#reqSubmit{ 
+#reqSubmit {
 	margin: auto;
 	text-align: center;
 	padding-top: 2in;
 }
 
-.redNote{
-	color:red;
+.redNote {
+	color: red;
 }
 
 /* .barkLogo{
@@ -232,37 +236,37 @@ h1 {
 	background: lightgrey;
 	height: 600px;
 	width: 1200px;
-	margin-left:50pt;
-  }
+	margin-left: 50pt;
+}
 
-  .landingH2{
+.landingH2 {
 	padding-top: 10pt;
 	font-weight: bold;
 	padding-left: 500pt;
-  }
+}
 
-  .p1_landing{
+.p1_landing {
 	margin-top: 0pt;
 	margin-left: 500pt;
-  }
+}
 
-  .loginLanding{
+.loginLanding {
 	padding-left: 500pt;
-  }
+}
 
-  .svg1{
+.svg1 {
 	width: 300pt;
-	height:300pt;
+	height: 300pt;
 	margin-left: 500pt;
 	margin-top: 20pt;
-  }
+}
 
-  .dogImage{
+.dogImage {
 	width: 400pt;
-	height:300pt;
+	height: 300pt;
 	display: inline;
-  }
+}
 
-  .align{
+.align {
 	display: inline;
-  }
+}
