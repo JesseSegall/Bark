@@ -1,7 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const { ObjectId } = require('mongodb');
-const valdidate = require('../validate');
 
 let exportedMethods = {
 	async addOwner(firstName, lastName, email, userName, password) {
@@ -47,7 +46,7 @@ let exportedMethods = {
 		return owner;
 	},
 
-	async addSitter(firstName, lastName, email, userName, password) {
+	async addSitter(firstName, lastName, email, userName, password, dogSize, difficultDog) {
 		const usersCollection = await users();
 		const attemptedUsername = userName.trim();
 		const attemptedEmail = email.toLowerCase();
@@ -72,6 +71,9 @@ let exportedMethods = {
 			price: null,
 			reviewsId: [],
 			requests: [],
+			rating: [],
+			dogSize: dogSize,
+			difficultDog: difficultDog,
 			owner: false,
 			sitter: true,
 		};
@@ -107,7 +109,7 @@ let exportedMethods = {
 	async getAllSitters() {
 		const usersCollection = await users();
 		const sittersArray = await usersCollection
-			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, sitter: 'true' } })
+			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 'true' } })
 			.toArray();
 		return sittersArray;
 	},
@@ -121,6 +123,35 @@ let exportedMethods = {
 		const usersCollection = await users();
 		const foundUser = await usersCollection.findOne({ userName: username });
 		return foundUser;
+	},
+	async getRatings() {
+		const starsTotal = 5;
+		const usersCollection = await users();
+		const sittersArray = await usersCollection
+			.find({}, { projection: { rating: 1, sitter: 'true' } })
+			.toArray();
+		for (let rating of sittersArray) {
+			const starPercentage = (sittersArray[rating] / starsTotal) * 100;
+			// Round to nearest 100
+
+			const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+		}
+	},
+	async filterPriceHighToLow() {
+		const usersCollection = await users();
+		const sittersHighLow = await usersCollection
+			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 'true' } })
+			.sort({ firstName: 1 })
+			.toArray();
+		return sittersHighLow;
+	},
+	async filterPriceLowToHigh() {
+		const usersCollection = await users();
+		const sittersLowHigh = await usersCollection
+			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 'true' } })
+			.sort({ price: -1 })
+			.toArray();
+		return sittersLowHigh;
 	},
 };
 

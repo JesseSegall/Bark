@@ -1,8 +1,9 @@
-
 (function ($) {
 
 	var ownerReviewSection = $('#ownerReviews');
 	var postReviewForm = $('#postReview');
+	var postReviewText = $('#reviewTextBox');
+	var postReviewRating = $('#reviewRatingBox');
 
 	let req = {
 		method: 'GET',
@@ -37,7 +38,23 @@
 	postReviewForm.submit(function (event) {
 		event.preventDefault();
 		console.log("submited");
+		console.log(postReviewText.val())
+		console.log(postReviewRating.val())
 
+		let reviewText = postReviewText.val();
+		let reviewRating = postReviewRating.val();
+
+		reviewText = reviewText.trim();
+		
+		if(reviewText === "") {
+			alert("reviewText is empty");
+			return;
+		}
+
+		
+		
+
+		console.log("continued");
 		//let reviewTextInput = $('#reviewTextInput');
 		//let reviewRatingInput = $('#reviewRatingInput');
 
@@ -49,8 +66,8 @@
 			url: 'http://localhost:3000/ownerReview',
 			contentType: "application/json",
 			data: JSON.stringify({
-				text: "test asdffdas",
-				rating: 4,
+				text: postReviewText.val(),
+				rating: postReviewRating.val(),
 				beingReviewedId: "62fea5057ce30273374c2aa7"
 			})
 
