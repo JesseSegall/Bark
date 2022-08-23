@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
         const dogWeight = dogData.dogWeight;
         const dogAge = dogData.dogAge;
         const dogDifficulty = dogData.dogDifficulty;
-        const dogPic = dogData.picture;
+        const dogPic = dogData.dogPicture;
 
         const dogDataInsert = await dogsData.addDog(ownerId, dogName, dogBreed, dogWeight, dogAge, dogDifficulty, dogPic);
         const dogId = dogDataInsert.insertedId.toString();
