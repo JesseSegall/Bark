@@ -45,7 +45,7 @@ const isValidPassword = (password) => {
 	const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})');
 	return strongRegex.test(password);
 };
-//TODO: Need to add error checking for checkboxes. Atleast one must be checked
+//TODO: Need to add error checking for checkboxes. At least one must be checked
 const validateInputs = () => {
 	const user_nameVal = user_name.value.trim();
 	const emailVal = email.value.trim();
