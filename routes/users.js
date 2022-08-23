@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const data = require('../data');
+const { requests } = require('../data');
+const { MongoUnexpectedServerResponseError } = require('mongodb');
 
 const salt = 8;
 
@@ -149,6 +151,27 @@ router.post('/searchSitter', async (req, res) => {
 router.get('/searchOwner/:id', async (req, res) => {
 	const ownerData = await users.getOwner(req.params.id);
 	res.render('partials/ownerProfile', { owner: ownerData, title: 'Owner Profile' });
+});
+
+// adds request to the database. Used in form to submit a request
+router.post('/requestSitter', async (req, res) => {
+	// Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
+
+	const ownerID = req.body.ownerID;
+	const sitterId = req.body.sitterId;
+	const dogId = req.body.dogId;
+	const requestText = req.body.requestText;
+
+	try {
+		const newRequest = await requests.addRequest(ownerID, sitterId, dogId, requestText);
+		users.requestText.push(newRequest); 
+	} catch (error) {
+		return res
+			.status(401)
+			.render('partials/reqsubmitted', { errors: error, title: 'Submit Sitter Request' });
+	}
+	return res.render('partials/reqsubmitted');
+
 });
 
 module.exports = router;
