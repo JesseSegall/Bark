@@ -35,9 +35,9 @@ app.use(
 	})
 );
 // Trying to access a dashboard without being logged in should throw an error
-app.use('/dashboard', async (req, res, next) => {
+app.use('/dashboards', async (req, res, next) => {
 	if (!req.session.user) {
-		return res.render('/signin', {
+		return res.redirect('/signin', {
 			error: 'You must be signed in to access your dashboard',
 			title: 'Sign in',
 		});

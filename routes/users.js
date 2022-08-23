@@ -4,12 +4,18 @@ const bcrypt = require('bcryptjs');
 const data = require('../data');
 const { requests } = require('../data');
 const { MongoUnexpectedServerResponseError } = require('mongodb');
+const { partials } = require('handlebars');
 
 const salt = 8;
 
 const users = data.users;
 
 router.get('/', async (req, res) => {
+	// Just for testing purposes
+	return res.render('partials/landingPage', {});
+});
+
+router.get('/userChoice', async (req, res) => {
 	// Just for testing purposes
 	return res.render('partials/userChoice', {});
 });
@@ -40,7 +46,9 @@ router.post('/signin', async (req, res) => {
 			);
 		}
 		req.session.user = user;
+		console.log('This below is the cookie ');
 		console.log(req.session.user);
+		return res.redirect('/dashboards');
 	} catch (error) {
 		return res.render('partials/signin', { title: 'Sign in', errors: error });
 	}
@@ -58,16 +66,18 @@ router.post('/registerOwner', async (req, res) => {
 	const email = req.body.email;
 	const userName = req.body.user_name;
 	const password = req.body.password;
+	const gender = req.body.gender;
 	try {
 		const hash = await bcrypt.hash(password, salt);
-		const newOwner = await users.addOwner(firstName, lastName, email, userName, hash);
+		const newOwner = await users.addOwner(firstName, lastName, email, userName, hash, gender);
 
 		req.session.user = newOwner;
 		console.log(req.session.userId);
 	} catch (error) {
-		return res
-			.status(401)
-			.render('partials/sitterReg', { errors: error, title: 'Owner Registration' });
+		return res.status(401).render('partials/sitterReg', {
+			errors: error,
+			title: 'Owner Registration',
+		});
 	}
 
 	return res.redirect('/'); // Should redirect to either home page or straight to their dashboard after registration
@@ -119,9 +129,10 @@ router.post('/registerSitter', async (req, res) => {
 		);
 		req.session.user = newSitter;
 	} catch (error) {
-		return res
-			.status(401)
-			.render('partials/sitterReg', { errors: error, title: 'Sitter Registration' });
+		return res.status(401).render('partials/sitterReg', {
+			errors: error,
+			title: 'Sitter Registration',
+		});
 	}
 
 	return res.redirect('/'); // Should redirect to either home page or straight to their dashboard after registration
@@ -129,7 +140,10 @@ router.post('/registerSitter', async (req, res) => {
 
 router.get('/searchSitter/:id', async (req, res) => {
 	const sitterData = await users.getSitter(req.params.id);
-	res.render('partials/sitterProfile', { sitter: sitterData, title: 'Sitter Profile' });
+	res.render('partials/sitterProfile', {
+		sitter: sitterData,
+		title: 'Sitter Profile',
+	});
 });
 
 router.get('/searchSitter/', async (req, res) => {
@@ -174,18 +188,29 @@ router.post('/searchSitter', async (req, res) => {
 		}
 
 		if (!currentUser) {
-			return res.render('partials/sitterList', { errors: 'No sitter matched that name.' });
+			return res.render('partials/sitterList', {
+				errors: 'No sitter matched that name.',
+			});
 		}
 
-		return res.render('partials/sitterList', { data: sitterArray, title: 'Search for a Sitter' });
+		return res.render('partials/sitterList', {
+			data: sitterArray,
+			title: 'Search for a Sitter',
+		});
 	} catch (error) {
-		return res.render('/partials/sitterList', { errors: error, title: 'Search for a Sitter' });
+		return res.render('/partials/sitterList', {
+			errors: error,
+			title: 'Search for a Sitter',
+		});
 	}
 });
 
 router.get('/searchOwner/:id', async (req, res) => {
 	const ownerData = await users.getOwner(req.params.id);
-	res.render('partials/ownerProfile', { owner: ownerData, title: 'Owner Profile' });
+	res.render('partials/ownerProfile', {
+		owner: ownerData,
+		title: 'Owner Profile',
+	});
 });
 
 //TODO FIX THE BELOW ROUTE TO CREATE A NEW REQUEST ARRAY ELEMENT IN THE DATABASE
@@ -200,14 +225,18 @@ router.post('/requestSitter', async (req, res) => {
 
 	try {
 		newRequest = await requests.addRequest(ownerID, sitterId, dogId, requestText);
-
 	} catch (error) {
-		return res
-			.status(401)
-			.render('partials/reqsubmitted', { errors: error, title: 'Error Submitting Sitter Request' });
+		return res.status(401).render('partials/reqsubmitted', {
+			errors: error,
+			title: 'Error Submitting Sitter Request',
+		});
 	}
 	return res.render('partials/reqsubmitted', 'Submit Sitter Request');
+});
 
+router.get('/logout', async (req, res) => {
+	req.session.destroy();
+	res.redirect('/');
 });
 
 module.exports = router;

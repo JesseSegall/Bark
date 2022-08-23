@@ -9,6 +9,7 @@ const small = document.getElementById('small_dog');
 const medium = document.getElementById('medium_dog');
 const large = document.getElementById('large_dog');
 const difficultDog = document.getElementById('difficult_dog');
+const genderVal = document.getElementById('genderVal');
 let flag = false;
 form.addEventListener('submit', (e) => {
 	validateInputs();
@@ -53,6 +54,7 @@ const validateInputs = () => {
 	const last_nameVal = last_name.value.trim();
 	const passwordVal = password.value.trim();
 	const password_confmVal = password_confm.value.trim();
+	const genderValVal = genderVal.value.trim();
 
 	if (user_nameVal === '') {
 		setErrors(user_name, 'A username is required.');
@@ -116,5 +118,15 @@ const validateInputs = () => {
 	} else {
 		setSuccess(password_confm);
 		flag = false;
+	}
+	//TODO: Add server side error check so they cant put in numbers
+	if (genderVal) {
+		if (genderVal === '') {
+			setErrors(genderVal, 'Please enter a gender.');
+			flag = true;
+		} else {
+			setSuccess(genderVal);
+			flag = false;
+		}
 	}
 };

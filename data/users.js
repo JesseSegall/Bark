@@ -3,7 +3,7 @@ const users = mongoCollections.users;
 const { ObjectId } = require('mongodb');
 
 let exportedMethods = {
-	async addOwner(firstName, lastName, email, userName, password) {
+	async addOwner(firstName, lastName, email, userName, password, gender) {
 		const usersCollection = await users();
 		const attemptedUsername = userName.trim();
 		const attemptedEmail = email.toLowerCase();
@@ -20,11 +20,13 @@ let exportedMethods = {
 			firstName: firstName,
 			lastName: lastName,
 			email: email,
+			address: {},
 			userName: userName,
 			password: password,
 			picture: 'public/image/no_image.jpeg',
 			dogs: [],
 			reviews: [],
+			gender: gender,
 			owner: true,
 			sitter: false,
 		};
@@ -62,13 +64,13 @@ let exportedMethods = {
 		let newSitter = {
 			firstName: firstName,
 			lastName: lastName,
-			address: null,
+			address: {},
 			email: email.toLowerCase(),
 			userName: userName,
 			password: password,
 			idOfDogSat: [], //array
 			picture: 'public/image/no_image.jpeg', //  TODO: Possibly add a default picture here
-			price: null,
+			price: {},
 			reviewsId: [],
 			requests: [],
 			rating: [],
@@ -109,7 +111,10 @@ let exportedMethods = {
 	async getAllSitters() {
 		const usersCollection = await users();
 		const sittersArray = await usersCollection
-			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 'true' } })
+			.find(
+				{ sitter: { $eq: true } },
+				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+			)
 			.toArray();
 		return sittersArray;
 	},
@@ -140,18 +145,80 @@ let exportedMethods = {
 	async filterPriceHighToLow() {
 		const usersCollection = await users();
 		const sittersHighLow = await usersCollection
-			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 'true' } })
-			.sort({ firstName: 1 })
+			.find(
+				{ sitter: { $eq: true } },
+				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+			)
+			.sort({ price: 1 })
 			.toArray();
 		return sittersHighLow;
 	},
 	async filterPriceLowToHigh() {
 		const usersCollection = await users();
 		const sittersLowHigh = await usersCollection
-			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 'true' } })
+			.find(
+				{ sitter: { $eq: true } },
+				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+			)
 			.sort({ price: -1 })
 			.toArray();
 		return sittersLowHigh;
+	},
+	async updateSitterProfile(userId, firstName, lastName, address, price) {
+		const usersCollection = await users();
+
+		const updateUser = await usersCollection.findOneAndUpdate(
+			{
+				_id: ObjectId(userId),
+			},
+			{$set:
+				{
+					firstName: firstName,
+					lastName: lastName,
+					address: {
+						street: address.street,
+						city: address.city,
+						state: address.state,
+						zip: address.zip,
+						country: address.country
+					},
+					price: {
+						smallDog: price.smallDog,
+						mediumDog: price.mediumDog,
+						largeDog: price.largeDog,
+						difficultDog: price.difficultDog
+					}
+				}
+			}
+		);
+		return;
+	},
+	async updateOwnerProfile(userId, firstName, lastName, address) {
+		const usersCollection = await users();
+
+		console.log("in update");
+		const updateUser = await usersCollection.findOneAndUpdate(
+			{
+				_id: ObjectId(userId),
+			},
+			{$set:
+				{
+					firstName: firstName,
+					lastName: lastName,
+					address: {
+						street: address.street,
+						city: address.city,
+						state: address.state,
+						zip: address.zip,
+						country: address.country
+					}
+				}
+			}
+
+		)
+
+		console.log("finished")
+		return;
 	},
 };
 
