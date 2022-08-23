@@ -217,3 +217,36 @@ h1 {
 	text-align: center;
 	padding-top: 2in;
 }
+
+.redNote{
+	color:red;
+}
+
+.barkLogo{
+	margin-top: 160pt;
+	margin-left: 500pt;
+    max-width: 40%;
+
+}
+
+.grayBox {
+	background: lightgrey;
+	height: 600px;
+	width: 1200px;
+	margin-left:50pt;
+  }
+
+  .landingH2{
+	padding-top: 10pt;
+	font-weight: bold;
+	padding-left: 500pt;
+  }
+
+  .p1_landing{
+	margin-top: 0pt;
+	margin-left: 500pt;
+  }
+
+  .loginLanding{
+	padding-left: 500pt;
+  }
