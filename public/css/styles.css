@@ -284,3 +284,12 @@ h1 {
 	position:absolute;
 	text-align: top;
   }
+
+  .svg2{
+	position: absolute;
+	height:100pt;
+	width: 100px;
+	Margin-left:1250px;
+	margin-top: 500px;
+	align:relative;
+  }
