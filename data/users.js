@@ -111,7 +111,10 @@ let exportedMethods = {
 	async getAllSitters() {
 		const usersCollection = await users();
 		const sittersArray = await usersCollection
-			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 'true' } })
+			.find(
+				{ sitter: { $eq: true } },
+				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+			)
 			.toArray();
 		return sittersArray;
 	},
@@ -142,15 +145,21 @@ let exportedMethods = {
 	async filterPriceHighToLow() {
 		const usersCollection = await users();
 		const sittersHighLow = await usersCollection
-			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 'true' } })
-			.sort({ firstName: -1 })
+			.find(
+				{ sitter: { $eq: true } },
+				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+			)
+			.sort({ price: 1 })
 			.toArray();
 		return sittersHighLow;
 	},
 	async filterPriceLowToHigh() {
 		const usersCollection = await users();
 		const sittersLowHigh = await usersCollection
-			.find({}, { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 'true' } })
+			.find(
+				{ sitter: { $eq: true } },
+				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+			)
 			.sort({ price: -1 })
 			.toArray();
 		return sittersLowHigh;
@@ -166,12 +175,10 @@ let exportedMethods = {
 				firstName: firstName,
 				lastName: lastName,
 				address: address,
-				price: price
+				price: price,
 			}
-
-		)
+		);
 		return;
-
 	},
 	async updateOwnerProfile(userId, firstName, lastName, address) {
 		const usersCollection = await users();
@@ -183,12 +190,11 @@ let exportedMethods = {
 			{
 				firstName: firstName,
 				lastName: lastName,
-				address: address
+				address: address,
 			}
-
-		)
+		);
 		return;
-	}
+	},
 };
 
 module.exports = exportedMethods;
