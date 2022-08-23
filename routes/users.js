@@ -12,12 +12,12 @@ const users = data.users;
 
 router.get('/', async (req, res) => {
 	// Just for testing purposes
-	return res.render('partials/userChoice', {});
+	return res.render('partials/landingPage', {});
 });
 
-router.get('/landing', async (req, res) => {
+router.get('/userChoice', async (req, res) => {
 	// Just for testing purposes
-	return res.render('partials/landingPage', {});
+	return res.render('partials/userChoice', {});
 });
 
 router.get('/About', async (req, res) => {
