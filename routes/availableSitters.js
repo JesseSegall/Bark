@@ -14,8 +14,11 @@ router.get('/', async (req, res) => {
 
 	// res.render("partials/sitters", {});
 });
-
-router.get('/test', async (req, res) => {
+router.get('/filterPriceHigh', async (req, res) => {
+	const sitters = await users.filterPriceHighToLow();
+	return res.json(sitters);
+});
+router.get('/test1', async (req, res) => {
 	return res.render('partials/test');
 });
 module.exports = router;
