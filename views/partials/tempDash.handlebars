@@ -1,16 +1,4 @@
-{{!-- <div id="testHide" class="test">
-	<section id = "ownerReviews">
-		<p>test</p>
-		<form id="postReview" method="post">
-			<label for="reviewTextBox">Enter your review here</label>
-			<textarea id="reviewTextBox" rows = "5" cols = "60" name = "description"></textarea>
-			</br>
-			<label for="reviewRatingBox">Enter Rating(0-5)</label>
-			<input type="number" min="0" max="5" id="reviewRatingBox"></input>
-			<input type="submit" value="Submit"></input>
-		</form>
-	</section>
-</div> --}}
+
 
 <div class="col-auto mb-3">
     <div id = "dashboardCard" class="card" style="width: 600px; height: 600px" >
@@ -20,7 +8,17 @@
             <p>Address: {{user.address}}</p>
             <p>Email: {{user.email}}</p>
             {{#if user.sitter}}
-            <!-- TODO add button to all of these to update -->
+           <div id="req-table">
+        <table>
+            <tr>
+                <th>Requests</th>
+            </tr>
+            <tr>
+                <td>{{user.requests}}</td>
+                
+            </tr>
+        </table>
+</div>
          <div id="edit-profile" >
 
 <form id="sitter-profile-update-form" method="post">
