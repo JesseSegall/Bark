@@ -256,3 +256,13 @@ h1 {
 	margin-left: 500pt;
 	margin-top: 20pt;
   }
+
+  .dogImage{
+	width: 400pt;
+	height:300pt;
+	display: inline;
+  }
+
+  .align{
+	display: inline;
+  }
