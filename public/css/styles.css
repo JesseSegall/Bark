@@ -233,7 +233,7 @@ h1 {
 } */
 
 .grayBox {
-	background: lightgrey;
+	background: #dcdcdc;
 	height: 600px;
 	width: 1200px;
 	margin-left:50pt;
@@ -243,15 +243,18 @@ h1 {
 	padding-top: 10pt;
 	font-weight: bold;
 	padding-left: 500pt;
+	position:relative;
   }
 
   .p1_landing{
 	margin-top: 0pt;
 	margin-left: 500pt;
+	position:relative;
   }
 
   .loginLanding{
 	padding-left: 500pt;
+	position:relative;
   }
 
   /* .signInButton{
@@ -263,12 +266,14 @@ h1 {
 	height:300pt;
 	/* margin-left: 500pt; */
 	margin-top: 20pt; 
+	position:relative;
   }
 
   .dogImage{
-	width: 400pt;
-	height:300pt;
+	width: 700pt;
+	height:400pt;
 	display: inline;
+	position: absolute;
   }
 
   .align{
