@@ -10,7 +10,7 @@ const constructor = (app) => {
 	app.use('/sitters', availSitters);
 	app.use('/ownerReview', ownerReviewRoutes);
 	app.use('/owners', owners);
-	app.use('/sitterDashboard', dashboardRoutes);
+	app.use('/dashboards', dashboardRoutes);
 	app.use('/dogs', dogRoutes);
 
 	app.use('*', (req, res) => {
