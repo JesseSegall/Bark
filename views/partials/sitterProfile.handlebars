@@ -10,12 +10,18 @@
             <p>Reviews: {{sitter.ReviewsId}}</p>
             <p>Requests: {{sitter.requests}}</p>
 
+            <!-- TODO add form that takes input of a string detailing the request, and then sends it, attaching that "request" to the owner's sent list, and the sitters recieved list.
+            Sitter can then accept the request, adding to their accepted requests. Denying it deletes the request and responds to the owner. -->
+
+
             <div class = "container">
                 <form action="/data/requests.js"></form>
                 <p>Please enter a request below:</p>
                 <textarea name="requestText" id="requestText" cols="60" rows="6"></textarea>
                 <p><button type="submit">Send Request</button></p>
             </div>
+
         </div>
     </div>
 </div>
+
