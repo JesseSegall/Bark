@@ -1,5 +1,5 @@
 <div class="col-auto mb-3">
-    <div id = "sitterCard" class="card" style="width: 600px; height: 600px" >
+    <div id = "sitterCard" class="card" style="width: 800px; height: 600px" >
         <div class="card-body text-center">
              <img src="public/image/no_image.jpeg" class="card-img-top" alt="..." />
             <h5 class="card-title">{{sitter.firstName}} {{sitter.lastName}}</h5>
@@ -9,6 +9,13 @@
             <p>Dogs Sat: {{sitter.idOfDogSat}}</p>
             <p>Reviews: {{sitter.ReviewsId}}</p>
             <p>Requests: {{sitter.requests}}</p>
+
+            <div class = "container">
+                <form action="/data/requests.js"></form>
+                <p>Please enter a request below:</p>
+                <textarea name="requestText" id="requestText" cols="60" rows="6"></textarea>
+                <p><button type="submit">Send Request</button></p>
+            </div>
         </div>
     </div>
 </div>
