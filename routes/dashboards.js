@@ -14,17 +14,21 @@ router.get('/', (req, res) => {
 
 router.post('/profileEdit', async (req, res) => {
 	const userEditProfile = req.body;
+	const userData = req.session.user;
 
 	console.log("profile Edit route");
+	console.log(userEditProfile);
 	try {
 
         const userId = req.session.user._id;
         const firstName = userEditProfile.firstName;
 		const lastName = userEditProfile.lastName;
 		const address = userEditProfile.address;
+		const price = userEditProfile.price;
 
-		if(userId.sitter) {
-			const price = userEditProfile.price;
+		console.log("sitter: " + userData.sitter);
+		if(userData.sitter) {
+			console.log("price: " + price);
 			const userProfileInsert = await users.updateSitterProfile(userId, firstName, lastName, address, price);
 		}
 		else {

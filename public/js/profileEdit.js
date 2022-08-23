@@ -17,6 +17,7 @@
         var smallDog = $('#small-dog-input');
         var mediumDog = $('#medium-dog-input');
         var largeDog = $('#large-dog-input');
+        var difficultDog = $('#difficult-dog-input');
     }
 
 	let req = {
@@ -36,9 +37,10 @@
         state.val(res.user.address.state);
         zip.val(res.user.address.zip);
         country.val(res.user.address.country);
-        smallDog.val(res.user.price.small);
-        mediumDog.val(res.user.price.medium);
-        largeDog.val(res.user.price.large);
+        smallDog.val(res.user.price.smallDog);
+        mediumDog.val(res.user.price.mediumDog);
+        largeDog.val(res.user.price.largeDog);
+        difficultDog.val(res.user.price.difficultDog);
 
 
 /*         for(i = 0; i < res.length; i++) {
@@ -54,7 +56,7 @@
 
 		let req = {
 			method: 'POST',
-			url: 'http://localhost:3000/dashboards/profileEdit',
+			url: '/dashboards/profileEdit',
 			contentType: "application/json",
 			data: JSON.stringify({
 				firstName: firstName.val(),
@@ -67,9 +69,10 @@
                     country: country.val()
                 },
                 price: {
-                    smallDog: smallDog,
-                    mediumDog: mediumDog,
-                    largeDog: largeDog
+                    smallDog: smallDog.val(),
+                    mediumDog: mediumDog.val(),
+                    largeDog: largeDog.val(),
+                    difficultDog: difficultDog.val()
                 }
 			})
 		};
@@ -90,7 +93,7 @@
 
 		let req = {
 			method: 'POST',
-			url: 'http://localhost:3000/dashboards/profileEdit',
+			url: '/dashboards/profileEdit',
 			contentType: "application/json",
 			data: JSON.stringify({
 				firstName: firstName.val(),

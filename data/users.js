@@ -171,11 +171,24 @@ let exportedMethods = {
 			{
 				_id: ObjectId(userId),
 			},
-			{
-				firstName: firstName,
-				lastName: lastName,
-				address: address,
-				price: price,
+			{$set:
+				{
+					firstName: firstName,
+					lastName: lastName,
+					address: {
+						street: address.street,
+						city: address.city,
+						state: address.state,
+						zip: address.zip,
+						country: address.country
+					},
+					price: {
+						smallDog: price.smallDog,
+						mediumDog: price.mediumDog,
+						largeDog: price.largeDog,
+						difficultDog: price.difficultDog
+					}
+				}
 			}
 		);
 		return;
