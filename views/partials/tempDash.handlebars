@@ -54,7 +54,7 @@
 			<div id="sitter-address" class="form-group">
   <input type="street" 
          
-         id="autocomplete" 
+         id="inputStreet" 
          placeholder="Street"/>
   
   <input type="city" 
@@ -81,9 +81,9 @@
 
 </div>
 <label for="price-size">Enter Your Price For Each Size</label>
-<input type="number" min="0" placeholder="For small dogs Less than 25lbs">
-<input type="number" min="0" placeholder="For medium dogs Less than 65lbs">
-<input type="number" min="0" placeholder="For large dogs Over 65lbs">
+<input id="small-dog-input" type="number" min="0" placeholder="For small dogs Less than 25lbs">
+<input id="medium-dog-input" type="number" min="0" placeholder="For medium dogs Less than 65lbs">
+<input id="large-dog-input" type="number" min="0" placeholder="For large dogs Over 65lbs">
 <input type="number" min="0" placeholder="Enter a fee for Difficult dogs"
 <button id="sitter-update-submit-btn" type="submit">Update</button>
 </form>
@@ -113,6 +113,7 @@
 							name="first_name"
 							id="first_name"
 							placeholder="First Name"
+							value="test"
 							required
 						/>
 						<div class="error"></div>
@@ -136,7 +137,7 @@
 			<div id="owner-address" class="form-group">
   <input type="street" 
          
-         id="autocomplete" 
+         id="inputStreet" 
          placeholder="Street"/>
   
   <input type="city" 
@@ -202,3 +203,4 @@
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="/public/js/reviews.js"></script>
+<script src="/public/js/profileEdit.js"></script>
