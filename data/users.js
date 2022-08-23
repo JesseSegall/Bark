@@ -20,6 +20,7 @@ let exportedMethods = {
 			firstName: firstName,
 			lastName: lastName,
 			email: email,
+			address: {},
 			userName: userName,
 			password: password,
 			picture: 'public/image/no_image.jpeg',
@@ -63,13 +64,13 @@ let exportedMethods = {
 		let newSitter = {
 			firstName: firstName,
 			lastName: lastName,
-			address: null,
+			address: {},
 			email: email.toLowerCase(),
 			userName: userName,
 			password: password,
 			idOfDogSat: [], //array
 			picture: 'public/image/no_image.jpeg', //  TODO: Possibly add a default picture here
-			price: null,
+			price: {},
 			reviewsId: [],
 			requests: [],
 			rating: [],
@@ -154,6 +155,40 @@ let exportedMethods = {
 			.toArray();
 		return sittersLowHigh;
 	},
+	async updateSitterProfile(userId, firstName, lastName, address, price) {
+		const usersCollection = await users();
+
+		const updateUser = await usersCollection.findOneAndUpdate(
+			{
+				_id: ObjectId(userId),
+			},
+			{
+				firstName: firstName,
+				lastName: lastName,
+				address: address,
+				price: price
+			}
+
+		)
+		return;
+
+	},
+	async updateOwnerProfile(userId, firstName, lastName, address) {
+		const usersCollection = await users();
+
+		const updateUser = await usersCollection.findOneAndUpdate(
+			{
+				_id: ObjectId(userId),
+			},
+			{
+				firstName: firstName,
+				lastName: lastName,
+				address: address
+			}
+
+		)
+		return;
+	}
 };
 
 module.exports = exportedMethods;
