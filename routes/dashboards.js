@@ -48,11 +48,11 @@ router.get('/profileEdit', async (req, res) => {
 
 		if(userData.owner) {
 			const owner = await users.getOwner(userData._id);
-			return res.json({owner: owner});
+			return res.json({user: owner});
 		}
 		else {
 			const sitter = await users.getSitter(userData._id);
-			return res.json({sitter: sitter});
+			return res.json({user: sitter});
 		}
 
 

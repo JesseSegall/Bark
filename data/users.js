@@ -176,17 +176,28 @@ let exportedMethods = {
 	async updateOwnerProfile(userId, firstName, lastName, address) {
 		const usersCollection = await users();
 
+		console.log("in update");
 		const updateUser = await usersCollection.findOneAndUpdate(
 			{
 				_id: ObjectId(userId),
 			},
-			{
-				firstName: firstName,
-				lastName: lastName,
-				address: address
+			{$set:
+				{
+					firstName: firstName,
+					lastName: lastName,
+					address: {
+						street: address.street,
+						city: address.city,
+						state: address.state,
+						zip: address.zip,
+						country: address.country
+					}
+				}
 			}
 
 		)
+
+		console.log("finished")
 		return;
 	}
 };

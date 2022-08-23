@@ -10,6 +10,15 @@
     var zip = $('#inputZip');
     var country = $('#inputCountry');
 
+    console.log(sitterProfileForm.length);
+    console.log(ownerProfileForm.length);
+
+    if(sitterProfileForm.length > 0) { 
+        var smallDog = $('#small-dog-input');
+        var mediumDog = $('#medium-dog-input');
+        var largeDog = $('#large-dog-input');
+    }
+
 	let req = {
 		method: 'GET',
 		url: '/dashboards/profileEdit',
@@ -19,17 +28,17 @@
 	$.ajax(req).then( (res) => {
 
         console.log(res);
-        console.log(res.owner.firstName);
-        console.log(firstName.val());
-        console.log(res.owner.address);
 
-        firstName.val(res.owner.firstName);
-        lastName.val(res.owner.lastName);
-        street.val(res.owner.address.street);
-        city.val(res.owner.address.city);
-        state.val(res.owner.address.state);
-        zip.val(res.owner.address.zip);
-        country.val(res.owner.address.country);
+        firstName.val(res.user.firstName);
+        lastName.val(res.user.lastName);
+        street.val(res.user.address.street);
+        city.val(res.user.address.city);
+        state.val(res.user.address.state);
+        zip.val(res.user.address.zip);
+        country.val(res.user.address.country);
+        smallDog.val(res.user.price.small);
+        mediumDog.val(res.user.price.medium);
+        largeDog.val(res.user.price.large);
 
 
 /*         for(i = 0; i < res.length; i++) {
