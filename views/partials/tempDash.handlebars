@@ -1,4 +1,4 @@
-<div id="testHide" class="test">
+{{!-- <div id="testHide" class="test">
 	<section id = "ownerReviews">
 		<p>test</p>
 		<form id="postReview" method="post">
@@ -10,7 +10,7 @@
 			<input type="submit" value="Submit"></input>
 		</form>
 	</section>
-</div>
+</div> --}}
 
 <div class="col-auto mb-3">
     <div id = "dashboardCard" class="card" style="width: 600px; height: 600px" >
@@ -21,16 +21,180 @@
             <p>Email: {{user.email}}</p>
             {{#if user.sitter}}
             <!-- TODO add button to all of these to update -->
+         <div id="edit-profile" >
+
+<form id="sitter-profile-update-form" method="post">
+    <label for="sitter-photo">Update or Add a profile picture</label>
+    <input type="file" id="sitter-photo">
+            <label for="first_name"> First Name</label>
+						<input
+							type="text"
+							
+							name="first_name"
+							id="first_name"
+							placeholder="First Name"
+							required
+						/>
+						<div class="error"></div>
+					
+					<br />
+					
+						<label for="last_name"> Last Name </label>
+						<input
+							type="text"
+							
+							name="last_name"
+							id="last_name"
+							placeholder="Last Name"
+							required
+						/>
+						<div class="error"></div>
+					
+	 
+	
+		
+			<div id="sitter-address" class="form-group">
+  <input type="street" 
+         
+         id="autocomplete" 
+         placeholder="Street"/>
+  
+  <input type="city" 
+         
+         id="inputCity" 
+         placeholder="City"/>
+  
+  <input type="state" 
+         
+         id="inputState" 
+         placeholder="State"/>
+  
+  <input type="zip" 
+         
+         id="inputZip" 
+         placeholder="Zip"/>
+  
+  
+  <input type="country" 
+         
+         id="inputCountry" 
+         placeholder="Country"/>
+
+
+</div>
+<label for="price-size">Enter Your Price For Each Size</label>
+<input type="number" min="0" placeholder="For small dogs Less than 25lbs">
+<input type="number" min="0" placeholder="For medium dogs Less than 65lbs">
+<input type="number" min="0" placeholder="For large dogs Over 65lbs">
+<input type="number" min="0" placeholder="Enter a fee for Difficult dogs"
+<button id="sitter-update-submit-btn" type="submit">Update</button>
+</form>
+			
+		</div>
+	
+
+
+
+
+            </div>
+            <button id="edit-profile-btn" type="submit">Edit Profile</button>
             <p>Price: {{user.price}}</p>
             <p>Dogs Sat: {{user.idOfDogSat}}</p>
             <p>Reviews: {{user.ReviewsId}}</p>
             <p>Requests: {{user.requests}}</p>
+            <p>Your Rating: {{user.rating}}</p>
             {{/if}}
 			{{#if user.owner}}
-            <!-- TODO add button to all of these to update -->
+            <form id="owner-profile-update-form" method="post">
+    <label for="owner-photo">Update or Add a profile picture</label>
+    <input type="file" id="owner-photo">
+            <label for="first_name"> First Name</label>
+						<input
+							type="text"
+							
+							name="first_name"
+							id="first_name"
+							placeholder="First Name"
+							required
+						/>
+						<div class="error"></div>
+					
+					<br />
+					
+						<label for="last_name"> Last Name </label>
+						<input
+							type="text"
+							
+							name="last_name"
+							id="last_name"
+							placeholder="Last Name"
+							required
+						/>
+						<div class="error"></div>
+					
+	 
+	
+		
+			<div id="owner-address" class="form-group">
+  <input type="street" 
+         
+         id="autocomplete" 
+         placeholder="Street"/>
+  
+  <input type="city" 
+         
+         id="inputCity" 
+         placeholder="City"/>
+  
+  <input type="state" 
+         
+         id="inputState" 
+         placeholder="State"/>
+  
+  <input type="zip" 
+         
+         id="inputZip" 
+         placeholder="Zip"/>
+  
+  
+  <input type="country" 
+         
+         id="inputCountry" 
+         placeholder="Country"/>
+
+
+</div>
+<button id="owner-update-btn" type="submit">Update</button>
+</form>
+			
+		</div>
+	
             <p>Dogs: {{user.dogs}}</p>
             <dl id="reviewList">Reviews</dl>
             <p>Picture: {{user.picture}}</p>
+            <button id="add-dog-btn" type="submit">Add a Dog</button>
+            <form id="add-dog-form" method="post" role="form">
+                <legend>Enter Your Dog's Information</legend>
+                <label for="dog-name">Dog's Name</label>
+                <input type="text" id="dog-name" placeholder="Dog Name" />
+
+                <label for="dog-breed">Dog's Breed</label>
+                <input type="text" id="dog-breed" placeholder="Dog's Breed" />
+
+                <label for="dog-weight">Dog's Weight</label>
+                <input type="text" id="dog-weight" placeholder="Dog's Weight" />
+
+                <label for="dog-age">Dog's Age</label>
+                <input type="text" id="dog-age" placeholder="Dog's Age" />
+
+                <label for="dog-difficulty">Dog's Difficulty</label>
+                <input type="text" id="dog-difficulty" placeholder="Dog's Difficulty" />
+
+                <label for="dog-photo"> Add a Photo</label>
+                <input type="file" id="dog-photo">
+                <button id="add-dog-submit-btn" type="submit">Add Dog</button>
+              
+            </form>
             {{/if}}
             <!-- TODO add form that takes input of a string detailing the request, and then sends it, attaching that "request" to the owner's sent list, and the sitters recieved list.
             Sitter can then accept the request, adding to their accepted requests. Denying it deletes the request and responds to the owner. -->
