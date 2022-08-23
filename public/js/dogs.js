@@ -1,6 +1,7 @@
 (function ($) {
 
 	var addDogForm = $('#dogForm');
+	var dogSection = $('#dogSection');
 	var dogName = $('#dogName');
 	var dogBreed = $('#dogBreed');
 	var dogWeight = $('#dogWeight');
@@ -16,20 +17,28 @@
 
 	$.ajax(req).then( (res) => {
 
-		let reviewsText;
-		let reviewsRating;
-		let reviewsPoster;
+		let dogName;
+		let dogBreed;
+		let dogWeight;
+		let dogAge;
+		let dogDifficulty;
+		let dogPicture;
 		
 		for(i = 0; i < res.length; i++) {
 
-			reviewsText = res[i].text;
-			//console.log("text: " + reviewsText);
-			reviewsRating = res[i].rating;
-			reviewsPoster = res[i].posterId;
+			dogName = res[i].dogName;
+			dogBreed = res[i].dogBreed;
+			dogWeight = res[i].dogWeight;
+			dogAge = res[i].dogAge;
+			dogDifficulty = res[i].dogDifficulty;
+			dogPicture = res[i].dogPicture;
 
-			ownerReviewSection.append("<p>"+ reviewsText +"</p>")
-			ownerReviewSection.append("<p>"+ reviewsRating +"</p>")
-			ownerReviewSection.append("<p>"+ reviewsPoster +"</p>")
+			dogSection.append("<p>"+ dogName +"</p>")
+			dogSection.append("<p>"+ dogBreed +"</p>")
+			dogSection.append("<p>"+ dogWeight +"</p>")
+			dogSection.append("<p>"+ dogAge +"</p>")
+			dogSection.append("<p>"+ dogDifficulty +"</p>")
+			dogSection.append("<p>"+ dogPicture +"</p>")
 		}
 	});
 
@@ -47,7 +56,7 @@
 				dogWeight: dogWeight.val(),
 				dogAge: dogAge.val(),
 				dogDifficulty: dogDifficulty.val(),
-				dogPicture: dogPicture
+				dogPicture: dogPicture.val()
 			})
 
 		};
