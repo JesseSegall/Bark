@@ -10,6 +10,17 @@ let exportedMethods = {
       sitterId: sitterId,
       requestText: requestText,
       dogId: dogId,
+
+      /*TODO
+      message:{
+        text field describing what the request is (Date, etc)
+      }
+      status{
+        --> pending (Created by owner and assigned to sitter)
+         - Accepted (Sitter accepted)
+         - Declined (Sitter declined)
+      }
+      */
     };
 
     const sittersCollection = await sitters();
