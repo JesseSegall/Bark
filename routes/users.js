@@ -199,14 +199,14 @@ router.post('/requestSitter', async (req, res) => {
 	const requestText = req.body.requestText;
 
 	try {
-		const newRequest = await requests.addRequest(ownerID, sitterId, dogId, requestText);
-		users.requestText.push(newRequest); 
+		newRequest = await requests.addRequest(ownerID, sitterId, dogId, requestText);
+
 	} catch (error) {
 		return res
 			.status(401)
-			.render('partials/reqsubmitted', { errors: error, title: 'Submit Sitter Request' });
+			.render('partials/reqsubmitted', { errors: error, title: 'Error Submitting Sitter Request' });
 	}
-	return res.render('partials/reqsubmitted');
+	return res.render('partials/reqsubmitted', 'Submit Sitter Request');
 
 });
 
