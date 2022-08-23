@@ -2,13 +2,41 @@
 	<section id = "ownerReviews">
 		<p>test</p>
 		<form id="postReview" method="post">
+			<label for="reviewTextBox">Enter your review here</label>
 			<textarea id="reviewTextBox" rows = "5" cols = "60" name = "description"></textarea>
 			</br>
+			<label for="reviewRatingBox">Enter Rating(0-5)</label>
 			<input type="number" min="0" max="5" id="reviewRatingBox"></input>
-			<input type="submit" value="Click Me"></input>
+			<input type="submit" value="Submit"></input>
 		</form>
 	</section>
 </div>
-	    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-    crossorigin="anonymous"></script>
-	<script src="/public/js/reviews.js"></script>
+
+<div class="col-auto mb-3">
+    <div id = "dashboardCard" class="card" style="width: 600px; height: 600px" >
+        <div class="card-body text-center">
+             <img src="public/image/no_image.jpeg" class="card-img-top" alt="..." />
+            <h5 class="card-title">{{user.firstName}} {{user.lastName}}</h5>
+            <p>Address: {{user.address}}</p>
+            <p>Email: {{user.email}}</p>
+            {{#if user.sitter}}
+            <!-- TODO add button to all of these to update -->
+            <p>Price: {{user.price}}</p>
+            <p>Dogs Sat: {{user.idOfDogSat}}</p>
+            <p>Reviews: {{user.ReviewsId}}</p>
+            <p>Requests: {{user.requests}}</p>
+            {{/if}}
+			{{#if user.owner}}
+            <!-- TODO add button to all of these to update -->
+            <p>Dogs: {{user.dogs}}</p>
+            <dl id="reviewList">Reviews</dl>
+            <p>Picture: {{user.picture}}</p>
+            {{/if}}
+            <!-- TODO add form that takes input of a string detailing the request, and then sends it, attaching that "request" to the owner's sent list, and the sitters recieved list.
+            Sitter can then accept the request, adding to their accepted requests. Denying it deletes the request and responds to the owner. -->
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="/public/js/reviews.js"></script>

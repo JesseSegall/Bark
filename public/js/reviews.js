@@ -4,6 +4,7 @@
 	var postReviewForm = $('#postReview');
 	var postReviewText = $('#reviewTextBox');
 	var postReviewRating = $('#reviewRatingBox');
+	var reviewList = $('#reviewList');
 
 	let req = {
 		method: 'GET',
@@ -29,9 +30,9 @@
 			reviewsRating = res[i].rating;
 			reviewsPoster = res[i].posterId;
 
-			ownerReviewSection.append("<p>"+ reviewsText +"</p>")
-			ownerReviewSection.append("<p>"+ reviewsRating +"</p>")
-			ownerReviewSection.append("<p>"+ reviewsPoster +"</p>")
+			reviewList.append("<dd>Review text: "+ reviewsText +"</dd>")
+			reviewList.append("<dd>Rating: "+ reviewsRating +"</dd>")
+			reviewList.append("<dd>Reviewed by: "+ reviewsPoster +"</dd>")
 		}
 	});
 
