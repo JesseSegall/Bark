@@ -188,6 +188,7 @@ router.get('/searchOwner/:id', async (req, res) => {
 	res.render('partials/ownerProfile', { owner: ownerData, title: 'Owner Profile' });
 });
 
+//TODO FIX THE BELOW ROUTE TO CREATE A NEW REQUEST ARRAY ELEMENT IN THE DATABASE
 // adds request to the database. Used in form to submit a request
 router.post('/requestSitter', async (req, res) => {
 	// Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
