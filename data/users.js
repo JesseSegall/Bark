@@ -3,7 +3,7 @@ const users = mongoCollections.users;
 const { ObjectId } = require('mongodb');
 
 let exportedMethods = {
-	async addOwner(firstName, lastName, email, userName, password) {
+	async addOwner(firstName, lastName, email, userName, password, gender) {
 		const usersCollection = await users();
 		const attemptedUsername = userName.trim();
 		const attemptedEmail = email.toLowerCase();
@@ -25,6 +25,7 @@ let exportedMethods = {
 			picture: 'public/image/no_image.jpeg',
 			dogs: [],
 			reviews: [],
+			gender: gender,
 			owner: true,
 			sitter: false,
 		};
