@@ -46,6 +46,8 @@ router.post('/signin', async (req, res) => {
 			);
 		}
 		req.session.user = user;
+		console.log('This below is the cookie ');
+		console.log(req.session.user);
 		return res.redirect('/dashboards');
 	} catch (error) {
 		return res.render('partials/signin', { title: 'Sign in', errors: error });
@@ -230,6 +232,11 @@ router.post('/requestSitter', async (req, res) => {
 		});
 	}
 	return res.render('partials/reqsubmitted', 'Submit Sitter Request');
+});
+
+router.get('/logout', async (req, res) => {
+	req.session.destroy();
+	res.redirect('/');
 });
 
 module.exports = router;
