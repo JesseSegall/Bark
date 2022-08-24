@@ -15,19 +15,20 @@ router.get("/", async (req, res) => {
         const sitter = await usersData.getSitter(userId);
         
         const requestsInfo = await requestsData.getAllRequests();
-        console.log("requestsInfo:" + requestsInfo);
+        //console.log("requestsInfo:" + requestsInfo);
         let dataArray = [];
 
         for(i=0; i < sitter.savedRequests.length; i++) {
             console.log("inside i loop");
             for(j=0; j < requestsInfo.length; j++) {
-                console.log("inside j loop");
+/*                 console.log("inside j loop");
                 console.log(requestsInfo[j]._id.toString())
-                console.log(sitter.savedRequests[i]);
+                console.log(sitter.savedRequests[i]); */
                 if(sitter.savedRequests[i] == requestsInfo[j]._id) {
-                    dataArray.push(requestsInfo[j].dogId, requestsInfo[j].ownerId)
-                    console.log(requestsInfo[j].dogId);
-                    console.log(requestsInfo[j].ownerId);
+                    //dataArray.push(requestsInfo[j].dogId, requestsInfo[j].ownerId)
+                    dataArray.push(requestsInfo[j].ownerId)
+/*                     console.log(requestsInfo[j].dogId);
+                    console.log(requestsInfo[j].ownerId); */
                     i++;
                 }
             }
@@ -35,15 +36,34 @@ router.get("/", async (req, res) => {
 
         console.log(dataArray);
 
+        let dataObject = [];
+
         //get owner name using owner id from array
+        for(i=0; i < dataArray.length; i++) {
+            const owner = await usersData.getOwner(dataArray[i]);
+            
+            dataObject.push(owner);
+        }
 
-        //get dog name using dog id from array
+        let dogObject = [];
+        for(i=0; i < dataObject.length; i++) {
+            const dog = await dogsData.getDogName(dataObject[i].dogs[0]);
+            //console.log(dog);
 
+            dogObject.push(dog);
+        }
 
-        console.log("sitter: " + sitter.firstName);
-        console.log("dogs: " + sitter.idOfDogSat);
+        //console.log("dog: " + dogObject);
+        //console.log("data " + dataObject);
 
-        return res.json(sitter);
+        let passThru = {
+            dogObject: dogObject,
+            ownerObject: dataObject,
+        }
+
+        console.log(passThru);
+
+        return res.json(passThru);
 
     } catch(e) {
         return res.status(500).json({error: e});

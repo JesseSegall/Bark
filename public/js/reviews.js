@@ -92,22 +92,29 @@
 	const url = 'http://localhost:3000/review';
 
 	$.getJSON(url).then((dataObj) => {
-		dataObj.dogs.forEach((res) => {
-			const dogName = res.dogName;
-			const dogId = res._id;
-			console.log("dogId: " + res)
+		console.log("test: " + dataObj);
+		console.log(dataObj.dogObject[0].dogName);
+		console.log(dataObj.ownerObject[0].firstName);
 
-			console.log("dogName: " + dogName);
+
+		for(i=0; i < dataObj.dogObject.length; i++) {
+			const dogName = dataObj.dogObject[i].dogName;
+			const ownerName = dataObj.ownerObject[i].firstName + dataObj.ownerObject[i].lastName;
 
 			const $tr = $('<tr>');
-			$tr.data('id', dogId); // store id in row
-			$tr.html(`<td><a href="../owners/${dogId}">Owner Profile</a></td>
-			  <td>${dogName}</td>
-			  <td><input id="reviewText" type="text"></input></td>
+			$tr.data('id', dataObj.dogObject[i]._id); // store id in row
+			$tr.html(`<td>${dogName}</td>
+			<td><input id="reviewDogText" type="text"></input></td>
+			<td><input id="reviewDogRatingText" type="text"></input></td>  
+			<td><a href="../owners/${dataObj.ownerObject[i]._id}">${ownerName}</a></td>
+			  
+
+			  <td><input id="reviewOwnerText" type="text"></input></td>
+			  <td><input id="reviewOwnerRatingText" type="text"></input></td>
 			  <td><button>Accept</button></td>`);
 			$revTable.append($tr);
-		});
-		// assign click handler function to all buttons
+
+		}
 		$revTable.find('button').on('click', btnClick);
 	});
 
