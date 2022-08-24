@@ -60,11 +60,11 @@ let exportedMethods = {
     console.log("getDog1");
     const usersCollection = await users();
     const owner = await usersCollection.findOne({ _id: ObjectId(id) });
-    console.log("getDog");
+    //console.log("getDog");
     
-    console.log("getDogCollect");
+    //console.log("getDogCollect");
     console.log(owner);
-    const dogList = await dogsCollection.find({}).toArray();
+    const dogList = await dogsCollection.find({_id: ObjectId(owner.dogs[0])}).toArray();
     for(i= 0; i < dogs.length; i++) {
       console.log(dogs[i].dogName);
     }

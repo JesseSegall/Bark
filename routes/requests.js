@@ -44,4 +44,11 @@ router.get('/requestId', async (req, res) => {
 	return res.json(reqArray);
 });
 
+router.post('/accept', async (req, res) => {
+	console.log(req.body.reqId);
+	const requestId = req.body.reqId;
+
+	return requestId;
+})
+
 module.exports = router;

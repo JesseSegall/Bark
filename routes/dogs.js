@@ -32,9 +32,8 @@ router.get("/", async (req, res) => {
     const ownerId = req.session.user._id;
     
     try {
-        console.log("ownerId1: " + ownerId);
-        const dogData = await dogsData.getDog2(ownerId);
-        console.log("dogData " + dogData)
+        const dogData = await dogsData.getDog(ownerId);
+        
         return res.json(dogData);
 
     } catch(e) {

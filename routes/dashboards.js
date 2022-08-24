@@ -16,8 +16,8 @@ router.post('/profileEdit', async (req, res) => {
 	const userEditProfile = req.body;
 	const userData = req.session.user;
 
-	console.log("profile Edit route");
-	console.log(userEditProfile);
+/* 	console.log("profile Edit route");
+	console.log(userEditProfile); */
 	try {
 
         const userId = req.session.user._id;
@@ -26,9 +26,9 @@ router.post('/profileEdit', async (req, res) => {
 		const address = userEditProfile.address;
 		const price = userEditProfile.price;
 
-		console.log("sitter: " + userData.sitter);
+		//console.log("sitter: " + userData.sitter);
 		if(userData.sitter) {
-			console.log("price: " + price);
+			//console.log("price: " + price);
 			const userProfileInsert = await users.updateSitterProfile(userId, firstName, lastName, address, price);
 		}
 		else {
@@ -46,9 +46,9 @@ router.get('/profileEdit', async (req, res) => {
 	const userEditProfile = req.body;
 	const userData = req.session.user;
 
-	console.log("profile Edit route");
+	//console.log("profile Edit route");
 	try {
-		console.log("in try/catch block");
+		//console.log("in try/catch block");
 
 		if(userData.owner) {
 			const owner = await users.getOwner(userData._id);

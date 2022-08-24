@@ -46,6 +46,72 @@ let exportedMethods = {
 		const request = await requestsCollection.findOne({ _id: ObjectId(id) });
 		return request;
 	},
+
+	async completeRequest(requestId) {
+
+		const usersCollection = await users();
+		const requestsCollection = await requests();
+
+		//find sitterId using requestId and request collection
+		const requestInfo = requestsCollection.findOne({_id: ObjectId(requestId)});
+		const sitterId = requestInfo.sitterId;
+		const dogId = requestInfo.dogId;
+
+		//add dog to idOfDogsSat in sitter
+
+		const updateSitterDogSat = await usersCollection.findOneAndUpdate(
+			{
+				_id: ObjectId(sitterId),
+			},
+			{
+				$push: {
+					idOfDogSat: dogId
+				}
+			}
+		);
+
+		//remove request from sitter
+
+		const removeSitterRequest = await usersCollection.update(
+			{
+				_id: ObjectId(sitterId)
+			},
+			{
+				$pull: {
+					requests: requestId
+				}
+			}
+		);
+
+		//delete request from request collection
+
+		const removeRequest = await requestsCollection.remove({_id: ObjectId(requestId)});
+
+
+	},
+
+	async cancelRequest(requestId) {
+		const usersCollection = await users();
+		const requestsCollection = await requests();
+
+		//find sitterId using requestId and request collection
+		const requestInfo = requestsCollection.findOne({_id: ObjectId(requestId)});
+		const sitterId = requestInfo.sitterId;
+
+		//remove request from sitter
+		const removeSitterRequest = await usersCollection.update(
+			{
+				_id: ObjectId(sitterId)
+			},
+			{
+				$pull: {
+					requests: requestId
+				}
+			}
+		);
+		//delete request from request collection
+		const removeRequest = await requestsCollection.remove({_id: ObjectId(requestId)});
+	},
 };
 
 module.exports = exportedMethods;
