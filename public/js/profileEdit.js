@@ -10,6 +10,13 @@
     var zip = $('#inputZip');
     var country = $('#inputCountry');
 
+    if(sitterProfileForm.length > 0) { 
+        var smallDog = $('#small-dog-input');
+        var mediumDog = $('#medium-dog-input');
+        var largeDog = $('#large-dog-input');
+        var difficultDog = $('#difficult-dog-input');
+    }
+
 	let req = {
 		method: 'GET',
 		url: '/dashboards/profileEdit',
@@ -19,17 +26,18 @@
 	$.ajax(req).then( (res) => {
 
         console.log(res);
-        console.log(res.owner.firstName);
-        console.log(firstName.val());
-        console.log(res.owner.address);
 
-        firstName.val(res.owner.firstName);
-        lastName.val(res.owner.lastName);
-        street.val(res.owner.address.street);
-        city.val(res.owner.address.city);
-        state.val(res.owner.address.state);
-        zip.val(res.owner.address.zip);
-        country.val(res.owner.address.country);
+        firstName.val(res.user.firstName);
+        lastName.val(res.user.lastName);
+        street.val(res.user.address.street);
+        city.val(res.user.address.city);
+        state.val(res.user.address.state);
+        zip.val(res.user.address.zip);
+        country.val(res.user.address.country);
+        smallDog.val(res.user.price.smallDog);
+        mediumDog.val(res.user.price.mediumDog);
+        largeDog.val(res.user.price.largeDog);
+        difficultDog.val(res.user.price.difficultDog);
 
 
 /*         for(i = 0; i < res.length; i++) {
@@ -45,7 +53,7 @@
 
 		let req = {
 			method: 'POST',
-			url: 'http://localhost:3000/dashboards/profileEdit',
+			url: '/dashboards/profileEdit',
 			contentType: "application/json",
 			data: JSON.stringify({
 				firstName: firstName.val(),
@@ -58,9 +66,10 @@
                     country: country.val()
                 },
                 price: {
-                    smallDog: smallDog,
-                    mediumDog: mediumDog,
-                    largeDog: largeDog
+                    smallDog: smallDog.val(),
+                    mediumDog: mediumDog.val(),
+                    largeDog: largeDog.val(),
+                    difficultDog: difficultDog.val()
                 }
 			})
 		};
@@ -81,7 +90,7 @@
 
 		let req = {
 			method: 'POST',
-			url: 'http://localhost:3000/dashboards/profileEdit',
+			url: '/dashboards/profileEdit',
 			contentType: "application/json",
 			data: JSON.stringify({
 				firstName: firstName.val(),
