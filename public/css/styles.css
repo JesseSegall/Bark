@@ -305,9 +305,20 @@ h1 {
   .testiTitle{
 	color: #9e7100;
 	font-weight: bold;
+	font-size: 25pt;
   }
 
   .ppp{
 	font-style: italic;
 	color: #0f0f0f;
+  }
+
+  .beardMan{
+	height: 170px;
+	weight: 170px;
+  }
+
+  .harryHubble{
+	height: 200px;
+	weight: 200px;
   }
