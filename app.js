@@ -37,7 +37,7 @@ app.use(
 // Trying to access a dashboard without being logged in should throw an error
 app.use('/dashboards', async (req, res, next) => {
 	if (!req.session.user) {
-		return res.redirect('/signin', {
+		return res.render('partials/signin', {
 			error: 'You must be signed in to access your dashboard',
 			title: 'Sign in',
 		});
@@ -45,6 +45,15 @@ app.use('/dashboards', async (req, res, next) => {
 	next();
 });
 
+app.use('/availableSitters', async (req, res, next) => {
+	if (!req.session.user.owner) {
+		return res.render('partials/signin', {
+			error: 'Please sign in to your owner account to request a sitter.',
+			title: 'Sign In',
+		});
+	}
+	next();
+});
 configRoutes(app);
 
 app.listen(3000, () => {

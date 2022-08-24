@@ -1,8 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const { ObjectId } = require('mongodb');
-// const { addRequest } = require('./requests');
-// const { requests } = require('.');
 
 let exportedMethods = {
 	async addOwner(firstName, lastName, email, userName, password, gender) {
@@ -142,6 +140,7 @@ let exportedMethods = {
 			// Round to nearest 100
 
 			const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+			return starPercentageRounded;
 		}
 	},
 	async filterPriceHighToLow() {
@@ -254,11 +253,10 @@ let exportedMethods = {
 		return;
 	},
 	async findSitterByEmail(email) {
-		const usersCollection = await users(); 
+		const usersCollection = await users();
 		const sitter = await usersCollection.findOne({ email: email });
 		return sitter;
 	},
 };
-
 
 module.exports = exportedMethods;
