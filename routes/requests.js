@@ -17,12 +17,12 @@ router.post('/', async (req, res) => {
     console.log(sitterID); 
     const requestText = req.body.requestText;
 	const dogId = req.body.dogId;
-
+	
+    try {
     const requestID = await requests.addRequest(ownerID, sitterID, requestText, dogId);
 
     console.log("request Id: " + requestID);
-
-	try {
+    res.json({test: "test"});
 
 	} catch (error) {
 		return res.status(401).render('partials/reqsubmitted', {
@@ -30,7 +30,9 @@ router.post('/', async (req, res) => {
 			title: 'Error Submitting Sitter Request',
 		});
 	}
-	return res.render('partials/reqsubmitted', 'Submit Sitter Request');
+	return res.render('partials/reqsubmitted', {Title: 'Submit Sitter Request'});
 });
+
+
 
 module.exports = router; 

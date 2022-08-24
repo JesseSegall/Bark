@@ -254,11 +254,11 @@ let exportedMethods = {
 		return;
 	},
 	async findSitterByEmail(email) {
+		const usersCollection = await users(); 
 		const sitter = await usersCollection.findOne({ email: email });
 		return sitter;
 	},
 };
-
 
 
 module.exports = exportedMethods;
