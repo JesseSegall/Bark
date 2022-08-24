@@ -5,6 +5,7 @@ const dashboardRoutes = require('./dashboards');
 const owners = require('./ownerProfiles');
 const dogRoutes = require('./dogs');
 const requestRoutes = require('./requests');
+const reviewRoutes = require('./review');
 
 const constructor = (app) => {
 	app.use('/', usersRoutes);
@@ -14,6 +15,7 @@ const constructor = (app) => {
 	app.use('/dashboards', dashboardRoutes);
 	app.use('/dogs', dogRoutes);
 	app.use('/requests', requestRoutes);
+	app.use('/review', reviewRoutes);
 
 	app.use('*', (req, res) => {
 		res.sendStatus(404).json({ error: 'Not found' });

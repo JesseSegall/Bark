@@ -86,6 +86,43 @@
 		});
 
 	});
+
+	//get Completed Requests
+	const $revTable = $('#review-table');
+	const url = 'http://localhost:3000/review';
+
+	$.getJSON(url).then((owners) => {
+		owners.idOfDogSat.forEach((res) => {
+			const dogId = res;
+			console.log("dogId: " + res)
+
+			const $tr = $('<tr>');
+			$tr.data('id', dogId); // store id in row
+			$tr.html(`<td><a href="../owners/${dogId}">Owner Profile</a></td>
+			  <td>${dogId}</td>
+			  <td><input type="text"></input></td>
+			  <td><button>Accept</button></td>`);
+			$revTable.append($tr);
+		});
+		// assign click handler function to all buttons
+		$revTable.find('button').on('click', btnClick);
+	});
+
+	function btnClick(e) {
+		const reqId = $(this).closest('tr').data('id');
+		alert(reqId);
+		
+		let req = {
+			method: 'POST',
+			url: 'http://localhost:3000/review/reviewpost',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				reqId: reqId,
+			}),
+		};
+		$.ajax(req).then(function (res) {});
+		
+	}
 	
 })(window.jQuery);
 
