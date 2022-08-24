@@ -69,7 +69,27 @@ let exportedMethods = {
     }
     return dogs;
   },
+  async getDog2() {
+    const dogsCollection = await dogs();
+    console.log(dogsCollection);
 
+    const dogs = await dogsCollection.findOne({ _id: ObjectId("630569630eaeeeaa6c321d58") });
+    console.log(dogs);
+
+    return dogs;
+
+
+  },
+
+  async getOwner(id) {
+
+    const usersCollection = await users();
+
+    const owner = await usersCollection.findOne({ _id: ObjectId(id)});
+    console.log(owner);
+
+    return owner;
+  }
 };
 
 module.exports = exportedMethods;

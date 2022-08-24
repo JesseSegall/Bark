@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
     
     try {
         console.log("ownerId1: " + ownerId);
-        const dogData = await dogsData.getDog(ownerId);
+        const dogData = await dogsData.getDog2(ownerId);
         console.log("dogData " + dogData)
         return res.json(dogData);
 
