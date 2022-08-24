@@ -130,11 +130,13 @@ let exportedMethods = {
 		const foundUser = await usersCollection.findOne({ userName: username });
 		return foundUser;
 	},
-	async getRatings() {
+	//TODO: Need to double check this works, might have to add full projection ie. all the fields if it doesnt return properly
+	//TODO: Also if we need this for users just copy paste but change to users
+	async getRatingsSitter() {
 		const starsTotal = 5;
 		const usersCollection = await users();
 		const sittersArray = await usersCollection
-			.find({}, { projection: { rating: 1, sitter: 'true' } })
+			.find({ sitter: { $eq: true } }, { projection: { rating: 1 } })
 			.toArray();
 		for (let rating of sittersArray) {
 			const starPercentage = (sittersArray[rating] / starsTotal) * 100;

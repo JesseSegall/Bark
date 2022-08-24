@@ -14,20 +14,14 @@ router.get('/', async (req, res) => {
 		const sitter = await usersData.getSitter(userId);
 
 		const requestsInfo = await requestsData.getAllRequests();
-		//console.log("requestsInfo:" + requestsInfo);
+
 		let dataArray = [];
 
 		for (i = 0; i < sitter.savedRequests.length; i++) {
-			console.log('inside i loop');
 			for (j = 0; j < requestsInfo.length; j++) {
-				/*                 console.log("inside j loop");
-                console.log(requestsInfo[j]._id.toString())
-                console.log(sitter.savedRequests[i]); */
 				if (sitter.savedRequests[i] == requestsInfo[j]._id) {
-					//dataArray.push(requestsInfo[j].dogId, requestsInfo[j].ownerId)
 					dataArray.push(requestsInfo[j].ownerId);
-					/*                     console.log(requestsInfo[j].dogId);
-                    console.log(requestsInfo[j].ownerId); */
+
 					i++;
 				}
 			}
@@ -47,7 +41,6 @@ router.get('/', async (req, res) => {
 		let dogObject = [];
 		for (i = 0; i < dataObject.length; i++) {
 			const dog = await dogsData.getDogName(dataObject[i].dogs[0]);
-			//console.log(dog);
 
 			dogObject.push(dog);
 		}
@@ -67,10 +60,8 @@ router.get('/', async (req, res) => {
 
 router.get('/dog', async (req, res) => {
 	console.log(req.body.dogId);
-	//const dogId = req.body.dogId;
 
 	try {
-		//const owner = await reviewsData.getUser(dogId);
 		return res.json(owner);
 	} catch (e) {
 		return res.status(500).json({ error: e });
@@ -85,13 +76,12 @@ router.post('/', async (req, res) => {
 	const rating = reqBody.rating;
 	const posterId = req.session.user._id;
 	const dogId = reqBody.dogId;
-    let beingReviewedId;
-    if(reqBody.beingReviewedId) {
-        beingReviewedId = reqBody.beingReviewedId;
-    }
-    else {
-        beingReviewedId = await reviewsData.getUser(dogId);
-    }
+	let beingReviewedId;
+	if (reqBody.beingReviewedId) {
+		beingReviewedId = reqBody.beingReviewedId;
+	} else {
+		beingReviewedId = await reviewsData.getUser(dogId);
+	}
 
 	console.log(beingReviewedId);
 
