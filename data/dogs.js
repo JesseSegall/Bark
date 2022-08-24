@@ -57,13 +57,13 @@ let exportedMethods = {
   async getDog(id){
     const dogsCollection = await dogs();
 
-    console.log("getDog1");
+    //console.log("getDog1");
     const usersCollection = await users();
     const owner = await usersCollection.findOne({ _id: ObjectId(id) });
-    console.log("getDog");
+    //console.log("getDog");
     
-    console.log("getDogCollect");
-    console.log(owner);
+    //console.log("getDogCollect");
+    //console.log(owner);
     const dogList = await dogsCollection.find({}).toArray();
     for(i= 0; i < dogs.length; i++) {
       console.log(dogs[i].dogName);

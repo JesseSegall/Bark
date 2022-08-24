@@ -230,7 +230,7 @@ let exportedMethods = {
 	async updateOwnerProfile(userId, firstName, lastName, address) {
 		const usersCollection = await users();
 
-		console.log('in update');
+		//console.log('in update');
 		const updateUser = await usersCollection.findOneAndUpdate(
 			{
 				_id: ObjectId(userId),
@@ -250,7 +250,7 @@ let exportedMethods = {
 			}
 		);
 
-		console.log('finished');
+		//console.log('finished');
 		return;
 	},
 	async findSitterByEmail(email) {

@@ -7,10 +7,10 @@ const { ObjectId } = require("mongodb");
 
 let exportedMethods = {
   async addReview(text, rating, posterId, beingReviewedId) {
-    console.log("review text: " + text);
+    /* console.log("review text: " + text);
     console.log("review rating: " + rating);
     console.log("review posterId: " + posterId);
-    console.log("review beingReviewedId: " + beingReviewedId);
+    console.log("review beingReviewedId: " + beingReviewedId); */
     let newReview = {
       beingReviewed: beingReviewedId,
       text: text,
@@ -21,14 +21,10 @@ let exportedMethods = {
     const reviewCollection = await reviews();
     const userCollection = await users();
 
-    //const sittersCollection = await sitters();
-    //const ownersCollection = await owners();
-    // const sitterIds = await findOne({});
-
     const insertReview = await reviewCollection.insertOne(newReview);
 
     const reviewId = insertReview.insertedId.toString();
-    console.log("review Id: " + reviewId);
+    //console.log("review Id: " + reviewId);
 
     //const beingReviewedUser = await userCollection.findOne({_id: ObjectId(beingReviewedId)});
     //console.log("Being Reviewed: " + beingReviewedUser.firstName + beingReviewedUser.lastName);
@@ -60,7 +56,7 @@ let exportedMethods = {
     }
  */
     //return;
-    console.log("newID: " + insertReview.insertedId.toString());
+    //console.log("newID: " + insertReview.insertedId.toString());
     //return await this.getReview(insertReview.insertedId.toString());
     return await this.getReview(beingReviewedId);
   },
@@ -68,14 +64,14 @@ let exportedMethods = {
   async getReview(id) {
     const reviewCollection = await reviews();
     const usersCollection = await users();
-    console.log("id: " + id);
-    console.log("here");
+    /* console.log("id: " + id);
+    console.log("here"); */
     
     const owner = await usersCollection.findOne({ _id: ObjectId(id) });
-    console.log("ownerID: " + owner._id);
+    //console.log("ownerID: " + owner._id);
 
     const reviewData = await reviewCollection.find({}, {projection: {_id: 1, text: 1, rating: 1, posterId: 1}}).toArray();
-    console.log("reviewData: " + reviewData);
+    //console.log("reviewData: " + reviewData);
     return reviewData;
   },
 };
