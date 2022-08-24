@@ -291,7 +291,7 @@ h1 {
 	width: 100px;
 	Margin-left:1250px;
 	margin-top: 500px;
-	align:relative;
+	text-align:relative;
   }
   
   .testi1{
@@ -328,20 +328,20 @@ h1 {
 
   .beardMan{
 	height: 170px;
-	weight: 170px;
+	/* weight: 170px; */
   }
 
   .harryHubble{
 	height: 200px;
-	weight: 200px;
+	/* weight: 200px; */
   }
 
   .stacyGaines{
 	height: 300px;
-	weight: 300px;
+	/* weight: 300px; */
   }
 
   .jared{
 	height: 300px;
-	weight: 300px;
+	/* weight: 300px; */
   }
