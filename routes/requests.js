@@ -47,8 +47,9 @@ router.get('/requestId', async (req, res) => {
 router.post('/accept', async (req, res) => {
 	console.log(req.body.reqId);
 	const requestId = req.body.reqId;
+	const reqAccept = await requests.completeRequest(requestId);
 
-	return requestId;
-})
+	return res.json(requestId);
+});
 
 module.exports = router;
