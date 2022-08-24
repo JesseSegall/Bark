@@ -112,8 +112,8 @@ let exportedMethods = {
 		const usersCollection = await users();
 		const sittersArray = await usersCollection
 			.find(
-				{ sitter: { $eq: true } },
-				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+				{ sitter: { $eq: true } }
+				// { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
 			)
 			.toArray();
 		return sittersArray;
@@ -147,7 +147,7 @@ let exportedMethods = {
 		const sittersHighLow = await usersCollection
 			.find(
 				{ sitter: { $eq: true } },
-				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1, dogSize: 1 } }
 			)
 			.sort({ price: 1 })
 			.toArray();
@@ -158,11 +158,43 @@ let exportedMethods = {
 		const sittersLowHigh = await usersCollection
 			.find(
 				{ sitter: { $eq: true } },
-				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1, dogSize: 1 } }
 			)
 			.sort({ price: -1 })
 			.toArray();
 		return sittersLowHigh;
+	},
+	async filterDogSizeSmall() {
+		const usersCollection = await users();
+		const dogSmall = await usersCollection
+			.find({ dogSize: 'Small' })
+
+			.toArray();
+		return dogSmall;
+	},
+	async filterDogSizeMedium() {
+		const usersCollection = await users();
+		const dogMedium = await usersCollection
+			.find({ dogSize: 'Medium' })
+
+			.toArray();
+		return dogMedium;
+	},
+	async filterDogSizeLarge() {
+		const usersCollection = await users();
+
+		const dogLarge = await usersCollection
+
+			.find({ dogSize: 'Large' })
+
+			.toArray();
+		return dogLarge;
+	},
+	async filterDogDifficult() {
+		const usersCollection = await users();
+
+		const dogDifficult = await usersCollection.find({ difficultDog: { $eq: true } }).toArray();
+		return dogDifficult;
 	},
 	async updateSitterProfile(userId, firstName, lastName, address, price) {
 		const usersCollection = await users();
