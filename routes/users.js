@@ -205,35 +205,6 @@ router.post('/searchSitter', async (req, res) => {
 	}
 });
 
-router.get('/searchOwner/:id', async (req, res) => {
-	const ownerData = await users.getOwner(req.params.id);
-	res.render('partials/ownerProfile', {
-		owner: ownerData,
-		title: 'Owner Profile',
-	});
-});
-
-//TODO FIX THE BELOW ROUTE TO CREATE A NEW REQUEST ARRAY ELEMENT IN THE DATABASE
-// adds request to the database. Used in form to submit a request
-router.post('/requestSitter', async (req, res) => {
-	// Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
-
-	const ownerID = req.body.ownerID;
-	const sitterId = req.body.sitterId;
-	const dogId = req.body.dogId;
-	const requestText = req.body.requestText;
-
-	try {
-		newRequest = await requests.addRequest(ownerID, sitterId, dogId, requestText);
-	} catch (error) {
-		return res.status(401).render('partials/reqsubmitted', {
-			errors: error,
-			title: 'Error Submitting Sitter Request',
-		});
-	}
-	return res.render('partials/reqsubmitted', 'Submit Sitter Request');
-});
-
 router.get('/logout', async (req, res) => {
 	req.session.destroy();
 	res.redirect('/');

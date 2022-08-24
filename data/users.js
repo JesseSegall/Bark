@@ -1,6 +1,8 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const { ObjectId } = require('mongodb');
+const { addRequest } = require('./requests');
+const { requests } = require('.');
 
 let exportedMethods = {
 	async addOwner(firstName, lastName, email, userName, password, gender) {
@@ -216,10 +218,16 @@ let exportedMethods = {
 			}
 
 		)
-
 		console.log("finished")
 		return;
 	},
+
+	async findSitterByEmail(email) {
+        const sitter = await usersCollection.findOne({ email: email });
+        return sitter;
+    },
 };
+
+
 
 module.exports = exportedMethods;

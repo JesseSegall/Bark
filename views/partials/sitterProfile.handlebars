@@ -4,11 +4,13 @@
             <div> <img src="public/image/no_image.jpeg" class="card-img-top" alt="Profile Picture"></div>
             <h5 class="card-title">{{sitter.firstName}} {{sitter.lastName}}</h5>
             <p>Address: {{sitter.address}}</p>
-            <p>Email: {{sitter.email}}</p>
+           
             <p>Price: {{sitter.price}}</p>
-            <p>Dogs Sat: {{sitter.idOfDogSat}}</p>
+            {{!-- added eaches to loop through dogs sitter has sat --}}
+            <p>Dogs Sat: {{sitter.idOfDogSat}}</p>  
             <p>Reviews: {{sitter.ReviewsId}}</p>
             <p>Requests: {{sitter.requests}}</p>
+            <p>Dog Difficulty Threshold: {{sitter.Difficulty}}</p>
 
             <!-- TODO add form that takes input of a string detailing the request, and then sends it, attaching that "request" to the owner's sent list, and the sitters recieved list.
             Sitter can then accept the request, adding to their accepted requests. Denying it deletes the request and responds to the owner. -->
@@ -23,6 +25,7 @@
                 enctype="application/x-www-form-urlencoded"
                 >
                 <p><label>Please enter a request below:</label></p>
+                 <p id = "email" name = "email">Email: {{{sitter.email}}}</p>
                 <textarea name="requestText" id="requestText" cols="60" rows="6"></textarea>
                 <p><button type="submit">Send Request</button></p>
                 </form>
