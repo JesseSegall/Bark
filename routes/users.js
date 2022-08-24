@@ -5,13 +5,18 @@ const data = require('../data');
 const { requests } = require('../data');
 const { MongoUnexpectedServerResponseError } = require('mongodb');
 const { partials } = require('handlebars');
+const xss = require('xss');
 
 const salt = 8;
 
 const users = data.users;
 
 router.get('/', async (req, res) => {
-	return res.render('partials/landingPage', {});
+	if (req.session.user) {
+		res.redirect('/dashboards');
+	} else {
+		return res.render('partials/landingPage', {});
+	}
 });
 
 router.get('/userChoice', async (req, res) => {
@@ -60,11 +65,11 @@ router.get('/registerOwner', async (req, res) => {
 router.post('/registerOwner', async (req, res) => {
 	// Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
 
-	const firstName = req.body.first_name;
-	const lastName = req.body.last_name;
-	const email = req.body.email;
-	const userName = req.body.user_name;
-	const password = req.body.password;
+	const firstName = xss(req.body.first_name);
+	const lastName = xss(req.body.last_name);
+	const email = xss(req.body.email);
+	const userName = xss(req.body.user_name);
+	const password = xss(req.body.password);
 	const gender = req.body.gender;
 	try {
 		const hash = await bcrypt.hash(password, salt);
@@ -87,17 +92,16 @@ router.get('/registerSitter', async (req, res) => {
 });
 
 router.post('/registerSitter', async (req, res) => {
-	const {
-		user_name,
-		first_name,
-		last_name,
-		email,
-		password,
-		small_dog,
-		medium_dog,
-		large_dog,
-		difficult_dog,
-	} = req.body;
+	const user_name = xss(req.body.user_name);
+	const first_name = xss(req.body.first_name);
+	const last_name = xss(req.body.last_name);
+	const email = xss(req.body.email);
+	const password = xss(req.body.password);
+	const small_dog = xss(req.body.small_dog);
+	const medium_dog = xss(req.body.medium_dog);
+	const large_dog = xss(req.body.large_dog);
+	const difficult_dog = xss(req.body.difficult_dog);
+
 	let dogSize = [];
 	let diffDog;
 	if (small_dog) {
@@ -146,6 +150,12 @@ router.get('/searchSitter/:id', async (req, res) => {
 });
 
 router.get('/searchSitter/', async (req, res) => {
+	if (!req.session.user.owner || req.session.user.sitter) {
+		return res.render('partials/signin', {
+			title: 'Sign In',
+			errors: 'Please log into your owner account to access the Sitter Search',
+		});
+	}
 	return res.render('partials/sitterList', { title: 'Search for a sitter' });
 });
 
@@ -158,7 +168,8 @@ function filter(array, string) {
 router.post('/searchSitter', async (req, res) => {
 	try {
 		// REGEX to get rid of whitespace between first and last name in search
-		const searchTermFull = req.body.search_term.toLowerCase().replace(/\s/g, '');
+
+		const searchTermFull = xss(req.body.search_term.toLowerCase().replace(/\s/g, ''));
 
 		let nameArray = [];
 		let sitterArray = [];
