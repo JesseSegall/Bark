@@ -34,14 +34,22 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/requestId', async (req, res) => {
-	user = req.session.user;
+	//TODO check if user exists.
+	if (!req.session.user){
 
-	let reqArray = [];
-	for (i = 0; i < user.requests.length; i++) {
-		let ownerReq = await requests.getRequest(user.requests[i]);
-		reqArray.push(ownerReq);
 	}
-	return res.json(reqArray);
+	else{
+		user = req.session.user;
+
+		let reqArray = [];
+		for (i = 0; i < user.requests.length; i++) {
+			let ownerReq = await requests.getRequest(user.requests[i]);
+			reqArray.push(ownerReq);
+		}
+		return res.json(reqArray);
+	
+	}
 });
+	
 
 module.exports = router;

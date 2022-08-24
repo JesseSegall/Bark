@@ -19,7 +19,7 @@ let exportedMethods = {
       weight: weight,
       age: age,
       difficultyLevel: difficultyLevel,
-      picture: "picture",
+      picture: picture,
     };
 
     const dogsCollection = await dogs();
