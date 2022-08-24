@@ -293,3 +293,45 @@ h1 {
 	margin-top: 500px;
 	align:relative;
   }
+  
+  .testi1{
+	color: #fdbf12;
+	/* font-weight: bold; */
+  }
+
+  .testi2{
+	color: #fdbf12;
+	/* font-weight: bold; */
+  }
+
+  .testi3{
+	color: #fdbf12;
+	/* font-weight: bold; */
+  }
+
+  .testiTitle{
+	color: #9e7100;
+	font-weight: bold;
+	font-size: 25pt;
+  }
+
+  .ppp{
+	font-style: italic;
+	color: #0f0f0f;
+	/* font-weight:bold; */
+  }
+
+  .beardMan{
+	height: 170px;
+	weight: 170px;
+  }
+
+  .harryHubble{
+	height: 200px;
+	weight: 200px;
+  }
+
+  .stacyGaines{
+	height: 300px;
+	weight: 300px;
+  }

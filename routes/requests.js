@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const data = require('../data');
 const requests = require('../data/requests');
 const { MongoUnexpectedServerResponseError } = require('mongodb');
-const { partials } = require('handlebars');
 const users = require('../data/users');
 
 
@@ -20,7 +17,6 @@ router.post('/requestSitter', async (req, res) => {
 	const requestText = req.body.requestText;
 
 	try {
-		const newRequest = await requests.addRequest(ownerID, sitterId, dogId, requestText);
 
 	} catch (error) {
 		return res.status(401).render('partials/reqsubmitted', {
