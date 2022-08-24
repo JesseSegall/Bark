@@ -74,6 +74,16 @@ let exportedMethods = {
     //console.log("reviewData: " + reviewData);
     return reviewData;
   },
+
+  async getUser(id) {
+    const usersCollection = await users();
+
+    const owner = await usersCollection.findOne({ dogs: id});
+    console.log(owner.firstName);
+    console.log(owner._id);
+
+    return owner._id.toString();
+  }
 };
 
 module.exports = exportedMethods;

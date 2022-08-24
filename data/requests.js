@@ -47,6 +47,12 @@ let exportedMethods = {
 		return request;
 	},
 
+	async getAllRequests() {
+		const requestsCollection = await requests();
+		const request = await requestsCollection.find({}).toArray();
+		return request;
+	},
+
 	async completeRequest(requestId) {
 
 		const usersCollection = await users();
@@ -79,6 +85,10 @@ let exportedMethods = {
 				_id: ObjectId(sitterId)
 			},
 			{
+				$push: {
+					savedRequests: requestId
+				}, 
+
 				$pull: {
 					requests: requestId
 				}
@@ -87,7 +97,7 @@ let exportedMethods = {
 
 		//delete request from request collection
 
-		const removeRequest = await requestsCollection.deleteOne({_id: ObjectId(requestId)});
+		//const removeRequest = await requestsCollection.deleteOne({_id: ObjectId(requestId)});
 
 
 	},

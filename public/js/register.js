@@ -119,9 +119,9 @@ const validateInputs = () => {
 		setSuccess(password_confm);
 		flag = false;
 	}
-	//TODO: Add server side error check so they cant put in numbers
+	
 	if (genderVal) {
-		if (genderVal === '') {
+		if ((genderVal === '') || (typeof genderVal == 'number')) {
 			setErrors(genderVal, 'Please enter a gender.');
 			flag = true;
 		} else {

@@ -87,7 +87,13 @@ let exportedMethods = {
     }
     return dogs;
     */
-  }
+  },
+
+  async getAllDogs() {
+    const dogList = await dogsCollection.find({}, {projection: {dogName: 1, breed: 0, weight: 0, age: 0, difficultyLevel: 0, picture: 0}}).toArray();
+
+    return dogList;
+  },
 
 };
 
