@@ -10,6 +10,7 @@ const xss = require('xss');
 const salt = 8;
 
 const users = data.users;
+//TODO: On all try catches add error res to a code like 404, 401, etc
 
 router.get('/', async (req, res) => {
 	if (req.session.user) {

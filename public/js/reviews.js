@@ -1,5 +1,4 @@
 (function ($) {
-
 	var ownerReviewSection = $('#ownerReviews');
 	var postReviewForm = $('#postReview');
 	var postReviewText = $('#reviewTextBox');
@@ -12,9 +11,8 @@
 		//contentType: "application/json",
 	};
 
-	$.ajax(req).then( (res) => {
-
-        //append owner reviews to section
+	$.ajax(req).then((res) => {
+		//append owner reviews to section
 
 		//console.log("res: " + res);
 
@@ -22,40 +20,36 @@
 		//console.log("text: " + reviewsText);
 		let reviewsRating;
 		let reviewsPoster;
-		
-		for(i = 0; i < res.length; i++) {
 
+		for (i = 0; i < res.length; i++) {
 			reviewsText = res[i].text;
 			//console.log("text: " + reviewsText);
 			reviewsRating = res[i].rating;
 			reviewsPoster = res[i].posterId;
 
-			reviewList.append("<dd>Review text: "+ reviewsText +"</dd>")
-			reviewList.append("<dd>Rating: "+ reviewsRating +"</dd>")
-			reviewList.append("<dd>Reviewed by: "+ reviewsPoster +"</dd>")
+			reviewList.append('<dd>Review text: ' + reviewsText + '</dd>');
+			reviewList.append('<dd>Rating: ' + reviewsRating + '</dd>');
+			reviewList.append('<dd>Reviewed by: ' + reviewsPoster + '</dd>');
 		}
 	});
 
 	postReviewForm.submit(function (event) {
 		event.preventDefault();
-		console.log("submited");
-		console.log(postReviewText.val())
-		console.log(postReviewRating.val())
-
+		console.log('submited');
+		console.log(postReviewText.val());
+		console.log(postReviewRating.val());
+		//TODO: make sure they actually enter something and it can't be empty
 		let reviewText = postReviewText.val();
 		let reviewRating = postReviewRating.val();
 
 		reviewText = reviewText.trim();
-		
-		if(reviewText === "") {
-			alert("reviewText is empty");
+
+		if (reviewText === '') {
+			alert('reviewText is empty');
 			return;
 		}
 
-		
-		
-
-		console.log("continued");
+		console.log('continued');
 		//let reviewTextInput = $('#reviewTextInput');
 		//let reviewRatingInput = $('#reviewRatingInput');
 
@@ -65,17 +59,15 @@
 		let req = {
 			method: 'POST',
 			url: 'http://localhost:3000/ownerReview',
-			contentType: "application/json",
+			contentType: 'application/json',
 			data: JSON.stringify({
 				text: postReviewText.val(),
 				rating: postReviewRating.val(),
-				beingReviewedId: "62fea5057ce30273374c2aa7"
-			})
-
+				beingReviewedId: '62fea5057ce30273374c2aa7',
+			}),
 		};
-	
+
 		$.ajax(req).then(function (res) {
-	
 			//append owner reviews to section
 	
 			console.log("res: " + res);
@@ -84,7 +76,6 @@
 
 
 		});
-
 	});
 
 	//get Completed Requests
@@ -128,8 +119,8 @@
 
 		console.log(reviewDogText.val());
 		alert(dogId);
-		
- 		let req = {
+
+		let req = {
 			method: 'POST',
 			url: 'http://localhost:3000/review',
 			contentType: 'application/json',
@@ -158,12 +149,4 @@
 		});
 		
 	}
-	
 })(window.jQuery);
-
-
-
-
-
-
-
