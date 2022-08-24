@@ -19,7 +19,7 @@
 			dogId = res[i].dogId;
 
 			reqTable.append(`<tr >
-            <td>${ownerId}</td>
+            <td><a href="../owners/${ownerId}">Owner Profile</a></td>
             <td>${requestText}</td>
             <td>${dogId}</td>
             
