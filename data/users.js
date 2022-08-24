@@ -75,6 +75,7 @@ let exportedMethods = {
 			price: {},
 			reviewsId: [],
 			requests: [],
+			savedRequests: [],
 			rating: [],
 			dogSize: dogSize,
 			difficultDog: difficultDog,

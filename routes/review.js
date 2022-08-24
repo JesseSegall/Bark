@@ -4,6 +4,7 @@ const router = express.Router();
 const data = require("../data/");
 const usersData = data.users;
 const reviewsData = data.reviews;
+const requestsData = data.requests;
 const dogsData = data.dogs;
 
 router.get("/", async (req, res) => {
@@ -12,6 +13,24 @@ router.get("/", async (req, res) => {
     
     try {
         const sitter = await usersData.getSitter(userId);
+        
+        const requestsInfo = await requestsData.getAllRequests();
+        console.log("requestsInfo:" + requestsInfo);
+        let dataArray = [];
+
+        for(i=0; i < sitter.savedRequests.length; i++) {
+            console.log("inside i loop");
+            for(j=0; j < requestsInfo.length; j++) {
+                console.log("inside j loop");
+                console.log()
+                if(sitter.savedRequests[i] === requestsInfo[j].sitterId) {
+                    dataArray.push(requestsInfo[j].dogId, requestsInfo[j].ownerId)
+                    console.log(requestsInfo[j].dogId);
+                    console.log(requestsInfo[j].ownerId);
+                }
+            }
+        }
+
 
         console.log("sitter: " + sitter.firstName);
         console.log("dogs: " + sitter.idOfDogSat);
