@@ -305,9 +305,15 @@ h1 {
   .testiTitle{
 	color: #9e7100;
 	font-weight: bold;
+	font-size: 25pt;
   }
 
   .ppp{
 	font-style: italic;
 	color: #0f0f0f;
+  }
+
+  .beardMan{
+	height: 100px;
+	weight: 100px;
   }
