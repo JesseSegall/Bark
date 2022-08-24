@@ -3,32 +3,80 @@
     Filter By
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <button id="price" class="dropdown-item" >Price</button>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
+    <button id="price-high" class="dropdown-item" >Price High to Low</button>
+   <button id="price-low" class="dropdown-item" >Price Low to High</button>
+   <button id="dog-small" class="dropdown-item" >Accepts Small Dogs</button>
+   <button id="dog-medium" class="dropdown-item" >Accepts Medium Dogs</button>
+   <button id="dog-large" class="dropdown-item" >Accepts Large Dogs</button>
+   <button id="dog-difficult" class="dropdown-item" >Accepts Difficult Dogs</button>
   </div>
 </div>
 
-<div id="unordered-sitters" class="container-fluid">
+<div id="unordered-sitters" hidden class="container-fluid">
 	<div class="row w-100 m-0 justify-content-center">
 		<div id ="ajax-card" class="row row-cols-2 row-cols-md-4">
-			{{!-- {{#each sitter}} --}}
-			{{!-- <div id="ajax"class="col-auto mb-3"> </div> --}}
-				<div id="card-data" class="col-auto mb-3">
-					<div class="card" style="width: 300px;">
-						<img src="public/image/no_image.jpeg" class="card-img-top" alt="Profile Picture" />
-						<div class="card-body text-center">
-							<h5 class="card-title">{{firstName}}</h5>
-							<p class="card-text">Sitter price will go here.</p>
-							<p class="card-text">Rating Will Go Here</p>
-							<a href="/searchSitter/{{_id}}" class="btn btn-primary">View Profile</a>
-						</div>
-					</div>
-				</div>
-			{{!-- {{/each}} --}}
+			
+			
 		</div>
 	</div>
 </div>
+<div id="price-high-low" hidden class="container-fluid">
+	<div class="row w-100 m-0 justify-content-center">
+		<div id ="ajax-card-price-high" class="row row-cols-2 row-cols-md-4">
+			
+			
+		</div>
+	</div>
+</div>
+
+<div id="price-low-high" hidden class="container-fluid">
+	<div class="row w-100 m-0 justify-content-center">
+		<div id ="ajax-card-price-low" class="row row-cols-2 row-cols-md-4">
+			
+			
+		</div>
+	</div>
+</div>
+
+
+
+<div id="dog-small-sitters" hidden class="container-fluid">
+	<div class="row w-100 m-0 justify-content-center">
+		<div id ="ajax-card-dog-sm" class="row row-cols-2 row-cols-md-4">
+			
+			
+		</div>
+	</div>
+</div>
+
+
+<div id="dog-medium-sitters" hidden class="container-fluid">
+	<div class="row w-100 m-0 justify-content-center">
+		<div id ="ajax-card-dog-md" class="row row-cols-2 row-cols-md-4">
+			
+			
+		</div>
+	</div>
+</div>
+
+<div id="dog-large-sitters" hidden class="container-fluid">
+	<div class="row w-100 m-0 justify-content-center">
+		<div id ="ajax-card-dog-lg" class="row row-cols-2 row-cols-md-4">
+			
+			
+		</div>
+	</div>
+</div>
+
+<div id="dog-difficult-sitters" hidden class="container-fluid">
+	<div class="row w-100 m-0 justify-content-center">
+		<div id ="ajax-card-dog-diff" class="row row-cols-2 row-cols-md-4">
+			
+			
+		</div>
+	</div>
+</div>
+
 
 
 <script src="/public/js/sitterFilter.js"></script>
