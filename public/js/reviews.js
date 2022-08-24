@@ -113,9 +113,9 @@
 		const dogId = $(this).closest('tr').data('id');
 
 		const reviewDogText = $("#reviewDogText");
-		const reviewDogRating = $("#reviewDogRating");
+		const reviewDogRating = $("#reviewDogRatingText");
 		const reviewOwnerText = $("#reviewDogText");
-		const reviewOwnerRating = $("#reviewDogRating");
+		const reviewOwnerRating = $("#reviewOwnerRatingText");
 
 		console.log(reviewDogText.val());
 		alert(dogId);
@@ -127,12 +127,14 @@
 			data: JSON.stringify({
 				dogId: dogId,
 				reviewText: reviewOwnerText.val(),
-				rating: reviewOwnerRating.val(),
+				rating: reviewOwnerRating.val()
 			}),
 		};
 		$.ajax(req).then(function (res) {
 
 		});
+
+		console.log("completed first post");
 
 		let req2 = {
 			method: 'POST',
@@ -140,13 +142,15 @@
 			contentType: 'application/json',
 			data: JSON.stringify({
 				dogId: dogId,
-				reviewText: reviewOwnerText.val(),
-				rating: reviewOwnerRating.val(),
+				reviewText: reviewDogText.val(),
+				rating: reviewDogRating.val(),
+				beingReviewedId: dogId,
 			}),
 		};
 		$.ajax(req2).then(function (res) {
 
 		});
 		
+		console.log("completed second post");
 	}
 })(window.jQuery);

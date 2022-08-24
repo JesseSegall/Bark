@@ -88,8 +88,13 @@ router.post('/', async (req, res) => {
 	const rating = reqBody.rating;
 	const posterId = req.session.user._id;
 	const dogId = reqBody.dogId;
-
-	const beingReviewedId = await reviewsData.getUser(dogId);
+    let beingReviewedId;
+    if(reqBody.beingReviewedId) {
+        beingReviewedId = reqBody.beingReviewedId;
+    }
+    else {
+        beingReviewedId = await reviewsData.getUser(dogId);
+    }
 
 	console.log(beingReviewedId);
 
