@@ -291,7 +291,7 @@ h1 {
 	width: 100px;
 	Margin-left:1250px;
 	margin-top: 500px;
-	align:relative;
+	text-align:relative;
   }
   
   .testi1{
@@ -328,20 +328,37 @@ h1 {
 
   .beardMan{
 	height: 170px;
-	weight: 170px;
+	/* weight: 170px; */
   }
 
   .harryHubble{
 	height: 200px;
-	weight: 200px;
+	/* weight: 200px; */
   }
 
   .stacyGaines{
 	height: 300px;
-	weight: 300px;
+	/* weight: 300px; */
   }
 
   .jared{
 	height: 300px;
-	weight: 300px;
+	/* weight: 300px; */
   }
+
+  button {
+    font-family: "Goudy Bookletter 1911";
+    font-size: 15px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    color: black;
+    padding: 5px 20px;
+    text-align: center;
+    display: inline; 
+    cursor: auto;
+}
+
+button:hover {
+    background-color: white;
+    color: #9e7100;
+}
