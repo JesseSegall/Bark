@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
     const ownerId = req.session.user._id;
     
     try {
-        const dogData = await dogsData.getDog2(ownerId);
+        const dogData = await dogsData.getDog(ownerId);
         
         return res.json(dogData);
 

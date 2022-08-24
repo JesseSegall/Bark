@@ -16,6 +16,7 @@
 
 	$.ajax(req).then( (res) => {
 
+		console.log("res: " + res);
 		console.log("test");
 		let dogName;
 		let dogBreed;
@@ -32,6 +33,8 @@
 			dogAge = res[i].dogAge;
 			dogDifficulty = res[i].dogDifficulty;
 			dogPicture = res[i].dogPicture;
+
+			console.log(dogName);
 
 /* 			dogSection.append("<p>"+ dogName +"</p>")
 			dogSection.append("<p>"+ dogBreed +"</p>")
