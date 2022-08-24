@@ -203,8 +203,8 @@ let exportedMethods = {
 			{
 				_id: ObjectId(userId),
 			},
-			{$set:
-				{
+			{
+				$set: {
 					firstName: firstName,
 					lastName: lastName,
 					address: {
@@ -212,15 +212,15 @@ let exportedMethods = {
 						city: address.city,
 						state: address.state,
 						zip: address.zip,
-						country: address.country
+						country: address.country,
 					},
 					price: {
 						smallDog: price.smallDog,
 						mediumDog: price.mediumDog,
 						largeDog: price.largeDog,
-						difficultDog: price.difficultDog
-					}
-				}
+						difficultDog: price.difficultDog,
+					},
+				},
 			}
 		);
 		return;
@@ -228,13 +228,13 @@ let exportedMethods = {
 	async updateOwnerProfile(userId, firstName, lastName, address) {
 		const usersCollection = await users();
 
-		console.log("in update");
+		console.log('in update');
 		const updateUser = await usersCollection.findOneAndUpdate(
 			{
 				_id: ObjectId(userId),
 			},
-			{$set:
-				{
+			{
+				$set: {
 					firstName: firstName,
 					lastName: lastName,
 					address: {
@@ -242,15 +242,18 @@ let exportedMethods = {
 						city: address.city,
 						state: address.state,
 						zip: address.zip,
-						country: address.country
-					}
-				}
+						country: address.country,
+					},
+				},
 			}
+		);
 
-		)
-
-		console.log("finished")
+		console.log('finished');
 		return;
+	},
+	async findSitterByEmail(email) {
+		const sitter = await usersCollection.findOne({ email: email });
+		return sitter;
 	},
 };
 
