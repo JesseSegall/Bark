@@ -1,29 +1,28 @@
 const express = require('express');
 const router = express.Router();
 const requests = require('../data/requests');
-const { MongoUnexpectedServerResponseError } = require('mongodb');
+const dogs = require('../data/dogs');
 const users = require('../data/users');
-
 
 //TODO FIX THE BELOW ROUTE TO CREATE A NEW REQUEST ARRAY ELEMENT IN THE DATABASE
 // adds request to the database. Used in form to submit a request
 router.post('/', async (req, res) => {
 	// Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
+	const currUser = req.session.user;
+	const email = req.body.sitter_email;
+	console.log(email);
+	const foundSitter = await users.findSitterByEmail(email);
+	const sitterID = foundSitter._id.toString();
+	console.log(sitterID);
+	const userId = currUser._id.toString();
+	const requestText = req.body.requestText;
+	const dogId = currUser.dogs[0];
 
-	console.log("req body: " + req.body);
-	const ownerID = req.body.ownerID;
-	const foundSitter = await users.findSitterByEmail(req.body.email); 
-    const sitterID = foundSitter._id; 
-    console.log(sitterID); 
-    const requestText = req.body.requestText;
-	const dogId = req.body.dogId;
-	
-    try {
-    const requestID = await requests.addRequest(ownerID, sitterID, requestText, dogId);
+	try {
+		const requestId = await requests.addRequest(userId, sitterID, requestText, dogId);
 
-    console.log("request Id: " + requestID);
-    res.json({test: "test"});
-
+		console.log('request Id: ' + requestID);
+		res.json({ test: 'test' });
 	} catch (error) {
 		return res.status(401).render('partials/reqsubmitted', {
 			errors: error,
@@ -31,8 +30,18 @@ router.post('/', async (req, res) => {
 		});
 	}
 
-	return res.render('partials/reqsubmitted', {Title: 'Submit Sitter Request'});
+	return res.render('partials/reqsubmitted', { Title: 'Submit Sitter Request' });
 });
 
-module.exports = router; 
+router.get('/requestId', async (req, res) => {
+	user = req.session.user;
 
+	let reqArray = [];
+	for (i = 0; i < user.requests.length; i++) {
+		let ownerReq = await requests.getRequest(user.requests[i]);
+		reqArray.push(ownerReq);
+	}
+	return res.json(reqArray);
+});
+
+module.exports = router;
