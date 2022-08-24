@@ -309,6 +309,11 @@ h1 {
 	/* font-weight: bold; */
   }
 
+  .testi4{
+	color: #fdbf12;
+	/* font-weight: bold; */
+  }
+
   .testiTitle{
 	color: #9e7100;
 	font-weight: bold;
@@ -332,6 +337,11 @@ h1 {
   }
 
   .stacyGaines{
+	height: 300px;
+	weight: 300px;
+  }
+
+  .jared{
 	height: 300px;
 	weight: 300px;
   }
