@@ -153,13 +153,21 @@ router.get('/searchSitter/:id', async (req, res) => {
 });
 
 router.get('/searchSitter/', async (req, res) => {
-	if (!req.session.user.owner || req.session.user.sitter) {
-		return res.render('partials/signin', {
-			title: 'Sign In',
-			errors: 'Please log into your owner account to access the Sitter Search',
-		});
+	try{
+		if (!req.session.user.owner || req.session.user.sitter) {
+			return res.render('partials/signin', {
+				title: 'Sign In',
+				errors: 'Please log into your owner account to access the Sitter Search',
+			});
+		}
+		return res.render('partials/sitterList', { title: 'Search for a sitter' });
 	}
-	return res.render('partials/sitterList', { title: 'Search for a sitter' });
+	catch(e){
+		res.render(`partials/signin`, {title: `Sign In`, errors: `Please log in to owner account to access sitter search`});
+		console.log(e)
+	}
+	
+	
 });
 
 // Helper function for search to see if it contains sections of letters

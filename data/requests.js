@@ -12,7 +12,7 @@ let exportedMethods = {
 			requestText: requestText,
 			dogId: dogId,
 
-			/*TODO
+			/*TO do Cancelled -->
       message:{
         text field describing what the request is (Date, etc)
       }
