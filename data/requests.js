@@ -53,9 +53,11 @@ let exportedMethods = {
 		const requestsCollection = await requests();
 
 		//find sitterId using requestId and request collection
-		const requestInfo = requestsCollection.findOne({_id: ObjectId(requestId)});
+		const requestInfo = await requestsCollection.findOne({_id: ObjectId(requestId)});
+		console.log("requestInfo: " + requestInfo);
 		const sitterId = requestInfo.sitterId;
 		const dogId = requestInfo.dogId;
+		console.log("dogId: " + dogId);
 
 		//add dog to idOfDogsSat in sitter
 
@@ -85,7 +87,7 @@ let exportedMethods = {
 
 		//delete request from request collection
 
-		const removeRequest = await requestsCollection.remove({_id: ObjectId(requestId)});
+		const removeRequest = await requestsCollection.deleteOne({_id: ObjectId(requestId)});
 
 
 	},

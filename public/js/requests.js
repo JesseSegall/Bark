@@ -43,8 +43,8 @@
 	$.getJSON(url).then((owners) => {
 		owners.forEach((res) => {
 			const requestText = res.requestText;
-			const ownerId = res.ownerId._id.toString();
-			const requestId = res._id.toString();
+			const ownerId = res.ownerId._id;
+			const requestId = res._id;
 
 			const $tr = $('<tr>');
 			$tr.data('id', requestId); // store id in row
