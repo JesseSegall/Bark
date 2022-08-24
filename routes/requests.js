@@ -3,17 +3,17 @@ const router = express.Router();
 const requests = require('../data/requests');
 const dogs = require('../data/dogs');
 const users = require('../data/users');
+const xss = require('xss');
 
 router.post('/', async (req, res) => {
-	// Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
 	const currUser = req.session.user;
-	const email = req.body.sitter_email;
-	console.log(email);
+	const email = xss(req.body.sitter_email);
+
 	const foundSitter = await users.findSitterByEmail(email);
 	const sitterID = foundSitter._id.toString();
-	console.log(sitterID);
+
 	const userId = currUser._id.toString();
-	const requestText = req.body.requestText;
+	const requestText = xss(req.body.requestText);
 	const dogId = currUser.dogs[0];
 
 	try {
@@ -43,7 +43,6 @@ router.get('/requestId', async (req, res) => {
 });
 
 router.post('/accept', async (req, res) => {
-	console.log(req.body.reqId);
 	const requestId = req.body.reqId;
 	const reqAccept = await requests.completeRequest(requestId);
 

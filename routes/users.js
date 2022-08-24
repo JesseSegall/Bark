@@ -21,7 +21,6 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/userChoice', async (req, res) => {
-	// Just for testing purposes
 	return res.render('partials/userChoice', {});
 });
 
@@ -64,28 +63,29 @@ router.get('/registerOwner', async (req, res) => {
 });
 
 router.post('/registerOwner', async (req, res) => {
-	// Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
+	// TODO: Add error handling here, make sure string and not empty etc
 
 	const firstName = xss(req.body.first_name);
 	const lastName = xss(req.body.last_name);
 	const email = xss(req.body.email);
 	const userName = xss(req.body.user_name);
 	const password = xss(req.body.password);
-	const gender = req.body.gender;
+	const gender = xss(req.body.gender);
 	try {
 		const hash = await bcrypt.hash(password, salt);
 		const newOwner = await users.addOwner(firstName, lastName, email, userName, hash, gender);
 
 		req.session.user = newOwner;
-		console.log(req.session.userId);
 	} catch (error) {
+		//TODO: whenever a req.session.user is assigned, if auth fails we need to add isAuth false like I did below
 		return res.status(401).render('partials/sitterReg', {
 			errors: error,
 			title: 'Owner Registration',
+			isAuth: false,
 		});
 	}
 
-	return res.redirect('/'); // Should redirect to either home page or straight to their dashboard after registration
+	return res.redirect('/');
 });
 
 router.get('/registerSitter', async (req, res) => {
@@ -93,6 +93,7 @@ router.get('/registerSitter', async (req, res) => {
 });
 
 router.post('/registerSitter', async (req, res) => {
+	// TODO: Add error handling here, make sure string and not empty etc
 	const user_name = xss(req.body.user_name);
 	const first_name = xss(req.body.first_name);
 	const last_name = xss(req.body.last_name);
@@ -136,6 +137,7 @@ router.post('/registerSitter', async (req, res) => {
 		return res.status(401).render('partials/sitterReg', {
 			errors: error,
 			title: 'Sitter Registration',
+			isAuth: false,
 		});
 	}
 

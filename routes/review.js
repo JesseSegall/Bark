@@ -52,9 +52,6 @@ router.get('/', async (req, res) => {
 			dogObject.push(dog);
 		}
 
-		//console.log("dog: " + dogObject);
-		//console.log("data " + dataObject);
-
 		let passThru = {
 			dogObject: dogObject,
 			ownerObject: dataObject,
