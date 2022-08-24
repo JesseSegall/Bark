@@ -198,7 +198,7 @@ router.post('/searchSitter', async (req, res) => {
 			title: 'Search for a Sitter',
 		});
 	} catch (error) {
-		return res.render('/partials/sitterList', {
+		return res.render('partials/sitterList', {
 			errors: error,
 			title: 'Search for a Sitter',
 		});

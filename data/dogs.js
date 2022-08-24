@@ -23,6 +23,7 @@ let exportedMethods = {
     };
 
     const dogsCollection = await dogs();
+    console.log(`Success with dogs: ${dogsCollection}`);
     const userCollection = await users();
 
     const insertDog = await dogsCollection.insertOne(newDog);
@@ -49,11 +50,11 @@ let exportedMethods = {
       { $push: { idOfDogSat: insertDog.insertedId.toString() } }
     ); */
     console.log("almost finished");
-    return await this.getDog(ownerId);
+    const toReturn = await this.getDog(ownerId);
+    return toReturn;
   },
 
-  async getDog(id) {
-
+  async getDog(id){
     const dogsCollection = await dogs();
 
     console.log("getDog1");
@@ -63,12 +64,30 @@ let exportedMethods = {
     
     console.log("getDogCollect");
     console.log(owner);
-    const dogs = await dogsCollection.find({}).toArray();
+    const dogList = await dogsCollection.find({}).toArray();
     for(i= 0; i < dogs.length; i++) {
       console.log(dogs[i].dogName);
     }
+    return dogList;
+  
+  /*
+  async getDog(id){
+    const dogsCollection = await dogs();
+    console.log("got Dog");
+    const usersCollection = await users();
+    
+    const owner = await usersCollection.findOne({_id: ObjectId(id)});
+    console.log("getDog");
+
+    console.log("getDogCollect");
+    console.log(owner);
+    const dogs = await dogsCollection.find({}).toArray();
+    for(i = 0; i < dogs.length; i++){
+      console.log(dogs[i].dogName);
+    }
     return dogs;
-  },
+    */
+  }
 
 };
 

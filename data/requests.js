@@ -1,6 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
 const requests = mongoCollections.requests;
-const sitters = mongoCollections.sitters;
+const users = mongoCollections.users;
+//const sitters = mongoCollections.sitters;
 const { ObjectId } = require("mongodb");
 
 let exportedMethods = {
@@ -23,13 +24,17 @@ let exportedMethods = {
       */
     };
 
+    const usersCollection = await users();
+    /*
     const sittersCollection = await sitters();
+    */
     const requestsCollection = await requests();
+    
     const insertRequest = await requestsCollection.insertOne(newRequest);
     if (insertRequest.insertedCount === 0) throw "Could not insert Request";
     const requestId = newRequest._id;
     console.log(requestId);
-    const updateRequestsArray = await sittersCollection.updateOne(
+    const updateRequestsArray = await usersCollection.updateOne(
       { _id: ObjectId(sitterId) },
       { $push: { requests: requestId } }
     );

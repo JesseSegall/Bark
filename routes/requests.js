@@ -30,3 +30,5 @@ router.post('/requestSitter', async (req, res) => {
 	}
 	return res.render('partials/reqsubmitted', 'Submit Sitter Request');
 });
+
+modules.export = router;
