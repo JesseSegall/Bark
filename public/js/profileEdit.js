@@ -1,4 +1,5 @@
 (function ($) {
+	//TODO: Hide everything unless they hit update profile button
 	var sitterProfileForm = $('#sitter-profile-update-form');
 	var ownerProfileForm = $('#owner-profile-update-form');
 	var firstName = $('#first_name');
@@ -24,7 +25,7 @@
 
 	$.ajax(req).then((res) => {
 		console.log(res);
-		//TODO: Error handling for all user inputs
+		//TODO: Error handling for all user inputs make sure they are strings etc
 		firstName.val(res.user.firstName);
 		lastName.val(res.user.lastName);
 		street.val(res.user.address.street);
