@@ -11,10 +11,16 @@ router.post('/requestSitter', async (req, res) => {
 	// Not sure if we should keep it this way so we can xss easily over each var or do it like registerSitter
 
 	const ownerID = req.body.ownerID;
-	const sitterId = await users.findSitterByEmail(req.body.email)
-    console.log(sitterId); 
+	const foundSitter = await users.findSitterByEmail(req.body.email); 
+    const sitterID = foundSitter._id; 
+    console.log(sitterID); 
+    const requestText = req.body.requestText;
 	const dogId = req.body.dogId;
-	const requestText = req.body.requestText;
+	
+
+    const requestID = await requests.addRequest(ownerID, sitterID, requestText, dogId);
+
+    console.log("request Id: " + requestID);
 
 	try {
 
@@ -26,3 +32,5 @@ router.post('/requestSitter', async (req, res) => {
 	}
 	return res.render('partials/reqsubmitted', 'Submit Sitter Request');
 });
+
+module.exports = router; 
