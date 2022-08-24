@@ -21,15 +21,13 @@
 			reqTable.append(`<tr >
             <td><a href="../owners/${ownerId}">Owner Profile</a></td>
             <td>${requestText}</td>
-            <td><button   onclick="btnClick("63050f76051c081fa0fe0970")">Accept</button></td>
+            <td><button  onclick="btnClick('${ownerId}')">Accept</button>
+            </td>
             
         </tr>`);
 		}
 	});
-
-	$(document).ready(function () {
-		function btnClick(id) {
-			console.log(id);
-		}
-	});
 })(window.jQuery);
+function btnClick(id) {
+	console.log(id);
+}
