@@ -34,10 +34,12 @@
         state.val(res.user.address.state);
         zip.val(res.user.address.zip);
         country.val(res.user.address.country);
-        smallDog.val(res.user.price.smallDog);
-        mediumDog.val(res.user.price.mediumDog);
-        largeDog.val(res.user.price.largeDog);
-        difficultDog.val(res.user.price.difficultDog);
+        if(sitterProfileForm.length > 0) {
+            smallDog.val(res.user.price.smallDog);
+            mediumDog.val(res.user.price.mediumDog);
+            largeDog.val(res.user.price.largeDog);
+            difficultDog.val(res.user.price.difficultDog);
+        }
 
 
 /*         for(i = 0; i < res.length; i++) {
