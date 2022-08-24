@@ -345,3 +345,20 @@ h1 {
 	height: 300px;
 	/* weight: 300px; */
   }
+
+  button {
+    font-family: "Goudy Bookletter 1911";
+    font-size: 15px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    color: black;
+    padding: 5px 20px;
+    text-align: center;
+    display: inline; 
+    cursor: auto;
+}
+
+button:hover {
+    background-color: white;
+    color: #9e7100;
+}
