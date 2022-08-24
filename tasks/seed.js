@@ -1,16 +1,18 @@
 const dbConnection = require("../config/mongoConnection");
+const users = require ("../data/users");
 const data = require("../data");
-const sitters = data.sitters;
+const dogs = require("../data/dogs");
+//const sitters = data.sitters;
 const reviews = data.reviews;
-const dogs = data.dogs;
-const owners = data.owners;
+//const dogs = data.dogs;
+//const owners = data.owners;
 const requests = data.requests;
 
 async function main() {
   const db = await dbConnection.dbConnection();
   await db.dropDatabase();
 
-  const sitter = await sitters.addSitter(
+  const sitter = await users.addSitter(
     "James",
     "Kirk",
     "53 baker street apt 4f nyc",
@@ -24,7 +26,7 @@ async function main() {
   const sitterId = sitter._id.toString();
   //console.log(sitterId);
 
-  const owner = await owners.addOwner(
+  const owner = await users.addOwner(
     "Bob",
     "Smith",
     "53 baker street apt 6f nyc",
@@ -33,7 +35,7 @@ async function main() {
     "will be hashed also",
     "pictureOfBob.jpg"
   );
-  const owner2 = await owners.addOwner(
+  const owner2 = await users.addOwner(
     "Joey",
     "Appleseed",
     "101st st street apt 4d nyc",
@@ -45,6 +47,7 @@ async function main() {
   const ownerId2 = owner2._id.toString();
   const ownerId = owner._id.toString();
 
+
   const dog = await dogs.addDog(
     ownerId,
     "Shiloh",
@@ -55,7 +58,7 @@ async function main() {
     "pictureShiloh.jpg",
     sitterId
   );
-  const dogId = dog._id.toString();
+  const dogId = dog._id;
   const request = await requests.addRequest(
     ownerId,
     sitterId,

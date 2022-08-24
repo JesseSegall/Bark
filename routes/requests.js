@@ -30,9 +30,9 @@ router.post('/', async (req, res) => {
 			title: 'Error Submitting Sitter Request',
 		});
 	}
+
 	return res.render('partials/reqsubmitted', {Title: 'Submit Sitter Request'});
 });
 
-
-
 module.exports = router; 
+
