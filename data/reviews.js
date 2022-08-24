@@ -1,6 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
 const reviews = mongoCollections.reviews;
 const users = mongoCollections.users;
+const dogs = mongoCollections.dogs;
 //const sitters = mongoCollections.sitters;
 //const owners = mongoCollections.owners;
 const { ObjectId } = require("mongodb");
@@ -20,6 +21,7 @@ let exportedMethods = {
 
     const reviewCollection = await reviews();
     const userCollection = await users();
+    const dogsCollection = await dogs();
 
     const insertReview = await reviewCollection.insertOne(newReview);
 
@@ -29,35 +31,33 @@ let exportedMethods = {
     //const beingReviewedUser = await userCollection.findOne({_id: ObjectId(beingReviewedId)});
     //console.log("Being Reviewed: " + beingReviewedUser.firstName + beingReviewedUser.lastName);
 
-    
-    const reviewPushed = await userCollection.findOneAndUpdate(
-      {_id: ObjectId(beingReviewedId)}, 
-      {$push: {
-        reviewsId: reviewId
-      }
-    });
-    
-/*     const reviewId = newReview._id;
-    console.log(reviewId); */
+    //const checkExists = await userCollection.find({firstName: {$exists: true}});
 
-/*     const isSitter = await sittersCollection.find({ _id: posterId });
-    const isOwner = await ownersCollection.find({ _id: posterId });
-    if (isSitter) {
-      const updateOwnerArray = await ownersCollection.updateOne(
-        { _id: beingReviewedId },
-        { $push: { reviewsId: reviewId } }
-      );
+    const checkExists = await userCollection.find({_id: ObjectId(beingReviewedId)}, {_id: 1}).limit(1);
+
+
+    //console.log(beingReviewedId);
+    console.log(checkExists);
+    
+    if (checkExists == 1) {
+      console.log("person");
+      const reviewPushed = await userCollection.findOneAndUpdate(
+        {_id: ObjectId(beingReviewedId)}, 
+        {$push: {
+          reviews: reviewId
+        }
+      });
     }
-    if (isOwner) {
-      const updateSitterArray = await sittersCollection.updateOne(
-        { _id: beingReviewedId },
-        { $push: { reviewsId: reviewId } }
-      );
+    else {
+      console.log("dog");
+      const reviewPushed = await dogsCollection.findOneAndUpdate(
+        {_id: ObjectId(beingReviewedId)}, 
+        {$push: {
+          reviews: reviewId
+        }
+      });
     }
- */
-    //return;
-    //console.log("newID: " + insertReview.insertedId.toString());
-    //return await this.getReview(insertReview.insertedId.toString());
+    
     return await this.getReview(beingReviewedId);
   },
 
