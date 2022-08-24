@@ -22,14 +22,22 @@ router.get("/", async (req, res) => {
             console.log("inside i loop");
             for(j=0; j < requestsInfo.length; j++) {
                 console.log("inside j loop");
-                console.log()
-                if(sitter.savedRequests[i] === requestsInfo[j].sitterId) {
+                console.log(requestsInfo[j]._id.toString())
+                console.log(sitter.savedRequests[i]);
+                if(sitter.savedRequests[i] == requestsInfo[j]._id) {
                     dataArray.push(requestsInfo[j].dogId, requestsInfo[j].ownerId)
                     console.log(requestsInfo[j].dogId);
                     console.log(requestsInfo[j].ownerId);
+                    i++;
                 }
             }
         }
+
+        console.log(dataArray);
+
+        //get owner name using owner id from array
+
+        //get dog name using dog id from array
 
 
         console.log("sitter: " + sitter.firstName);
