@@ -10,6 +10,7 @@
             <p>Dogs Sat: {{sitter.idOfDogSat}}</p>  
             <p>Reviews: {{sitter.ReviewsId}}</p>
             <p>Requests: {{sitter.requests}}</p>
+            <p>Email: {{sitter.email}}</p>
             <p>Dog Difficulty Threshold: {{sitter.Difficulty}}</p>
 
             <!-- TODO add form that takes input of a string detailing the request, and then sends it, attaching that "request" to the owner's sent list, and the sitters recieved list.
@@ -25,7 +26,9 @@
                 enctype="application/x-www-form-urlencoded"
                 >
                 <p><label>Please enter a request below:</label></p>
-                 <p id = "email" name = "email">Email: {{{sitter.email}}}</p>
+                 <p>To confirm your request please enter the sitters email address</p>
+                 <label for="sitter-email">Sitter's Email</label>
+                 <input id="sitter_email" type="email" name="sitter_email" placeholder="Sitter's Email Address" >
                 <textarea name="requestText" id="requestText" cols="60" rows="6"></textarea>
                 <p><button type="submit">Send Request</button></p>
                 </form>

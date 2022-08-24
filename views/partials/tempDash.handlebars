@@ -9,14 +9,13 @@
             <p>Email: {{user.email}}</p>
             {{#if user.sitter}}
            <div id="req-table">
-        <table>
+        <table id="request-table">
             <tr>
                 <th>Requests</th>
+                <th>Message</th>
+                <th>Dog ID</th>
             </tr>
-            <tr>
-                <td>{{user.requests}}</td>
-                
-            </tr>
+            
         </table>
 </div>
          <div id="edit-profile" >
@@ -205,3 +204,4 @@
 <script src="/public/js/reviews.js"></script>
 <script src="/public/js/profileEdit.js"></script>
 <script src="/public/js/dogs.js"></script>
+<script src="/public/js/requests.js"></script>
