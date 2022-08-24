@@ -14,11 +14,37 @@ router.get('/', async (req, res) => {
 
 	// res.render("partials/sitters", {});
 });
+
+router.get('/allSitters', async (req, res) => {
+	const sitters = await users.getAllSitters();
+	return res.json(sitters);
+});
+
 router.get('/filterPriceHigh', async (req, res) => {
 	const sitters = await users.filterPriceHighToLow();
 	return res.json(sitters);
 });
-router.get('/test1', async (req, res) => {
-	return res.render('partials/test');
+
+router.get('/filterPriceLow', async (req, res) => {
+	const sitters = await users.filterPriceLowToHigh();
+	return res.json(sitters);
 });
+
+router.get('/filterDogsSmall', async (req, res) => {
+	const sitters = await users.filterDogSizeSmall();
+	return res.json(sitters);
+});
+router.get('/filterDogsMedium', async (req, res) => {
+	const sitters = await users.filterDogSizeMedium();
+	return res.json(sitters);
+});
+router.get('/filterDogsLarge', async (req, res) => {
+	const sitters = await users.filterDogSizeLarge();
+	return res.json(sitters);
+});
+router.get('/filterDogsDifficult', async (req, res) => {
+	const sitters = await users.filterDogDifficult();
+	return res.json(sitters);
+});
+
 module.exports = router;
