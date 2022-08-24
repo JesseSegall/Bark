@@ -43,7 +43,11 @@
 
 	<body>
 		<div class="topnav">
-  {{!-- <a href="/landing">Landing Page</a> 			 --}}
+  
+  <div class="errors" id="errors">{{errors}}</div>
+  {{#if isAuth}}
+  <a class="home" href="/dashboards">Home</a> 
+  {{/if}}
   <a class="home" href="/">Home</a> 
   <a href="/registerOwner">Owner Registration</a>
   <a href="/registerSitter">Sitter Registration</a>
