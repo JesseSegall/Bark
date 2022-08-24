@@ -1,22 +1,22 @@
 (function ($) {
 
-	var addDogForm = $('#dogForm');
-	var dogSection = $('#dogSection');
-	var dogName = $('#dogName');
-	var dogBreed = $('#dogBreed');
-	var dogWeight = $('#dogWeight');
-	var dogAge = $('#dogAge');
-	var dogDifficulty = $('#dogDifficulty');
-	var dogPicture = $('#dogPicture');
+	var addDogForm = $('#add-dog-form');
+	var dogName = $('#dog-name');
+	var dogBreed = $('#dog-breed');
+	var dogWeight = $('#dog-weight');
+	var dogAge = $('#dog-age');
+	var dogDifficulty = $('#dog-difficulty');
+	var dogPicture = $('#dog-photo');
 
 	let req = {
 		method: 'GET',
-		url: 'http://localhost:3000/dogs',
+		url: '/dogs',
 		//contentType: "application/json",
 	};
 
 	$.ajax(req).then( (res) => {
 
+		console.log("test");
 		let dogName;
 		let dogBreed;
 		let dogWeight;
@@ -33,12 +33,12 @@
 			dogDifficulty = res[i].dogDifficulty;
 			dogPicture = res[i].dogPicture;
 
-			dogSection.append("<p>"+ dogName +"</p>")
+/* 			dogSection.append("<p>"+ dogName +"</p>")
 			dogSection.append("<p>"+ dogBreed +"</p>")
 			dogSection.append("<p>"+ dogWeight +"</p>")
 			dogSection.append("<p>"+ dogAge +"</p>")
 			dogSection.append("<p>"+ dogDifficulty +"</p>")
-			dogSection.append("<p>"+ dogPicture +"</p>")
+			dogSection.append("<p>"+ dogPicture +"</p>") */
 		}
 	});
 
@@ -48,7 +48,7 @@
 
 		let req = {
 			method: 'POST',
-			url: 'http://localhost:3000/dogs',
+			url: '/dogs',
 			contentType: "application/json",
 			data: JSON.stringify({
 				dogName: dogName.val(),

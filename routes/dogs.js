@@ -18,9 +18,6 @@ router.post("/", async (req, res) => {
         const dogPic = dogData.dogPicture;
 
         const dogDataInsert = await dogsData.addDog(ownerId, dogName, dogBreed, dogWeight, dogAge, dogDifficulty, dogPic);
-        const dogId = dogDataInsert.insertedId.toString();
-
-        console.log("DogId: " + dogId);
 
         return;
 
@@ -35,9 +32,9 @@ router.get("/", async (req, res) => {
     const ownerId = req.session.user._id;
     
     try {
-
+        console.log("ownerId1: " + ownerId);
         const dogData = await dogsData.getDog(ownerId);
-
+        console.log("dogData " + dogData)
         return res.json(dogData);
 
     } catch(e) {

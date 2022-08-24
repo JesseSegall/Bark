@@ -114,8 +114,8 @@ let exportedMethods = {
 		const usersCollection = await users();
 		const sittersArray = await usersCollection
 			.find(
-				{ sitter: { $eq: true } },
-				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+				{ sitter: { $eq: true } }
+				// { projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
 			)
 			.toArray();
 		return sittersArray;
@@ -149,7 +149,7 @@ let exportedMethods = {
 		const sittersHighLow = await usersCollection
 			.find(
 				{ sitter: { $eq: true } },
-				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1, dogSize: 1 } }
 			)
 			.sort({ price: 1 })
 			.toArray();
@@ -160,11 +160,43 @@ let exportedMethods = {
 		const sittersLowHigh = await usersCollection
 			.find(
 				{ sitter: { $eq: true } },
-				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1 } }
+				{ projection: { firstName: 1, lastName: 1, price: 1, rating: 1, sitter: 1, dogSize: 1 } }
 			)
 			.sort({ price: -1 })
 			.toArray();
 		return sittersLowHigh;
+	},
+	async filterDogSizeSmall() {
+		const usersCollection = await users();
+		const dogSmall = await usersCollection
+			.find({ dogSize: 'Small' })
+
+			.toArray();
+		return dogSmall;
+	},
+	async filterDogSizeMedium() {
+		const usersCollection = await users();
+		const dogMedium = await usersCollection
+			.find({ dogSize: 'Medium' })
+
+			.toArray();
+		return dogMedium;
+	},
+	async filterDogSizeLarge() {
+		const usersCollection = await users();
+
+		const dogLarge = await usersCollection
+
+			.find({ dogSize: 'Large' })
+
+			.toArray();
+		return dogLarge;
+	},
+	async filterDogDifficult() {
+		const usersCollection = await users();
+
+		const dogDifficult = await usersCollection.find({ difficultDog: { $eq: true } }).toArray();
+		return dogDifficult;
 	},
 	async updateSitterProfile(userId, firstName, lastName, address, price) {
 		const usersCollection = await users();
@@ -173,8 +205,8 @@ let exportedMethods = {
 			{
 				_id: ObjectId(userId),
 			},
-			{$set:
-				{
+			{
+				$set: {
 					firstName: firstName,
 					lastName: lastName,
 					address: {
@@ -182,15 +214,15 @@ let exportedMethods = {
 						city: address.city,
 						state: address.state,
 						zip: address.zip,
-						country: address.country
+						country: address.country,
 					},
 					price: {
 						smallDog: price.smallDog,
 						mediumDog: price.mediumDog,
 						largeDog: price.largeDog,
-						difficultDog: price.difficultDog
-					}
-				}
+						difficultDog: price.difficultDog,
+					},
+				},
 			}
 		);
 		return;
@@ -198,13 +230,13 @@ let exportedMethods = {
 	async updateOwnerProfile(userId, firstName, lastName, address) {
 		const usersCollection = await users();
 
-		console.log("in update");
+		console.log('in update');
 		const updateUser = await usersCollection.findOneAndUpdate(
 			{
 				_id: ObjectId(userId),
 			},
-			{$set:
-				{
+			{
+				$set: {
 					firstName: firstName,
 					lastName: lastName,
 					address: {
@@ -212,20 +244,19 @@ let exportedMethods = {
 						city: address.city,
 						state: address.state,
 						zip: address.zip,
-						country: address.country
-					}
-				}
+						country: address.country,
+					},
+				},
 			}
+		);
 
-		)
-		console.log("finished")
+		console.log('finished');
 		return;
 	},
-
 	async findSitterByEmail(email) {
-        const sitter = await usersCollection.findOne({ email: email });
-        return sitter;
-    },
+		const sitter = await usersCollection.findOne({ email: email });
+		return sitter;
+	},
 };
 
 

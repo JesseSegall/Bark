@@ -10,9 +10,6 @@
     var zip = $('#inputZip');
     var country = $('#inputCountry');
 
-    console.log(sitterProfileForm.length);
-    console.log(ownerProfileForm.length);
-
     if(sitterProfileForm.length > 0) { 
         var smallDog = $('#small-dog-input');
         var mediumDog = $('#medium-dog-input');

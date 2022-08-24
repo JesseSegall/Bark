@@ -11,8 +11,7 @@ let exportedMethods = {
     weight,
     age,
     difficultyLevel,
-    picture,
-    sitterId
+    picture
   ) {
     let newDog = {
       dogName: dogName,
@@ -20,7 +19,7 @@ let exportedMethods = {
       weight: weight,
       age: age,
       difficultyLevel: difficultyLevel,
-      picture: picture,
+      picture: "picture",
     };
 
     const dogsCollection = await dogs();
@@ -49,15 +48,28 @@ let exportedMethods = {
       { _id: ObjectId(sitterId) },
       { $push: { idOfDogSat: insertDog.insertedId.toString() } }
     ); */
-
-    return await this.getDog(dogId);
+    console.log("almost finished");
+    return await this.getDog(ownerId);
   },
 
   async getDog(id) {
+
     const dogsCollection = await dogs();
-    const dog = await dogsCollection.findOne({ _id: ObjectId(id) });
-    return dog;
+
+    console.log("getDog1");
+    const usersCollection = await users();
+    const owner = await usersCollection.findOne({ _id: ObjectId(id) });
+    console.log("getDog");
+    
+    console.log("getDogCollect");
+    console.log(owner);
+    const dogs = await dogsCollection.find({}).toArray();
+    for(i= 0; i < dogs.length; i++) {
+      console.log(dogs[i].dogName);
+    }
+    return dogs;
   },
+
 };
 
 module.exports = exportedMethods;
