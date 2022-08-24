@@ -87,13 +87,30 @@ let exportedMethods = {
 
 		const removeRequest = await requestsCollection.remove({_id: ObjectId(requestId)});
 
-		
+
 	},
 
-	async cancelRequest(id) {
-		//remove request from sitter
+	async cancelRequest(requestId) {
+		const usersCollection = await users();
+		const requestsCollection = await requests();
 
+		//find sitterId using requestId and request collection
+		const requestInfo = requestsCollection.findOne({_id: ObjectId(requestId)});
+		const sitterId = requestInfo.sitterId;
+
+		//remove request from sitter
+		const removeSitterRequest = await usersCollection.update(
+			{
+				_id: ObjectId(sitterId)
+			},
+			{
+				$pull: {
+					requests: requestId
+				}
+			}
+		);
 		//delete request from request collection
+		const removeRequest = await requestsCollection.remove({_id: ObjectId(requestId)});
 	},
 };
 
