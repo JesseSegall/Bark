@@ -11,7 +11,6 @@ const salt = 8;
 const users = data.users;
 
 router.get('/', async (req, res) => {
-	// Just for testing purposes
 	return res.render('partials/landingPage', {});
 });
 
