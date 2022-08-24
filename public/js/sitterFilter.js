@@ -6,6 +6,7 @@
 	let dogMedium = $('#dog-medium');
 	let dogLarge = $('#dog-large');
 	let difficultDog = $('#dog-difficult');
+	let removeFilters = $('#remove-filters');
 
 	// Main Divs
 	let unorderedSittersDiv = $('#unordered-sitters');
@@ -14,7 +15,7 @@
 	let dogSmallDiv = $('#dog-small-sitters');
 	let dogMediumDiv = $('#dog-medium-sitters');
 	let dogLargeDiv = $('#dog-large-sitters');
-	let dogDifficultDiv = $('#dog-difficult-div');
+	let dogDifficultDiv = $('#dog-difficult-sitters');
 
 	// Cards
 	let unorderedCard = $('#ajax-card');
@@ -24,6 +25,17 @@
 	let dogMdCard = $('#ajax-card-dog-md');
 	let dogLgCard = $('#ajax-card-dog-lg');
 	let dogDiffCard = $('#ajax-card-dog-diff');
+
+	removeFilters.on('click', function (e) {
+		e.preventDefault();
+		unorderedSittersDiv.attr('hidden', false);
+		priceHighDiv.attr('hidden', true);
+		priceLowDiv.attr('hidden', true);
+		dogSmallDiv.attr('hidden', true);
+		dogMediumDiv.attr('hidden', true);
+		dogLargeDiv.attr('hidden', true);
+		dogDifficultDiv.attr('hidden', true);
+	});
 
 	// When page loads pulls all sitters in no order
 	let req = {
@@ -169,7 +181,7 @@
 
 	dogMedium.on('click', function (e) {
 		e.preventDefault();
-		console.log("Medium Click");
+		console.log('Medium Click');
 		unorderedSittersDiv.attr('hidden', true);
 		priceHighDiv.attr('hidden', true);
 		priceLowDiv.attr('hidden', true);
@@ -252,7 +264,6 @@
 		dogSmallDiv.attr('hidden', true);
 		dogMediumDiv.attr('hidden', true);
 		dogLargeDiv.attr('hidden', true);
-		dogDifficultDiv.attr('hidden', false);
 
 		let req = {
 			method: 'GET',
@@ -261,6 +272,7 @@
 		};
 
 		$.ajax(req).then((res) => {
+			console.log(res);
 			for (i = 0; i < res.length; i++) {
 				dogDiffCard.append(
 					`
@@ -277,6 +289,7 @@
 				</div>`
 				);
 			}
+			dogDifficultDiv.attr('hidden', false);
 		});
 	});
 })(window.jQuery);
