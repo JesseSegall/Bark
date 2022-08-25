@@ -8,13 +8,19 @@ const xss = require('xss');
 router.post('/', async (req, res) => {
 	const currUser = req.session.user;
 	const email = xss(req.body.sitter_email);
-
-	const foundSitter = await users.findSitterByEmail(email);
-	const sitterID = foundSitter._id.toString();
-
-	const userId = currUser._id.toString();
-	const requestText = xss(req.body.requestText);
-	const dogId = currUser.dogs[0];
+	try{
+		const foundSitter = await users.findSitterByEmail(email);
+		if (!foundSitter) throw "No email given!"
+		const sitterID = foundSitter._id.toString();
+	
+		const userId = currUser._id.toString();
+		const requestText = xss(req.body.requestText);
+		const dogId = currUser.dogs[0];
+	}
+	catch(e){
+		res.status(401).render(`partials/sitterList`, {title: "Requests", error: "No Email given"})
+	}
+	
 
 	try {
 		const requestId = await requests.addRequest(userId, sitterID, requestText, dogId);
