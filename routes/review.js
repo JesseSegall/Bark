@@ -27,8 +27,6 @@ router.get('/', async (req, res) => {
 			}
 		}
 
-		console.log(dataArray);
-
 		let dataObject = [];
 
 		//get owner name using owner id from array
@@ -50,8 +48,6 @@ router.get('/', async (req, res) => {
 			ownerObject: dataObject,
 		};
 
-		console.log(passThru);
-
 		return res.json(passThru);
 	} catch (e) {
 		return res.status(500).json({ error: e });
@@ -59,7 +55,6 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/dog', async (req, res) => {
-	console.log(req.body.dogId);
 
 	try {
 		return res.json(owner);
@@ -69,7 +64,6 @@ router.get('/dog', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-	//console.log("reqBody: " + req.body);
 	const reqBody = req.body;
 
 	const text = reqBody.reviewText;
@@ -88,8 +82,6 @@ router.post('/', async (req, res) => {
         beingReviewedId = sitter._id.toString();
         rating = reqBody.sitter_rating_review;
     }
-
-	console.log(beingReviewedId);
 
 	try {
 		//const sitter = await usersData.getSitter(userId);

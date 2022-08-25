@@ -49,7 +49,6 @@ let exportedMethods = {
       { _id: ObjectId(sitterId) },
       { $push: { idOfDogSat: insertDog.insertedId.toString() } }
     ); */
-    console.log("almost finished");
     const toReturn = await this.getDog(ownerId);
     return toReturn;
   },
@@ -60,7 +59,6 @@ let exportedMethods = {
     const usersCollection = await users();
     const owner = await usersCollection.findOne({ _id: ObjectId(id) });
 
-    console.log(owner);
     const dogList = await dogsCollection.findOne({_id: ObjectId(owner.dogs)});
 /*     for(i= 0; i < dogs.length; i++) {
       console.log(dogs[i].dogName);
@@ -97,7 +95,6 @@ let exportedMethods = {
     const dogsCollection = await dogs();
 
     const dogObj = await dogsCollection.findOne({_id: ObjectId(id)});
-    //console.log(dogObj);
 
     return dogObj;
   }
