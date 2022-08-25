@@ -73,7 +73,7 @@ router.post('/', async (req, res) => {
 	const reqBody = req.body;
 
 	const text = reqBody.reviewText;
-	const rating = reqBody.rating;
+	let rating = reqBody.rating;
 	const posterId = req.session.user._id;
 	const dogId = reqBody.dogId;
 	let beingReviewedId;
@@ -86,6 +86,7 @@ router.post('/', async (req, res) => {
     if (reqBody.sitter_email_review) {
         const sitter = await usersData.getUserByEmail(req.body.sitter_email_review);
         beingReviewedId = sitter._id.toString();
+        rating = reqBody.sitter_rating_review;
     }
 
 	console.log(beingReviewedId);
