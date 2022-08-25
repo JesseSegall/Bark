@@ -3,7 +3,7 @@
               <div class="card-body text-center">
                      <img src="public/image/no_image.jpeg" class="card-img-top" alt="..." />
                      <h5 class="card-title">{{user.firstName}} {{user.lastName}}</h5>
-                     <p>Address: {{user.address}}</p>
+                     <p>City: {{user.address.city}}</p>
                      <p>Email: {{user.email}}</p>
                      {{#if user.sitter}}
                      <div id="req-table">
@@ -103,9 +103,9 @@
               <p>Large Dog Price: {{user.price.largeDog}}</p>
               <p>Difficult Dog Fee: {{user.price.difficultDog}}</p>
               <p>Dogs Sat: {{user.idOfDogSat.length}}</p>
-              <p>Reviews: {{user.ReviewsId}}</p>
+              {{!-- <p>Reviews: {{user.ReviewsId}}</p>
               <p>Requests: {{user.requests}}</p>
-              <p>Your Rating: {{user.rating}}</p>
+              <p>Your Rating: {{user.rating}}</p> --}}
               {{/if}}
               {{#if user.owner}}
               <form id="owner-profile-update-form" method="post">

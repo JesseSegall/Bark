@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const users = data.users;
 const xss = require('xss');
+const reviewsData = data.reviews;
 
 router.get('/', (req, res) => {
 	const userData = req.session.user;
@@ -17,8 +18,6 @@ router.post('/profileEdit', async (req, res) => {
 	const userEditProfile = req.body;
 	const userData = req.session.user;
 
-	/* 	console.log("profile Edit route");
-	console.log(userEditProfile); */
 	try {
 		//TODO: wrap variables in XSS
 		const userId = req.session.user._id;
