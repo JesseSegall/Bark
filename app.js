@@ -5,6 +5,7 @@ const configRoutes = require('./routes');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars');
+const fileupload = require(`express-fileupload`);
 
 const handlebarsInstance = exphbs.create({
 	defaultLayout: 'main',
@@ -54,6 +55,8 @@ app.use('/availableSitters', async (req, res, next) => {
 	}
 	next();
 });
+
+app.use(fileupload());
 configRoutes(app);
 
 app.listen(3000, () => {

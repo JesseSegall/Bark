@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const users = data.users;
 const xss = require('xss');
+const fileupload = require('express-fileupload')
 
 router.get('/', (req, res) => {
 	const userData = req.session.user;
@@ -71,5 +72,26 @@ router.get('/profileEdit', async (req, res) => {
 		return res.status(500).json({ error: e });
 	}
 });
+
+router.post(`/saveImage`, (req,res) => {
+	const fileName = req.files.myFile.name;
+	const path = __dirname + `/images/` + fileName
+	image.mv(path, (error) => {
+		if (error) {
+		  console.error(error)
+		  res.writeHead(500, {
+			'Content-Type': 'application/json'
+		  })
+		  res.end(JSON.stringify({ status: 'error', message: error }))
+		  return
+		}
+	
+		res.writeHead(200, {
+		  'Content-Type': 'application/json'
+		})
+		res.end(JSON.stringify({ status: 'success', path: '/img/houses/' + fileName }))
+	  })
+})
+
 
 module.exports = router;

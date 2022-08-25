@@ -114,10 +114,15 @@
               {{#if user.owner}}
               <form id="owner-profile-update-form" method="post">
                      <label for="owner-photo">Update or Add a profile picture</label>
-                     <input type="file" id="photo">
+                     <input type="file" id="fileUpload">
+                     <button type = "submit" class = "Buttons" onClick = ""></button>
+
+                     <!--
                      <img id = "imgPreview" src = "" alt = "Preview">
                      <button type = "button" class = "Buttons" onClick="window.location.reload()">Submit photo</button>
+                                   
                                    <script>
+
                                           document.querySelector(`#photo`).addEventListener(`change`, function(){
                                                  //console.log(this.files);
                                                  const reader = new FileReader();
@@ -135,8 +140,13 @@
                                                         document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl);
                                                  }
                                           })
+                                          fetch(`/saveImage`,{
+                                                 method:`POST`
+                                                 body: formData
+                                          }).then (response => response.json())
+                                          .then(data => console.log(data.path); req.session.user.photo = data.path)
                                           
-                     </script>
+                     </script>-->
                      <label for="first_name"> First Name</label>
                      <input type="text" name="first_name" id="first_name" placeholder="First Name" value="test"
                             required />
