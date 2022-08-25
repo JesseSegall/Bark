@@ -131,6 +131,13 @@ router.post('/registerSitter', async (req, res) => {
 	}
 
 	try {
+
+	if(user_name == "" || typeof user_name !== 'string') throw (error); 
+	if(first_name == "" || typeof first_name !== 'string') throw (error); 
+	if(last_name == "" || typeof last_name !== 'string') throw (error); 
+	if(email == "" || typeof email !== 'string') throw (error); 
+	if(password == "" || typeof password !== 'string') throw (error); 
+
 		const hash = await bcrypt.hash(password, salt);
 		const newSitter = await users.addSitter(
 			first_name,
