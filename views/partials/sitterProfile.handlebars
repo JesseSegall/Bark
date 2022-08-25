@@ -1,15 +1,17 @@
 <div class="col-auto mb-3">
     <div id = "sitterCard" class="card" style="width: 1000px; height: 700px" >
         <div class="card-body text-center">
-            <div> <img src="public/image/no_image.jpeg" class="card-img-top" alt="Profile Picture"></div>
+            <div> <img src="/public/image/no_image.jpeg" class="card-img-top" alt="Profile Picture"></div>
             <h5 class="card-title">{{sitter.firstName}} {{sitter.lastName}}</h5>
-            <p>Address: {{sitter.address}}</p>
-           
-            <p>Price: {{sitter.price}}</p>
+            <p>City: {{sitter.address.city}}</p>
+            <p>Prices:</p>
+            <p>Small Dog: {{sitter.price.smallDog}}</p>
+            <p>Medium Dog: {{sitter.price.mediumDog}}</p>
+            <p>Large Dog: {{sitter.price.largeDog}}</p>
+            <p>Difficult Dog Fee: {{sitter.price.difficultDog}}</p>
             {{!-- added eaches to loop through dogs sitter has sat --}}
-            <p>Dogs Sat: {{sitter.idOfDogSat}}</p>  
-            <p>Reviews: {{sitter.ReviewsId}}</p>
-            <p>Requests: {{sitter.requests}}</p>
+            <p>Dogs Sat: {{sitter.idOfDogSat.length}}</p>  
+            <p>Reviews: {{sitter.reviews}}</p>
             <p>Email: {{sitter.email}}</p>
             <p>Dog Difficulty Threshold: {{sitter.Difficulty}}</p>
 

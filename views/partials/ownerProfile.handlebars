@@ -21,12 +21,12 @@
         <div class="card-body text-center">
              <img src="{{owner.picture}}" class="card-img-top" alt="..." />
             <h5 class="card-title">{{owner.firstName}} {{owner.lastName}}</h5>
-            <p>Address: {{owner.address}}</p>
+            <p>City: {{owner.address.city}}</p>
             <p>Email: {{owner.email}}</p>
-            <p>Price: {{owner.price}}</p>
-            <p>Dogs Sat: {{owner.idOfDogSat}}</p>
-            <p>Reviews: {{owner.ReviewsId}}</p>
-            <p>Requests: {{owner.requests}}</p>
+            <p>Reviews: {{#each reviews}}</p>
+            <p>Review Text: {{text}}</p>
+            <p>Rating: {{rating}}</p>
+            {{/each}}
         </div>
     </div>
 </div>
