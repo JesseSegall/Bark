@@ -32,7 +32,30 @@
 
                             <form id="sitter-profile-update-form" method="post">
                                    <label for="sitter-photo">Update or Add a profile picture</label>
-                                   <input type="file" id="sitter-photo">
+                                   <input type="file" id="photo">
+                                   <!--TODO save image to account after upload-->
+                                   <img id = "imgPreview" src = "" alt = "Preview">
+                                   <button type = "button" class = "Buttons" onClick="window.location.reload()">Submit photo</button>
+                                   <script>
+                                          document.querySelector(`#photo`).addEventListener(`change`, function(){
+                                                 //console.log(this.files);
+                                                 const reader = new FileReader();
+
+                                                 reader.addEventListener("load",() => {
+                                                       //console.log(reader.result);
+                                                       localStorage.setItem("recent-image", reader.result);
+                                                 })
+                                                 reader.readAsDataURL(this.files[0]);
+                                          });
+
+                                          document.addEventListener("DOMContentLoaded", () => {
+                                                 const recentImageDataUrl = localStorage.getItem("recent-image");
+                                                 if (recentImageDataUrl) {
+                                                        document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl);
+                                                 }
+                                          })
+                                          
+                                   </script>
                                    <label for="first_name"> First Name</label>
                                    <input type="text" name="first_name" id="first_name" placeholder="First Name"
                                           required />
@@ -110,7 +133,29 @@
               {{#if user.owner}}
               <form id="owner-profile-update-form" method="post">
                      <label for="owner-photo">Update or Add a profile picture</label>
-                     <input type="file" id="owner-photo">
+                     <input type="file" id="photo">
+                     <img id = "imgPreview" src = "" alt = "Preview">
+                     <button type = "button" class = "Buttons" onClick="window.location.reload()">Submit photo</button>
+                                   <script>
+                                          document.querySelector(`#photo`).addEventListener(`change`, function(){
+                                                 //console.log(this.files);
+                                                 const reader = new FileReader();
+
+                                                 reader.addEventListener("load",() => {
+                                                       //console.log(reader.result);
+                                                       localStorage.setItem("recent-image", reader.result);
+                                                 })
+                                                 reader.readAsDataURL(this.files[0]);
+                                          });
+
+                                          document.addEventListener("DOMContentLoaded", () => {
+                                                 const recentImageDataUrl = localStorage.getItem("recent-image");
+                                                 if (recentImageDataUrl) {
+                                                        document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl);
+                                                 }
+                                          })
+                                          
+                     </script>
                      <label for="first_name"> First Name</label>
                      <input type="text" name="first_name" id="first_name" placeholder="First Name" value="test"
                             required />
