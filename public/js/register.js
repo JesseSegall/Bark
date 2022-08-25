@@ -54,7 +54,7 @@ const validateInputs = () => {
 	const last_nameVal = last_name.value.trim();
 	const passwordVal = password.value.trim();
 	const password_confmVal = password_confm.value.trim();
-	const genderValVal = genderVal.value.trim();
+	const genderVal = genderVal.value.trim();
 
 	if (user_nameVal === '') {
 		setErrors(user_name, 'A username is required.');
@@ -119,9 +119,9 @@ const validateInputs = () => {
 		setSuccess(password_confm);
 		flag = false;
 	}
-	
+
 	if (genderVal) {
-		if ((genderVal === '') || (typeof genderVal == 'number')) {
+		if (genderVal === '' || typeof genderVal == 'number') {
 			setErrors(genderVal, 'Please enter a gender.');
 			flag = true;
 		} else {
