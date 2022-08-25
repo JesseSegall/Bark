@@ -41,6 +41,7 @@
 		//TODO: make sure they actually enter something and it can't be empty
 		let reviewText = postReviewText.val();
 		let reviewRating = postReviewRating.val();
+		
 
 		reviewText = reviewText.trim();
 
@@ -55,17 +56,21 @@
 
 		//need to see actual dashboard
 		//let beingReviewedId = $('#profileID');
-
-		let req = {
-			method: 'POST',
-			url: 'http://localhost:3000/ownerReview',
-			contentType: 'application/json',
-			data: JSON.stringify({
-				text: postReviewText.val(),
-				rating: postReviewRating.val(),
-				beingReviewedId: '62fea5057ce30273374c2aa7',
-			}),
-		};
+		try{
+			let req = {
+				method: 'POST',
+				url: 'http://localhost:3000/ownerReview',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					text: postReviewText.val(),
+					rating: postReviewRating.val(),
+					beingReviewedId: '62fea5057ce30273374c2aa7',
+				}),
+			};
+		}
+		catch(e){
+			console.log(e)
+		}
 
 		$.ajax(req).then(function (res) {
 			//append owner reviews to section
