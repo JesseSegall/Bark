@@ -53,12 +53,12 @@ let exportedMethods = {
   },
 
   async getDog(id){
-    const dogsCollection = await dogs();
+    const dogs1Collection = await dogs();
 
     const usersCollection = await users();
     const owner = await usersCollection.findOne({ _id: ObjectId(id) });
 
-    const dogList = await dogsCollection.findOne({_id: ObjectId(owner.dogs)});
+    const dogList = await dogs1Collection.findOne({_id: ObjectId(owner.dogs)});
 /*     for(i= 0; i < dogs.length; i++) {
       console.log(dogs[i].dogName);
     } */

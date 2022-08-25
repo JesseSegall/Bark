@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
 
         const dogDataInsert = await dogsData.addDog(ownerId, dogName, dogBreed, dogWeight, dogAge, dogDifficulty, dogPic);
 
-        return;
+        return res.json(dogDataInsert);
 
 
     } catch(e) {
