@@ -64,6 +64,10 @@ router.get('/dog', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+	if (!req.session.user){
+		return res.render(`partials/signin`, {error: 'Must be loggined in to leave reviews', title:'Sign In'})
+
+	}
 	const reqBody = req.body;
 
 	const text = reqBody.reviewText;
