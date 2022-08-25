@@ -37,7 +37,6 @@ let exportedMethods = {
         dogs: dogId
       }
     });
-
     //const testOwner = await ownersCollection.findOne();
     //console.log(testOwner._id);
 

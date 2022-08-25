@@ -20,11 +20,11 @@ router.post('/profileEdit', async (req, res) => {
 
 	try {
 		//TODO: wrap variables in XSS
-		const userId = xss(req.session.user._id);
-		const firstName = xss(userEditProfile.firstName);
-		const lastName = xss(userEditProfile.lastName);
-		const address = xss(userEditProfile.address);
-		const price = xss(userEditProfile.price);
+		const userId = req.session.user._id;
+		const firstName = userEditProfile.firstName;
+		const lastName = userEditProfile.lastName;
+		const address = userEditProfile.address;
+		const price = userEditProfile.price;
 
 		//console.log("sitter: " + userData.sitter);
 		if (userData.sitter) {
