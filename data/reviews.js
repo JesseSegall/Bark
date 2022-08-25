@@ -83,7 +83,15 @@ let exportedMethods = {
     console.log(owner._id);
 
     return owner._id.toString();
-  }
+  },
+
+  async getAllReviews() {
+    const reviewsCollection = await reviews();
+
+    const reviewsAll = await reviewsCollection.find({}).toArray();
+
+    return reviewsAll;
+  },
 };
 
 module.exports = exportedMethods;
