@@ -97,6 +97,12 @@ let exportedMethods = {
 		return sitter;
 	},
 
+	async getUserByEmail(email) {
+		const usersCollection = await users();
+		const sitter = await usersCollection.findOne({ email: email });
+		return sitter;
+	},
+
 	async getAllUsers() {
 		const usersCollection = await users();
 

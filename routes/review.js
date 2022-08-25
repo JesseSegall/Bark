@@ -83,6 +83,11 @@ router.post('/', async (req, res) => {
 		beingReviewedId = await reviewsData.getUser(dogId);
 	}
 
+    if (reqBody.sitter_email_review) {
+        const sitter = await usersData.getUserByEmail(req.body.sitter_email_review);
+        beingReviewedId = sitter._id.toString();
+    }
+
 	console.log(beingReviewedId);
 
 	try {

@@ -30,6 +30,21 @@
                 <textarea name="requestText" id="requestText" cols="60" rows="6"></textarea>
                 <p><button type="submit">Send Request</button></p>
                 </form>
+
+                <form 
+                id = "reviewForm"
+                action="/review"
+                method= "POST"
+                role = "form"
+                enctype="application/x-www-form-urlencoded"
+                >
+                <p><label>Please enter a review below:</label></p>
+                 <p>To confirm your review please enter the sitters email address</p>
+                 <label for="sitter_email_review">Sitter's Email</label>
+                 <input id="sitter_email_review" type="email" name="sitter_email_review" placeholder="Sitter's Email Address" >
+                <textarea name="reviewText" id="reviewText" cols="60" rows="6"></textarea>
+                <p><button type="submit">Send Request</button></p>
+                </form>
             </div>
         </div>
     </div>
