@@ -74,11 +74,20 @@ router.post('/registerOwner', async (req, res) => {
 	try {
 		const hash = await bcrypt.hash(password, salt);
 		const newOwner = await users.addOwner(firstName, lastName, email, userName, hash, gender);
+		
+		//input not be blank and must be a string 
+		if(firstName == "" || typeof firstName !== 'string') throw (error); 
+		if(lastName == "" || typeof lastName !== 'string') throw (error); 
+		if(email == "" || typeof email !== 'string') throw (error); 
+		if(userName == "" || typeof userName !== 'string') throw (error); 
+		if(password == "" || typeof password !== 'string') throw (error);
+		if(gender == "" || typeof gender !== 'string') throw (error); 
+
 
 		req.session.user = newOwner;
 	} catch (error) {
 		//TODO: whenever a req.session.user is assigned, if auth fails we need to add isAuth false like I did below
-		return res.status(401).render('partials/sitterReg', {
+		return res.status(401).render('partials/ownerReg', {
 			errors: error,
 			title: 'Owner Registration',
 			isAuth: false,
