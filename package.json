@@ -1,0 +1,26 @@
+{
+  "name": "bark",
+  "version": "1.0.0",
+  "description": "Bark Project",
+  "main": "app.js",
+  "scripts": {
+    "seed": "node ./tasks/seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Jesse Segall, Ryan Knapp, Eric Knapp, Bhavin Mistry, Terrance Peters",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "db": "^3.3.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "handlebars": "^4.7.7",
+    "mongo": "^0.1.0",
+    "mongodb": "^4.9.0",
+    "nodemon": "^2.0.19",
+    "xss": "^1.0.14"
+  }
+}

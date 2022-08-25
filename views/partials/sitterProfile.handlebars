@@ -1,0 +1,53 @@
+<div class="col-auto mb-3">
+    <div id = "sitterCard" class="card" style="width: 1000px; height: 700px" >
+        <div class="card-body text-center">
+            <div> <img src="/public/image/no_image.jpeg" class="card-img-top" alt="Profile Picture"></div>
+            <h5 class="card-title">{{sitter.firstName}} {{sitter.lastName}}</h5>
+            <p>City: {{sitter.address.city}}</p>
+            <p>Prices:</p>
+            <p>Small Dog: {{sitter.price.smallDog}}</p>
+            <p>Medium Dog: {{sitter.price.mediumDog}}</p>
+            <p>Large Dog: {{sitter.price.largeDog}}</p>
+            <p>Difficult Dog Fee: {{sitter.price.difficultDog}}</p>
+            {{!-- added eaches to loop through dogs sitter has sat --}}
+            <p>Dogs Sat: {{sitter.idOfDogSat.length}}</p>  
+            <p>Reviews: {{sitter.reviews}}</p>
+            <p>Email: {{sitter.email}}</p>
+            <p>Dog Difficulty Threshold: {{sitter.Difficulty}}</p>
+
+            <div class = "container">
+                <form 
+                id = "requestForm"
+                action="/requests"
+                method= "POST"
+                role = "form"
+                enctype="application/x-www-form-urlencoded"
+                >
+                <p><label>Please enter a request below:</label></p>
+                 <p>To confirm your request please enter the sitters email address</p>
+                 <label for="sitter-email">Sitter's Email</label>
+                 <input id="sitter_email" type="email" name="sitter_email" placeholder="Sitter's Email Address" >
+                <textarea name="requestText" id="requestText" cols="60" rows="6"></textarea>
+                <p><button type="submit">Send Request</button></p>
+                </form>
+
+                <form 
+                id = "reviewForm"
+                action="/review"
+                method= "POST"
+                role = "form"
+                enctype="application/x-www-form-urlencoded"
+                >
+                <p><label>Please enter a review below:</label></p>
+                 <p>To confirm your review please enter the sitters email address</p>
+                 <label for="sitter_email_review">Sitter's Email</label>
+                 <input id="sitter_email_review" type="email" name="sitter_email_review" placeholder="Sitter's Email Address" >
+                <textarea name="reviewText" id="reviewText" cols="60" rows="6"></textarea>
+                <input id="sitter_rating_review" type="number" name="sitter_rating_review" placeholder="Rating" >
+                <p><button type="submit">Send Request</button></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

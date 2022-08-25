@@ -1,0 +1,37 @@
+<!--TODO 
+
+1. GET USER INFO
+2. CHECK WHAT TYPE OF USER IS ACCESSING THEIR DASHBOARD
+3. DISPLAY APPROPRIATE INFORMATION
+
+4. display list of recieved or sent requests
+    if user is an owner:
+        show pending requests
+        show accepted
+        show declined requests
+    if user is a sitter
+        show pending request AND allow them to update the status field to either accepted or declined
+        show accepted (Ability to "Cancel"?)
+        show declined 
+        -->
+
+
+<div class="col-auto mb-3">
+    <div id = "dashboardCard" class="card" style="width: 600px; height: 600px" >
+        <div class="card-body text-center">
+             <img src="public/image/no_image.jpeg" class="card-img-top" alt="..." />
+            <h5 class="card-title">{{user.firstName}} {{user.lastName}}</h5>
+            <p>Address: {{user.address}}</p>
+            <p>Email: {{user.email}}</p>
+            {{#if user.sitter}}
+            <!-- TODO add button to all of these to update -->
+            <p>Price: {{user.price}}</p>
+            <p>Dogs Sat: {{user.idOfDogSat}}</p>
+            <p>Reviews: {{user.ReviewsId}}</p>
+            <p>Requests: {{user.requests}}</p>
+            {{/if}}
+            <!-- TODO add form that takes input of a string detailing the request, and then sends it, attaching that "request" to the owner's sent list, and the sitters recieved list.
+            Sitter can then accept the request, adding to their accepted requests. Denying it deletes the request and responds to the owner. -->
+        </div>
+    </div>
+</div>
