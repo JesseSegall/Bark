@@ -1,0 +1,154 @@
+<link rel="stylesheet" href="/public/styles.css" />
+
+<div class="OuterContainer">
+	<div class="innerContainer">
+		<h1 class="h1_reg_petOwner">Please Register Sitter Below</h1>
+		<div class="errors">{{errors}}</div>
+	</div>
+	<div class="innerContainer">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<form
+					id="form"
+					action="/registerSitter"
+					method="POST"
+					role="form"
+					enctype="application/x-www-form-urlencoded"
+				>
+					<legend>Enter Your Information Below</legend>
+					<div class="form-group">
+						<label for="first_name"> First Name</label>
+						<input
+							type="text"
+							class="form-control"
+							name="first_name"
+							id="first_name"
+							placeholder="First Name"
+							required
+						/>
+						<div class="error"></div>
+					</div>
+					<br />
+					<div class="form-group">
+						<label for="last_name"> Last Name </label>
+						<input
+							type="text"
+							class="form-control"
+							name="last_name"
+							id="last_name"
+							placeholder="Last Name"
+							required
+						/>
+						<div class="error"></div>
+					</div>
+					<h6>Please check which size of dog you are comfortable sitting.</h6>
+					<div class="form-group">
+
+						<label for="small_dog"> Small Dog 
+						<input
+							type="checkbox"
+							class="form-control"
+							name="small_dog"
+							id="small_dog"
+							value="small"
+							
+						/></label>
+						<div class="error"></div>
+					
+
+						<label for="medium_dog"> Medium Dog 
+						<input
+							type="checkbox"
+							class="form-control"
+							name="medium_dog"
+							id="medium_dog"
+							value="medium"
+							
+							
+						/></label>
+						<div class="error"></div>
+					
+					
+
+						<label for="large_dog"> Large Dog 
+						<input
+							type="checkbox"
+							class="form-control"
+							name="large_dog"
+							id="large_dog"
+							value="large"
+							
+						/></label>
+						<div class="error"></div>
+					</div>
+					<h6>Are you willing to sit for a difficult dog?</h6>
+						<label for="difficult_dog"> Yes
+						<input
+							type="checkbox"
+							class="form-control"
+							name="difficult_dog"
+							id="difficult_dog"
+						
+							
+						/></label>
+					<br />
+					<div class="form-group">
+						<label for="user_name"> User Name </label>
+						<input
+							type="text"
+							class="form-control"
+							name="user_name"
+							id="user_name"
+							placeholder=" Username"
+							required
+						/>
+						<div class="error"></div>
+					</div>
+					<br />
+					<div class="form-group">
+						<label for="email"> Email Address </label>
+						<input
+							type="email"
+							class="form-control"
+							name="email"
+							id="email"
+							placeholder=" Email Address"
+							required
+						/>
+						<div class="error"></div>
+					</div>
+					<br />
+					<div class="form-group">
+						<label for="password"> Password </label>
+						<input
+							type="password"
+							class="form-control"
+							name="password"
+							id="password"
+							placeholder="Password"
+							required
+						/>
+						<div class="error"></div>
+					</div>
+					<br />
+					<div class="form-group">
+						<label for="password_confm"> Re Enter Password </label>
+						<input
+							type="password"
+							class="form-control"
+							name="password_confm"
+							id="password_confm"
+							placeholder="Re enter your password"
+							required
+						/>
+						<div class="error"></div>
+						<br />
+						<button type="submit" class="Buttons">Register</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script src="public/js/register.js"></script>

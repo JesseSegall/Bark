@@ -1,0 +1,32 @@
+{{!-- <div class="topnav">
+    <a class="active" href="/">Home</a>
+    <a href="/registerOwner">Owner</a>
+    <a href="/registerSitter">Sitter</a>
+    <a href="/About">About</a>
+</div> --}}
+
+{{!-- <section id="ownderInfo">
+    <h1 id="ownerProfilePage">{{owner.firstName}} {{owner.lastName}}</h1>
+            {{owner.picture}}
+    <p>Address: {{owner.address}}</p>
+    <p>Email: {{owner.email}}</p>
+    <p>Price: {{owner.price}}</p>
+    <p>Dogs Sat: {{owner.idOfDogSat}}</p>
+    <p>Reviews: {{owner.ReviewsId}}</p>
+    <p>Requests: {{owner.requests}}</p>
+</section> --}}
+
+<div class="col-auto mb-3">
+    <div id = "sitterCard" class="card" style="width: 300px; height: 300px" >
+        <div class="card-body text-center">
+             <img src="{{owner.picture}}" class="card-img-top" alt="..." />
+            <h5 class="card-title">{{owner.firstName}} {{owner.lastName}}</h5>
+            <p>City: {{owner.address.city}}</p>
+            <p>Email: {{owner.email}}</p>
+            <p>Reviews: {{#each reviews}}</p>
+            <p>Review Text: {{text}}</p>
+            <p>Rating: {{rating}}</p>
+            {{/each}}
+        </div>
+    </div>
+</div>

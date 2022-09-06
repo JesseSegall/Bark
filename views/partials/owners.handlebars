@@ -1,0 +1,18 @@
+<div class="container-fluid">
+	<div class="row w-100 m-0 justify-content-center">
+		<div class="row row-cols-2 row-cols-md-4">
+			{{#each owner}}
+				<div class="col-auto mb-3">
+					<div class="card" style="width: 300px;">
+						<img src="public/image/no_image.jpeg" class="card-img-top" alt="..." />
+						<div class="card-body text-center">
+							<h5 class="card-title">{{this.firstName}} {{this.lastName}}</h5>
+							<p class="card-text">Price: {{this.price}}</p>
+							<a href="/owners/{{_id}}" class="btn btn-primary">View Profile</a>
+						</div>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</div>

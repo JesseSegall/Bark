@@ -1,0 +1,30 @@
+<div>
+    <form id="sitterSearchForm" method="post" action="/searchSitter">
+        <label for="search_term">Search for a sitter:</label>
+        <input id="search_term" type="text" name="search_term" placeholder="Enter a Sitter Name" />
+        <button type="submit">Search</button>
+    </form>
+    <p>{{errors}}</p>
+    <Section>
+
+         <ul id="sitterList"> 
+             
+                {{#each data}}
+                <div id="sitter"><a href="/searchSitter/{{_id}}">{{firstName}} {{lastName}}</a></div>
+            {{/each}}
+            
+            
+        </ul> 
+        <ul id="sitterList"></ul>
+        <div id="sitter"></div>
+
+    </Section>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+    {{!-- <script src="/public/js/searchSitter.js"></script> --}}
+
+</div>
